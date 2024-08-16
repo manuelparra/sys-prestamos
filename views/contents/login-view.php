@@ -31,7 +31,7 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
             </div>
             <div class="form-group">
                 <label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Contraseña</label>
-                <input type="password" class="form-control" id="UserPassword" name="clave_log" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$" maxlength="100" required="" >
+                <input type="password" class="form-control" id="UserPassword" name="clave_log" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16" required="" >
             </div>
             <button type="submit" class="btn-login text-center">INICIAR SESIÓN</button>
         </form>

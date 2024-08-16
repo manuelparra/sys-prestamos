@@ -59,7 +59,7 @@ class loginController extends loginModel {
         }
 
         /* Check password */
-        if (loginModel::check_data("^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$", $clave)) {
+        if (loginModel::check_data("^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$", $clave)) {
             echo '
             <script>
                 Swal.fire({
