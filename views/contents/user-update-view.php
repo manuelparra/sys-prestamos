@@ -227,7 +227,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $insLoginController->encrypt_data($_SESS
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="clave_admin" class="bmd-label-floating">Contraseña</label>
-                            <input type="password" class="form-control" name="clave_admin" id="clave_admin" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$" maxlength="100" required="" >
+                            <input type="password" class="form-control" name="clave_admin" id="clave_admin" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16" required="" >
                         </div>
                     </div>
                 </div>

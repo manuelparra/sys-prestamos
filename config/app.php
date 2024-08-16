@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 // const ERROR_DIR = "/var/www/html/learning/fullstack/php/mvc/prestamos/logs/";
 
 // Local Enviroment (macOS), comment this lines if you put this files in a production environment
-const SERVER_URL = "https://prestamos:8890/";
+const SERVER_URL = "https://prestamos.com/";
 const ERROR_DIR = "/Users/manuel/Sites/prestamos/logs/";
 
 
