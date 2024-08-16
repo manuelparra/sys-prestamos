@@ -20,6 +20,7 @@ include_once "./models/loginModel.php";
 class loginController extends loginModel {
     /*-- Controller's function for user login */
     public function login_controller() {
+        // Clean data
         $usuario = loginModel::clean_string($_POST['usuario_log']);
         $clave = loginModel::clean_string($_POST['clave_log']);
 

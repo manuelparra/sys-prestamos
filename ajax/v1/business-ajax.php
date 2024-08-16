@@ -14,11 +14,22 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-if (1) { // isset($_POST['cliente_dni_reg']) || isset($_POST['cliente_id_del']) || isset($_POST['cliente_id_upd'])
-    // Instance to client controller
+if (isset($_POST['empresa_nombre_reg']) || isset($_POST['business_id_upd']) {
+    // Instance to business controller
     require_once "./controllers/businessController.php";
     $insBusiness = new businessController();
 
+    // Update Business Information
+    if (isset($_POST['business_id_upd'])) {
+        echo $insBusiness->update_business_information_controller();
+        exit;
+    }
+
+    // Add Business Information
+    if(isset($_POST['empresa_nombre_reg'])) {
+        echo $insBusiness->add_business_information_controller();
+        exit;
+    }
 } else {
     session_start(['name' => "SPM"]);
     session_unset();

@@ -21,6 +21,7 @@ class userController extends userModel {
 
     /*-- Controller's function for add user --*/
     public function add_user_controller() {
+        // Clean data
         $dni = userModel::clean_string($_POST['usuario_dni_reg']);
         $nombre = userModel::clean_string($_POST['usuario_nombre_reg']);
         $apellido = userModel::clean_string($_POST['usuario_apellido_reg']);
@@ -115,7 +116,7 @@ class userController extends userModel {
 
         // Check passwords
         if ($clave1 == $clave2) {
-            if ( userModel::check_data("^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$", $clave1) ) {
+            if ( userModel::check_data("^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$", $clave1) ) {
                 $res = userModel::message_with_parameters("simple", "error", "Formato de Contraseña erróneo",
                                                           "La Contraseña no coincide con el formato solicitado.");
                 return $res;

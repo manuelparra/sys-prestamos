@@ -27,11 +27,11 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
         <form action="" method="POST" autocomplete="off" >
             <div class="form-group">
                 <label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; Usuario</label>
-                <input type="text" class="form-control" id="UserName" name="usuario_log" pattern="[a-zA-Z0-9]{1,35}" maxlength="35" required="" >
+                <input type="text" class="form-control" id="UserName" name="usuario_log" pattern="[a-zA-Z0-9]{1,35}" maxlength="35" required >
             </div>
             <div class="form-group">
                 <label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Contraseña</label>
-                <input type="password" class="form-control" id="UserPassword" name="clave_log" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16" required="" >
+                <input type="password" class="form-control" id="UserPassword" name="clave_log" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16" required >
             </div>
             <button type="submit" class="btn-login text-center">INICIAR SESIÓN</button>
         </form>
