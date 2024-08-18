@@ -16,7 +16,8 @@
         <i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
     </h3>
     <p class="text-justify">
-    Sistema para la gestión de prestamos, esta es el panel principal del sistema, en esta vista puede seleccionar cualquiera de las opciones que se muestran a a continuación.
+        Sistema para la gestión de prestamos, este es el panel principal del sistema, en esta 
+        vista puede seleccionar cualquiera de las opciones que se muestran a continuación.
     </p>
 </div>
 

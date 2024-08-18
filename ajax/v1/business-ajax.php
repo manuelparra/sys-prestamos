@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-if (isset($_POST['empresa_nombre_reg']) || isset($_POST['business_id_upd']) {
+if (isset($_POST['empresa_nombre_reg']) || isset($_POST['business_id_upd'])) {
     // Instance to business controller
     require_once "./controllers/businessController.php";
     $insBusiness = new businessController();

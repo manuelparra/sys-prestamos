@@ -21,7 +21,7 @@ if ($_SESSION['privilegio_spm'] != 1) {
         <i class="fas fa-building fa-fw"></i> &nbsp; INFORMACÓN DE LA EMPRESA
     </h3>
     <p class="text-justify">
-        Esta vista permite registrar/modificar la información de la empresa, puede ingresar o actualizar los datos a continuación.
+        Esta vista permite registrar/modificar la información de la empresa. Puede ingresar o actualizar los datos a continuación.
     </p>
 </div>
 
