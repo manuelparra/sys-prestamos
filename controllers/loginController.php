@@ -29,8 +29,8 @@ class loginController extends loginModel {
             echo '
             <script>
                 Swal.fire({
-                    title: "Ocurrió un error inesperado",
-                    text: "No has llenado todos los campos requeridos",
+                    title: "Faltan datos.",
+                    text: "No has rellenado todos los campos requeridos",
                     type: "error",
                     icon: "error",
                     confirmButtonText: "Aceptar"
@@ -48,7 +48,7 @@ class loginController extends loginModel {
             <script>
                 Swal.fire({
                     title: "Ocurrió un error inesperado",
-                    text: "El Usuario no coincide con el formato solicitado.",
+                    text: "El Usuario no coincide con el formato requerido.",
                     type: "error",
                     type: "warning",
                     confirmButtonText: "Aceptar"
@@ -65,7 +65,7 @@ class loginController extends loginModel {
             <script>
                 Swal.fire({
                     title: "Ocurrió un error inesperado",
-                    text: "La Contraseña no coincide con el formato solicitado.",
+                    text: "La Contraseña no coincide con el formato requerido.",
                     type: "error",
                     icon: "warning",
                     confirmButtonText: "Aceptar"
@@ -93,7 +93,7 @@ class loginController extends loginModel {
                 <script>
                     Swal.fire({
                         title: "Cuenta Deshabilitada",
-                        text: "La cuenta de usuario se encuentra deshabilitada, por favor, contacte con sus administrador de sistemas.",
+                        text: "La cuenta de usuario se encuentra deshabilitada, por favor, contacte con el administrador de sistemas.",
                         type: "error",
                         icon: "error",
                         confirmButtonText: "Aceptar"

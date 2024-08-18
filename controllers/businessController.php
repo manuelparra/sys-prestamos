@@ -20,6 +20,15 @@ include_once "./models/businessModel.php";
 class businessController extends businessModel {
     /*-- Controller's function for add business information --*/
     public function add_business_information_controller() {
+        // Check that there is no business data registered in database.
+        $query = businessModel::execute_simple_query("SELECT empresa_nombre
+                                                      FROM empresa");
+        if ($query->rowCount() > 0) {
+            $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
+                                                          "¡Los datos de la empresa ya se encuentran registrados en sistema!");
+            return $res;
+        }
+
         // Clean data
         $nombre = businessModel::clean_string($_POST['empresa_nombre_reg']);
         $email = businessModel::clean_string($_POST['empresa_email_reg']);
@@ -30,7 +39,7 @@ class businessController extends businessModel {
         if ($nombre == "" || $email == "" || $telefono == "" ||
             $direccion == "") {
 
-            $res = businessModel::message_with_parameters("simple", "error", "Ocurrió un error inesperado",
+            $res = businessModel::message_with_parameters("simple", "error", "Ocurrió un error inesperado.",
                                                           "No has llenado todos los campos requeridos.");
             return $res;
         }
@@ -38,38 +47,29 @@ class businessController extends businessModel {
         // Check data's integrity
         // Check business name
         if (businessModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $nombre)) {
-            $res = businessModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
+            $res = businessModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo.",
                                                       "El Nombre no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check email
         if (userModel::check_data("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", $email)) {
-            $res = businessModel::message_with_parameters("simple", "error", "Formato de Email erróneo",
+            $res = businessModel::message_with_parameters("simple", "error", "Formato de Email erróneo.",
                                                       "El Email no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check phone
         if ($telefono != "" && businessModel::check_data("[0-9()+]{9,20}", $telefono)) {
-            $res = userModel::message_with_parameters("simple", "error", "Formato de Teléfono erróneo",
+            $res = userModel::message_with_parameters("simple", "error", "Formato de Teléfono erróneo.",
                                                       "El Teléfono no coincide con el formato solicitado.");
             return $res;
         }
 
         //Check address
         if ($direccion != "" && businessModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)) {
-            $res = userModel::message_with_parameters("simple", "error", "Formato de Dirección erróneo",
+            $res = userModel::message_with_parameters("simple", "error", "Formato de Dirección erróneo.",
                                                       "La Dirección no coincide con el formato solicitado.");
-            return $res;
-        }
-
-        // Check business name as unique row in database
-        $query = businessModel::execute_simple_query("SELECT empresa_nombre
-                                                  FROM empresa");
-        if ($query->rowCount() > 0) {
-            $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                      "¡Los datos de la empresa ya se encuentran registrados en sistema!");
             return $res;
         }
 
@@ -83,7 +83,7 @@ class businessController extends businessModel {
         $query = businessModel::add_business_information_model($data_business_reg);
 
         if ($query->rowCount() == 1) {
-            $res = businessModel::message_with_parameters("clean", "success", "Datos de Empresa registrados",
+            $res = businessModel::message_with_parameters("clean", "success", "Datos de Empresa registrados.",
                                                           "Los datos de la Empresa han sido registrados con éxito.");
         } else {
             $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
@@ -147,17 +147,17 @@ class businessController extends businessModel {
             "direccion" => $direccion
         ];
 
-        $query = businessModel::update_business_information_model($data_business_upd);
+        $query = businessModel::update_business_data_model($data_business_upd);
 
         if ($query->rowCount() == 1) {
             $res = businessModel::message_with_parameters("clean", "success", "Datos de Empresa registrados",
-                                                          "Los datos de la Empresa han sido registrados con éxito.");
+                                                          "Los datos de la empresa han sido registrados con éxito.");
         } else {
             $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
-                                                          "No hemos podido registrar los datos de la Empresa.");
+                                                          "No hemos podido registrar los datos de la empresa.");
         }
-        return $res;
 
+        return $res;
     }
 
     /*-- Contoller's function for query business infrormation --*/
