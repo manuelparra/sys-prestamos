@@ -19,15 +19,15 @@ if (isset($_POST['empresa_nombre_reg']) || isset($_POST['business_id_upd'])) {
     require_once "./controllers/businessController.php";
     $insBusiness = new businessController();
 
-    // Update Business Information
-    if (isset($_POST['business_id_upd'])) {
-        echo $insBusiness->update_business_information_controller();
-        exit;
-    }
-
     // Add Business Information
     if(isset($_POST['empresa_nombre_reg'])) {
         echo $insBusiness->add_business_information_controller();
+        exit;
+    }
+
+    // Update Business Information
+    if (isset($_POST['business_id_upd'])) {
+        echo $insBusiness->update_business_information_controller();
         exit;
     }
 } else {
