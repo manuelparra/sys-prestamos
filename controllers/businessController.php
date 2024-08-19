@@ -48,28 +48,28 @@ class businessController extends businessModel {
         // Check business name
         if (businessModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $nombre)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo.",
-                                                      "El Nombre no coincide con el formato solicitado.");
+                                                          "El Nombre no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check email
         if (businessModel::check_data("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", $email)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Email erróneo.",
-                                                      "El Email no coincide con el formato solicitado.");
+                                                          "El Email no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check phone
         if ($telefono != "" && businessModel::check_data("[0-9()+]{9,20}", $telefono)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Teléfono erróneo.",
-                                                      "El Teléfono no coincide con el formato solicitado.");
+                                                          "El Teléfono no coincide con el formato solicitado.");
             return $res;
         }
 
         //Check address
         if ($direccion != "" && businessModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Dirección erróneo.",
-                                                      "La Dirección no coincide con el formato solicitado.");
+                                                          "La Dirección no coincide con el formato solicitado.");
             return $res;
         }
 
@@ -83,7 +83,7 @@ class businessController extends businessModel {
         $query = businessModel::add_business_information_model($data_business_reg);
 
         if ($query->rowCount() == 1) {
-            $res = businessModel::message_with_parameters("clean", "success", "Datos de Empresa registrados.",
+            $res = businessModel::message_with_parameters("reload", "success", "Datos de Empresa registrados.",
                                                           "Los datos de la Empresa han sido registrados con éxito.");
         } else {
             $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
@@ -114,28 +114,28 @@ class businessController extends businessModel {
         // Check business name
         if (businessModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}", $nombre)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
-                                                      "El Nombre no coincide con el formato solicitado.");
+                                                          "El Nombre no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check email
         if (businessModel::check_data("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", $email)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Email erróneo",
-                                                      "El Email no coincide con el formato solicitado.");
+                                                          "El Email no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check phone
         if ($telefono != "" && businessModel::check_data("[0-9()+]{9,20}", $telefono)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Teléfono erróneo",
-                                                      "El Teléfono no coincide con el formato solicitado.");
+                                                          "El Teléfono no coincide con el formato solicitado.");
             return $res;
         }
 
         //Check address
         if ($direccion != "" && businessModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)) {
             $res = businessModel::message_with_parameters("simple", "error", "Formato de Dirección erróneo",
-                                                      "La Dirección no coincide con el formato solicitado.");
+                                                          "La Dirección no coincide con el formato solicitado.");
             return $res;
         }
 
@@ -150,7 +150,7 @@ class businessController extends businessModel {
         $query = businessModel::update_business_data_model($data_business_upd);
 
         if ($query->rowCount() == 1) {
-            $res = businessModel::message_with_parameters("clean", "success", "Datos de Empresa registrados",
+            $res = businessModel::message_with_parameters("reload", "success", "Datos de Empresa registrados",
                                                           "Los datos de la empresa han sido registrados con éxito.");
         } else {
             $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",

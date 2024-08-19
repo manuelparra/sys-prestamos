@@ -16,13 +16,12 @@ if (!defined('ABSPATH')) {
 }
 
 // Local Enviroment (Linux), comment this lines if you put this files in a production environment
-const SERVER_URL = "http://prestamos.com/";
-const ERROR_DIR = "/var/www/html/learning/fullstack/php/mvc/prestamos/logs/";
+//const SERVER_URL = "http://prestamos.com/";
+//const ERROR_DIR = "/var/www/html/learning/fullstack/php/mvc/prestamos/logs/";
 
 // Local Enviroment (macOS), comment this lines if you put this files in a production environment
-//const SERVER_URL = "https://prestamos.com/";
-
-//const ERROR_DIR = "/Users/manuel/Sites/prestamos/logs/";
+const SERVER_URL = "https://prestamos.com/";
+const ERROR_DIR = "/Users/manuel/Sites/prestamos/logs/";
 
 // Production Enviroment, comment this lines if you put this files in a developer environment
 // const SERVER_URL = "https://prestamos.desliate.com/";

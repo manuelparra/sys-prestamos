@@ -78,7 +78,7 @@ class clientModel extends mainModel {
                 cliente.cliente_telefono = :telefono,
                 cliente.cliente_email = :email,
                 cliente.cliente_direccion = :direccion
-                WHERE cliente.cliente_id= :id";
+                WHERE cliente.cliente_id = :id";
         $query = mainModel::connection()->prepare($sql);
 
         $query->bindParam(":dni", $data['dni']);

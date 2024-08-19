@@ -66,6 +66,7 @@ ajax_forms.forEach((forms) => {
 });
 
 function ajax_alerts(alert) {
+	console.log(alert.alert);
 	if (alert.alert === "simple") {
 		Swal.fire({
 			icon: alert.type,
