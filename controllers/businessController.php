@@ -150,11 +150,11 @@ class businessController extends businessModel {
         $query = businessModel::update_business_data_model($data_business_upd);
 
         if ($query->rowCount() == 1) {
-            $res = businessModel::message_with_parameters("reload", "success", "Datos de Empresa registrados",
-                                                          "Los datos de la empresa han sido registrados con éxito.");
+            $res = businessModel::message_with_parameters("reload", "success", "Datos de Empresa actualizados",
+                                                          "Los datos de la empresa han sido actualizados con éxito.");
         } else {
             $res = businessModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
-                                                          "No hemos podido registrar los datos de la empresa.");
+                                                          "No hemos podido actualizar los datos de la empresa.");
         }
 
         return $res;

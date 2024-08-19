@@ -43,11 +43,11 @@ class businessModel extends mainModel
     protected static function update_business_data_model($data)
     {
         $sql = "UPDATE empresa SET
-                empresa.nombre = :nombre,
-                empresa.email = :email,
-                empresa.telefono = :telefono,
-                empresa.direccion = :direccion
-                WHERE empresa.empresa_id = :id";
+                empresa_nombre = :nombre,
+                empresa_email = :email,
+                empresa_telefono = :telefono,
+                empresa_direccion = :direccion
+                WHERE empresa_id = :id";
         $query = mainModel::connection()->prepare($sql);
 
         $query->bindParam(":nombre", $data['nombre']);
