@@ -140,7 +140,7 @@ class businessController extends businessModel {
         }
 
         $data_business_upd = [
-            "id" => $id,
+            "id" => businessModel::decryption($id),
             "nombre" => $nombre,
             "email" => $email,
             "telefono" => $telefono,
@@ -163,5 +163,9 @@ class businessController extends businessModel {
     /*-- Contoller's function for query business infrormation --*/
     public function query_business_information_controller() {
         return businessModel::query_business_information_model();
+    }
+
+    public function token_business_controller($string) {
+        return businessModel::encryption($string);
     }
 }

@@ -87,7 +87,7 @@ if ($query->rowCount() == 0 && $_SESSION['privilegio_spm'] == 1) {
 <div class="container-fluid">
     <form class="form-neon ajax-form" action="<?php echo SERVER_URL; ?>endpoint/business-ajax/" method="POST"
     id="update_registration_form" data-form="update" autocomplete="off">
-        <input type="hidden" name="business_id_upd" value="<?php echo $fields['empresa_id']; ?>">
+        <input type="hidden" name="business_id_upd" value="<?php echo $insBusinessController->token_business_controller($fields['empresa_id']); ?>">
         <fieldset>
             <legend><i class="far fa-building"></i> &nbsp;Actualizar Información de la empresa</legend>
             <div class="container-fluid">

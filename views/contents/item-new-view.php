@@ -1,10 +1,27 @@
+<?php
+/**
+ * Contents View.
+ *
+ * Contents of the new item page view.
+ *
+ * @package View
+ * @author Manuel Parra
+ * @version 1.0.0
+ */
+
+if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
+    echo $insLoginController->force_close_session_controller();
+    exit;
+}
+?>
+
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
         <i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR ITEM
     </h3>
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque laudantium necessitatibus eius iure adipisci modi distinctio. Earum repellat iste et aut, ullam, animi similique sed soluta tempore cum quis corporis!
+        Esta vista permite registrar nuevos items en el sistema, puede ingresar los datos del item para registrarlo a continuación.
     </p>
 </div>
 
@@ -22,9 +39,10 @@
     </ul>
 </div>
 
-<!--CONTENT-->
+<!-- Content -->
 <div class="container-fluid">
-    <form action="" class="form-neon" autocomplete="off">
+    <form class="form-neon ajax-form" action="<?php echo SERVER_URL; ?>endpoint/item-ajax/" method="POST"
+        id="new_registration_form" data-form="save" autocomplete="off">
         <fieldset>
             <legend><i class="far fa-plus-square"></i> &nbsp; Información del item</legend>
             <div class="container-fluid">
@@ -32,10 +50,9 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="item_codigo" class="bmd-label-floating">Códido</label>
-                            <input type="text" pattern="[a-zA-Z0-9-]{1,45}" class="form-control" name="item_codigo_reg" id="item_codigo" maxlength="45">
+                            <input type="text" pattern="[a-zA-Z0-9-]{1,45}" class="form-control" name="item_codigo_reg" id="item_codigo" maxlength="45" required>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="item_nombre" class="bmd-label-floating">Nombre</label>

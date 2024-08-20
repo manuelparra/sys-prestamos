@@ -42,7 +42,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
 <!-- Content -->
 <div class="container-fluid">
     <form class="form-neon ajax-form" action="<?php echo SERVER_URL; ?>endpoint/client-ajax/" method="POST"
-    id="new_registration_form" data-form="save" autocomplete="off">
+        id="new_registration_form" data-form="save" autocomplete="off">
         <fieldset>
             <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
             <div class="container-fluid">

@@ -71,7 +71,7 @@ class itemController extends itemModel {
                         <th>CÓDIGO</th>
                         <th>NOMBRE</th>
                         <th>STOCK</th>
-                        <th>DETALLE</th>';
+                        <th>INFO</th>';
 
         if ($privilege == 1 || $privilege == 2) {
             $table .= '<th>ACTUALIZAR</th>';
@@ -97,17 +97,16 @@ class itemController extends itemModel {
                     <td>' . $row['item_codigo'] . '</td>
                     <td>' . $row['item_nombre'] . '</td>
                     <td>' . $row['item_stock'] . '</td>
-                    <td>' . $row['item_detalle'] . '</td>
                     <td>
                         <button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover"
-                        title="' . $row['cliente_nombre'] .' ' . $row['cliente_apellido'] . '" data-content="' . $row['cliente_direccion'] . '">
+                        title="Estado y Detalle" data-content="' . $row['item_estado'] . ' ' . $row['item_detalle'] . '">
                             <i class="fas fa-info-circle"></i>
                         </button>
                     </td>';
                 if ($privilege == 1 || $privilege == 2) {
                     $table .= '
                         <td>
-                            <a href="' . SERVER_URL . 'client-update/' . itemModel::encryption($row['cliente_id'])  . '/" class="btn btn-success">
+                            <a href="' . SERVER_URL . 'item-update/' . itemModel::encryption($row['item_id'])  . '/" class="btn btn-success">
                                 <i class="fas fa-sync-alt"></i>
                             </a>
                         </td>
@@ -116,8 +115,8 @@ class itemController extends itemModel {
                 if ($privilege == 1) {
                     $table .= '
                         <td>
-                            <form class="ajax-form"  action="' . SERVER_URL . 'endpoint/client-ajax/" method="POST" data-form="delete" autocomplete="off">
-                                <input type="hidden" name="cliente_id_del" value="' . itemModel::encryption($row['cliente_id']) . '">
+                            <form class="ajax-form"  action="' . SERVER_URL . 'endpoint/item-ajax/" method="POST" data-form="delete" autocomplete="off">
+                                <input type="hidden" name="item_id_del" value="' . itemModel::encryption($row['item_id']) . '">
                                 <button type="submit" class="btn btn-warning">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
@@ -159,7 +158,7 @@ class itemController extends itemModel {
         $html = $table;
 
         if ($total >= 1 && $page <= $nPages) {
-            $html .= '<p class="text-right">Mostrando cliente(s): ' . $start_record . ' al ' . $end_record . ' de un total de ' . $total . '</p>';
+            $html .= '<p class="text-right">Mostrando item(s): ' . $start_record . ' al ' . $end_record . ' de un total de ' . $total . '</p>';
 
             $html .= itemModel::pagination_tables($page, $nPages, $url, $total_buttons);
         }
