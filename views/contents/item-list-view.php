@@ -4,7 +4,8 @@
         <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE ITEMS
     </h3>
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum delectus eos enim numquam fugit optio accusantium, aperiam eius facere architecto facilis quibusdam asperiores veniam omnis saepe est et, quod obcaecati.
+        Esta vista contiene el listado de todos items registrados, puede seleccionar un 
+        item para actualizar o eliminar sus datos del sistema.
     </p>
 </div>
 
@@ -20,6 +21,18 @@
             <a href="<?php echo SERVER_URL; ?>item-search/"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR ITEM</a>
         </li>
     </ul>
+</div>
+
+<!-- Content here-->
+<div class="container-fluid">
+    <?php
+
+    require_once "./controllers/itemController.php";
+    $insItem = new itemController();
+
+    echo $insItem->paginator_item_controller($current_page[1], 15, $_SESSION['privilegio_spm'], $current_page[0], "");
+
+    ?>
 </div>
 
 <!--CONTENT-->

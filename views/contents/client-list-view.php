@@ -4,7 +4,8 @@
         <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE CLIENTES
     </h3>
     <p class="text-justify">
-        Esta vista contiene el listado de todos los clientes registrados, puede seleccionar un cliente para actualizar o eliminar sus datos del sistema.
+        Esta vista contiene el listado de todos los clientes registrados, puede seleccionar un
+        cliente para actualizar o eliminar sus datos del sistema.
     </p>
 </div>
 

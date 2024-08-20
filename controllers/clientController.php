@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 
 include_once "./models/clientModel.php";
 
-/*--- Class Model Controller ---*/
+/*--- Class Client Controller ---*/
 class clientController extends clientModel {
     /*-- Contoller's function for add client --*/
     public function add_client_controller() {
