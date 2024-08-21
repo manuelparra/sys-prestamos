@@ -56,7 +56,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="item_nombre" class="bmd-label-floating">Nombre</label>
-                            <input type="text" pattern="[a-zA-záéíóúÁÉÍÓÚñÑ0-9 ]{1,140}" class="form-control" name="item_nombre_reg" id="item_nombre" maxlength="140">
+                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,140}" class="form-control" name="item_nombre_reg" id="item_nombre" maxlength="140">
                         </div>
                     </div>
                     <div class="col-12 col-md-4">

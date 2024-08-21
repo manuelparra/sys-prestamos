@@ -18,7 +18,7 @@ include_once "./models/clientModel.php";
 
 /*--- Class Client Controller ---*/
 class clientController extends clientModel {
-    /*-- Contoller's function for add client --*/
+    /*-- Controller's function for add client --*/
     public function add_client_controller() {
         $dni = clientModel::clean_string($_POST['cliente_dni_reg']);
         $nombre = clientModel::clean_string($_POST['cliente_nombre_reg']);

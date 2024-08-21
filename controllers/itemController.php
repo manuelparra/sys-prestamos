@@ -18,6 +18,53 @@ include_once "./models/itemModel.php";
 
 /*--- Class Item Controller ---*/
 class itemController extends itemModel {
+    /*-- Controller's function for add client --*/
+    public function add_item_controller() {
+        $codigo = itemModel::clean_string($_POST['item_codigo_reg']);
+        $nombre = itemModel::clean_string($_POST['item_nombre_reg']);
+        $stock = itemModel::clean_string($_POST['item_stock_reg']);
+        $estado = itemModel::clean_string($_POST['item_stock_reg']);
+        $detalle = itemModel::clean_string($_POST['item_detalle_reg']);
+
+        // Check empty fields
+        if ($codigo == "" || $nombre = "" || $stock = "" ||
+            $estado = "" || $detalle = "") {
+            $res = itemModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado"),
+            "No has llenado todos los campos requeridos");
+
+            return $res;
+        }
+
+        // Check data's integrity
+        // Check Codigo
+        if (itemModel::check_data("[a-zA-Z0-9-]{1,45}", $codigo)) {
+            $res = itemModel::message_with_parameters("simple", "error", "Formato de Código erróneo",
+                                                      "El Código no coincide con el formato solicitado.");
+            return $res;
+        }
+
+        // Check item name
+        if (itemModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,140}", $nombre)) {
+            $res = itemModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
+                                                        "El Nombre no coincide con el formato solicitado.");
+            return $res;
+        }
+
+        // Check item stock
+        if (itemModel::check_data("[0-9]{1,9}", $stock)) {
+            $res = itemModel::message_with_parameters("simple", "error", "Formato de stock erróneo",
+                "El stock no coincide con el formato solicitado.");
+            return $res;
+        }
+
+        // Check item stock
+        if (itemModel::check_data("[0-9]{1,9}", $stock)) {
+            $res = itemModel::message_with_parameters("simple", "error", "Formato de stock erróneo",
+                "El stock no coincide con el formato solicitado.");
+            return $res;
+        }
+    }
+
     /*-- Controller's function for client pagination --*/
     public function paginator_item_controller($page, $records, $privilege, $url, $search) {
         $page = itemModel::clean_string($page);
@@ -165,4 +212,5 @@ class itemController extends itemModel {
 
         return $html;
     }
+
 }

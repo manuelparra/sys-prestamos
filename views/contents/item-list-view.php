@@ -4,7 +4,7 @@
         <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE ITEMS
     </h3>
     <p class="text-justify">
-        Esta vista contiene el listado de todos items registrados, puede seleccionar un 
+        Esta vista contiene el listado de todos items registrados, puede seleccionar un
         item para actualizar o eliminar sus datos del sistema.
     </p>
 </div>
@@ -26,6 +26,8 @@
 <!-- Content here-->
 <div class="container-fluid">
     <?php
+
+    echo "aquí steoy";
 
     require_once "./controllers/itemController.php";
     $insItem = new itemController();
