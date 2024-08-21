@@ -24,10 +24,10 @@
 <!-- Content -->
 <div class="full-box tile-container">
     <?php
-    require_once "./controllers/clientController.php";
-    $instClientController = new clientController();
+        require_once "./controllers/clientController.php";
+        $instClientController = new clientController();
 
-    $query = $instClientController->query_data_client_controller("Count");
+        $query = $instClientController->query_data_client_controller("Count");
     ?>
     <a href="<?php echo SERVER_URL; ?>client-list/" class="tile">
         <div class="tile-tittle">Clientes</div>
@@ -37,11 +37,17 @@
         </div>
     </a>
 
+    <?php
+        require_once "./controllers/itemController.php";
+        $instItemController = new itemController();
+
+        $query = $instItemController->query_data_item_controller("Count");
+    ?>
     <a href="<?php echo SERVER_URL; ?>item-list/" class="tile">
         <div class="tile-tittle">Items</div>
         <div class="tile-icon">
             <i class="fas fa-pallet fa-fw"></i>
-            <p>9 Registros</p>
+            <p><?php echo $query->rowCount(); ?> Registro<?php if ($query->rowCount() > 1) { echo 's'; } ?></p>
         </div>
     </a>
 

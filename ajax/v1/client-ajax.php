@@ -1,6 +1,6 @@
 <?php
 /**
- * Ajax Client Script
+ * Ajax Client Ajax
  *
  * All functionality pertaining to the Ajax User requests.
  *

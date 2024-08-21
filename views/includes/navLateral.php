@@ -1,6 +1,7 @@
 <section class="full-box nav-lateral">
     <div class="full-box nav-lateral-bg show-nav-lateral"></div>
     <div class="full-box nav-lateral-content">
+        <!--
         <figure class="full-box nav-lateral-avatar">
             <i class="far fa-times-circle show-nav-lateral"></i>
             <img src="<?php echo SERVER_URL; ?>views/assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
@@ -8,7 +9,7 @@
                 <?php echo $_SESSION['nombre_spm'] . ' ' . $_SESSION['apellido_spm']; ?> <br><small class="roboto-condensed-light"><?php echo $_SESSION['perfil_spm']; ?></small>
             </figcaption>
         </figure>
-        <div class="full-box nav-lateral-bar"></div>
+        <div class="full-box nav-lateral-bar"></div> -->
         <nav class="full-box nav-lateral-menu">
             <ul>
                 <li>

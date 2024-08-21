@@ -29,8 +29,8 @@ class itemController extends itemModel {
         // Check empty fields
         if ($codigo == "" || $nombre = "" || $stock = "" ||
             $estado = "" || $detalle = "") {
-            $res = itemModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado"),
-            "No has llenado todos los campos requeridos");
+            $res = itemModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
+                                                      "No has llenado todos los campos requeridos");
 
             return $res;
         }
@@ -46,21 +46,72 @@ class itemController extends itemModel {
         // Check item name
         if (itemModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,140}", $nombre)) {
             $res = itemModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
-                                                        "El Nombre no coincide con el formato solicitado.");
+                                                      "El Nombre no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check item stock
         if (itemModel::check_data("[0-9]{1,9}", $stock)) {
             $res = itemModel::message_with_parameters("simple", "error", "Formato de stock erróneo",
-                "El stock no coincide con el formato solicitado.");
+                                                      "El stock no coincide con el formato solicitado.");
             return $res;
         }
 
         // Check item stock
         if (itemModel::check_data("[0-9]{1,9}", $stock)) {
             $res = itemModel::message_with_parameters("simple", "error", "Formato de stock erróneo",
-                "El stock no coincide con el formato solicitado.");
+                                                      "El stock no coincide con el formato solicitado.");
+            return $res;
+        }
+
+        $data_item_reg = [
+            "codigo" => $codigo,
+            "nmobre" => $nombre,
+            "stock" => $stock,
+            "estado" => $estado,
+            "detalle" => $detalle,
+        ];
+
+        $query = itemModel::add_item_model($data_item_reg);
+
+        if ($query->rowCount() == 1) {
+            $res = itemModel::message_with_parameters("clean", "success", "Item rigistrado",
+                                                      "Los datos del item han sido registrados con éxito.");
+        } else {
+            $res = itemModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
+                                                      "No hemos podido registrar el item.");
+        }
+
+        return $res;
+    }
+
+    /*-- Controller's function for query items --*/
+    public function query_data_item_controller($type, $id = NULL) {
+        $type = itemModel::clean_string($type);
+        $id = itemModel::clean_string($id);
+
+        if (!is_null($id)) {
+            $id = itemModel::decryption($id);
+        }
+
+        return itemModel::query_data_item_model($type, $id);
+    }
+
+    /*-- Controller's function for delete item --*/
+    public function delete_item_controller() {
+        // recivirng item id
+        $id = itemModel::decryption($_POST['item_id_del']);
+        $id = itemModel::clean_string($id);
+
+        // Checking that client exists in the database
+        $sql = "SELECT item.item_id
+                FROM item
+                WHERE item.item_id = '$id'";
+        $query = itemModel::connection()->prepare($sql);
+
+        if (!$query->rowCount() > 0) {
+            $res = itemModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
+                                                      "¡El item que intenta eliminar no existe en el sistema!");
             return $res;
         }
     }
@@ -187,7 +238,7 @@ class itemController extends itemModel {
             } else {
                 $table .= '
                 <tr class="text-center"
-                    <td colspan="9">No hay registros en el sistema</td>
+                    <td colspan="9">No se encontro registros de items en el sistema</td>
                 </tr>
                 ';
             }
@@ -213,4 +264,8 @@ class itemController extends itemModel {
         return $html;
     }
 
+    /*-- Controller's function for sent message item --*/
+    public function message_item_controller($alert, $type, $title, $text) {
+        return itemModel::message_with_parameters($alert, $type, $title, $text);
+    }
 }

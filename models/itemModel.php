@@ -37,5 +37,22 @@ class itemModel extends mainModel {
 
         return $query;
     }
-}
 
+    /*-- Function for query item data--*/
+    protected static function query_data_item_model($type, $id = NULL) {
+        if ($type == "Unique") {
+            $sql = "SELECT item.*
+                    FROM item
+                    WHERE item.item_id = :id";
+            $query = itemModel::connection()->prepare($sql);
+            $query->bindParam(":id", $id);
+        } elseif ($type == "Count") {
+            $sql = "SELECT item.item_id
+                    FROM item";
+            $query = itemModel::connection()->prepare($sql);
+        }
+
+        $query->execute();
+        return $query;
+    }
+}

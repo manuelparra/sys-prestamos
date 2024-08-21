@@ -113,11 +113,12 @@ class clientController extends clientModel {
 
         if ($query->rowCount() == 1) {
             $res = clientModel::message_with_parameters("clean", "success", "Cliente registrado",
-                                                        "Los datos del usuario han sido registrados con éxito.");
+                                                        "Los datos del cliente han sido registrados con éxito.");
         } else {
             $res = clientModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
                                                         "No hemos podido registrar el cliente.");
         }
+
         return $res;
     }
 
@@ -248,7 +249,7 @@ class clientController extends clientModel {
             } else {
                 $table .= '
                 <tr class="text-center"
-                    <td colspan="9">No hay registros en el sistema</td>
+                    <td colspan="9">No se encontro registros de clientes en el sistema</td>
                 </tr>
                 ';
             }
