@@ -62,32 +62,70 @@ if ($_SESSION['privilegio_spm'] != 1) {
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="usuario_dni" class="bmd-label-floating">DNI</label>
-                            <input type="text" pattern="[0-9]{8}[\-]{1}[TRWAGMYFPDXBNJZSQVHLCKE]{1}" class="form-control" name="usuario_dni_reg" id="usuario_dni" maxlength="10"
-                            title="Debe contener ocho numeros, un guión y una letra mayúscula" required >
+                            <input
+                                type="text"
+                                pattern="[0-9]{8}[\-]{1}[TRWAGMYFPDXBNJZSQVHLCKE]{1}"
+                                class="form-control"
+                                name="usuario_dni_reg"
+                                id="usuario_dni"
+                                maxlength="10"
+                                title="Debe contener ocho numeros, un guión y una letra mayúscula"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="usuario_nombre" class="bmd-label-floating">Nombres</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" class="form-control" name="usuario_nombre_reg" id="usuario_nombre" maxlength="35" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="usuario_nombre_reg"
+                                id="usuario_nombre"
+                                maxlength="40"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="usuario_apellido" class="bmd-label-floating">Apellidos</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" class="form-control" name="usuario_apellido_reg" id="usuario_apellido" maxlength="35" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="usuario_apellido_reg"
+                                id="usuario_apellido"
+                                maxlength="40"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_telefono" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" pattern="[0-9()+]{9,20}" class="form-control" name="usuario_telefono_reg" id="usuario_telefono" maxlength="20">
+                            <input
+                                type="text"
+                                pattern="[0-9\(\)+]{9,20}"
+                                class="form-control"
+                                name="usuario_telefono_reg"
+                                id="usuario_telefono"
+                                maxlength="20"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="usuario_direccion_reg" id="usuario_direccion" maxlength="190">
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control"
+                                name="usuario_direccion_reg"
+                                id="usuario_direccion"
+                                maxlength="190"
+                            >
                         </div>
                     </div>
                     <div class="col-12">
@@ -115,27 +153,58 @@ if ($_SESSION['privilegio_spm'] != 1) {
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_usuario" class="bmd-label-floating">Nombre de usuario</label>
-                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="usuario_usuario_reg" id="usuario_usuario" maxlength="35" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9]{1,35}" class="form-control"
+                                name="usuario_usuario_reg"
+                                id="usuario_usuario"
+                                maxlength="35"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_email" class="bmd-label-floating">Email</label>
-                            <input type="email" patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="usuario_email_reg" id="usuario_email" maxlength="70" required >
+                            <input
+                                type="email"
+                                patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                class="form-control"
+                                name="usuario_email_reg"
+                                id="usuario_email"
+                                maxlength="70"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_clave_1" class="bmd-label-floating">Contraseña</label>
-                            <input type="password" class="form-control" name="usuario_clave_1_reg" id="usuario_clave_1" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16"
-                             title="Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 o más caracteres" required >
+                            <input
+                                type="password"
+                                pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$"
+                                class="form-control"
+                                name="usuario_clave_1_reg"
+                                id="usuario_clave_1"
+                                maxlength="16"
+                                title="Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 o más caracteres"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_clave_2" class="bmd-label-floating">Repetir contraseña</label>
-                            <input type="password" class="form-control" name="usuario_clave_2_reg" id="usuario_clave_2" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16"
-                            title="Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 o más caracteres" required >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="usuario_clave_2_reg"
+                                id="usuario_clave_2"
+                                pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$"
+                                maxlength="16"
+                                title="Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 o más caracteres"
+                                required
+                            >
                         </div>
                     </div>
                 </div>

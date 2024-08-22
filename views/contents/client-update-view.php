@@ -21,7 +21,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
         <i class="fas fa-sync-alt fa-fw"></i> &nbsp; ACTUALIZAR CLIENTE
     </h3>
     <p class="text-justify">
-        Esta vista permite la modificación de los datos de clientes del sistema, puede modificar los datos del usuario.
+        Esta vista permite la modificación de los datos de clientes del sistema, puede modificar los datos del cliente.
     </p>
 </div>
 
@@ -61,43 +61,91 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                     <div class="col-12 col-md-2">
                         <div class="form-group">
                             <label for="cliente_dni" class="bmd-label-floating">DNI</label>
-                            <input type="text" pattern="[0-9]{8}[\-]{1}[TRWAGMYFPDXBNJZSQVHLCKE]{1}" class="form-control" name="cliente_dni_upd"
-                            id="cliente_dni" maxlength="10" value="<?php echo $fields['cliente_dni']; ?>" required >
+                            <input
+                                type="text"
+                                pattern="[0-9]{8}[\-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}"
+                                class="form-control"
+                                name="cliente_dni_upd"
+                                id="cliente_dni"
+                                maxlength="10"
+                                value="<?php echo $fields['cliente_dni']; ?>" 
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="form-group">
                             <label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" class="form-control" name="cliente_nombre_upd"
-                            id="cliente_nombre" maxlength="35" value="<?php echo $fields['cliente_nombre']; ?>" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="cliente_nombre_upd"
+                                id="cliente_nombre"
+                                maxlength="40"
+                                value="<?php echo $fields['cliente_nombre']; ?>"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="form-group">
                             <label for="cliente_apellido" class="bmd-label-floating">Apellidos</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" class="form-control" name="cliente_apellido_upd"
-                            id="cliente_apellido" maxlength="35" value="<?php echo $fields['cliente_apellido']; ?>" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="cliente_apellido_upd"
+                                id="cliente_apellido"
+                                maxlength="40"
+                                value="<?php echo $fields['cliente_apellido']; ?>"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label for="cliente_telefono" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" pattern="[0-9()+]{9,20}" class="form-control" name="cliente_telefono_upd"
-                            id="cliente_telefono" maxlength="20" value="<?php echo $fields['cliente_telefono']; ?>" required >
+                            <input
+                                type="text"
+                                pattern="[0-9\(\)+]{9,20}"
+                                class="form-control"
+                                name="cliente_telefono_upd"
+                                id="cliente_telefono"
+                                maxlength="20"
+                                value="<?php echo $fields['cliente_telefono']; ?>"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label for="cliente_email" class="bmd-label-floating">Email</label>
-                            <input type="email" patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="cliente_email_upd"
-                            id="cliente_email" maxlength="70" value="<?php echo $fields['cliente_email']; ?>" required >
+                            <input
+                                type="email"
+                                patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                class="form-control"
+                                name="cliente_email_upd"
+                                id="cliente_email"
+                                maxlength="70"
+                                value="<?php echo $fields['cliente_email']; ?>"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="cliente_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="cliente_direccion_upd"
-                            id="cliente_direccion" maxlength="190" value="<?php echo $fields['cliente_direccion']; ?>" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control"
+                                name="cliente_direccion_upd"
+                                id="cliente_direccion"
+                                maxlength="190"
+                                value="<?php echo $fields['cliente_direccion']; ?>"
+                                required
+                            >
                         </div>
                     </div>
                 </div>

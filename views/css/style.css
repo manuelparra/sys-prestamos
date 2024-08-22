@@ -1,45 +1,47 @@
-@font-face  {
-    font-family: 'roboto_medium_regular';
-    src: url('../webfonts/roboto-medium-webfont.woff2') format('woff2'),
-         url('../webfonts/roboto-medium-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+@font-face {
+	font-family: "roboto_medium_regular";
+	src:
+		url("../webfonts/roboto-medium-webfont.woff2") format("woff2"),
+		url("../webfonts/roboto-medium-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
-@font-face  {
-    font-family: 'roboto_condensed_light';
-    src: url('../webfonts/robotocondensed-light-webfont.woff2') format('woff2'),
-         url('../webfonts/robotocondensed-light-webfont.woff') format('woff'),
-         url('../webfonts/robotocondensed-light-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+@font-face {
+	font-family: "roboto_condensed_light";
+	src:
+		url("../webfonts/robotocondensed-light-webfont.woff2") format("woff2"),
+		url("../webfonts/robotocondensed-light-webfont.woff") format("woff"),
+		url("../webfonts/robotocondensed-light-webfont.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
 }
 
-@font-face  {
-    font-family: 'roboto_condensed_regular';
-    src: url('../webfonts/robotocondensed-regular-webfont.woff2') format('woff2'),
-         url('../webfonts/robotocondensed-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+@font-face {
+	font-family: "roboto_condensed_regular";
+	src:
+		url("../webfonts/robotocondensed-regular-webfont.woff2") format("woff2"),
+		url("../webfonts/robotocondensed-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
 :root {
-	--color-one: #F5F5F5;
-	--color-two: #24292E;
-	--color-three: #EC5252;
+	--color-one: #f5f5f5;
+	--color-two: #24292e;
+	--color-three: #ec5252;
 	/*--color-three: #0366D6;*/
 
-	--form-color: #14111A;
+	--form-color: #14111a;
 
 	--accent-color: #253556;
 	/*--accent-color: #455A64;*/
-  --border-color: #D8D8D8;
+	--border-color: #d8d8d8;
 }
 
-body,html {
-	font-family: 'roboto_condensed_light';
+body,
+html {
+	font-family: "roboto_condensed_light";
 	width: 100vw;
 	height: 100vh;
 	background-color: var(--color-one);
@@ -60,7 +62,7 @@ body,html {
 
 .form-neon {
 	border: 1px solid var(--border-color);
-	background-color: #FFF;
+	background-color: #fff;
 	padding: 15px;
 	border-radius: 3px;
 }
@@ -99,7 +101,7 @@ body,html {
 	display: block;
 	text-align: center;
 	user-select: none;
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 	border-bottom: 2px solid transparent;
 }
 .page-nav-tabs li a.active {
@@ -131,11 +133,11 @@ body,html {
 	margin-bottom: 0;
 }
 .table thead th {
-	color: #FFF;
+	color: #fff;
 }
 .table tbody tr {
 	color: #333;
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 .table-dark,
 .table {
@@ -154,28 +156,33 @@ body,html {
 }
 .table-dark tr:hover {
 	color: var(--color-three);
-	background-image: linear-gradient(to right, transparent, rgba(124, 100, 112, .2) 85%, transparent);
+	background-image: linear-gradient(
+		to right,
+		transparent,
+		rgba(124, 100, 112, 0.2) 85%,
+		transparent
+	);
 }
 .page-link {
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 .page-link:hover,
 .page-link.active {
 	background-color: var(--color-three);
-	color: #FFF;
+	color: #fff;
 }
 table form {
 	margin-bottom: 0;
 }
 /*----------  Text Styles  ----------*/
 .roboto-medium {
-	font-family: 'roboto_medium_regular';
+	font-family: "roboto_medium_regular";
 }
 .roboto-condensed-light {
-	font-family: 'roboto_condensed_light';
+	font-family: "roboto_condensed_light";
 }
 .roboto-condensed-regular {
-	font-family: 'roboto_condensed_regular';
+	font-family: "roboto_condensed_regular";
 }
 /*----------  Page 404 styles  ----------*/
 .container-404 {
@@ -194,17 +201,16 @@ table form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #0575E6;
-	background: -webkit-linear-gradient(to right, #021B79, #0575E6);
-	background: linear-gradient(to right, #021B79, #0575E6);
-
+	background: #0575e6;
+	background: -webkit-linear-gradient(to right, #021b79, #0575e6);
+	background: linear-gradient(to right, #021b79, #0575e6);
 }
 .login-content {
 	width: 95%;
 	max-width: 320px;
 	height: auto;
 	border: 1px solid var(--border-color);
-	background-color: #FFF;
+	background-color: #fff;
 	border-radius: 4px;
 	padding: 15px;
 	color: var(--accent-color);
@@ -219,7 +225,7 @@ table form {
 	background-color: transparent;
 	color: var(--accent-color);
 	border: 1px solid var(--accent-color);
-	transition: all .2s ease-out;
+	transition: all 0.2s ease-out;
 }
 .btn-login:hover {
 	background-color: var(--color-three);
@@ -248,7 +254,7 @@ table form {
 .page-content {
 	position: relative;
 	padding-left: 300px;
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 	padding-bottom: 20px;
 }
 /*  Nav Lateral */
@@ -258,16 +264,18 @@ table form {
 	top: 0;
 	left: 0;
 	z-index: 1;
-	transition: all .2s ease-in-out;
-	background-image: url('../assets/img/nav-font.jpg');
+	transition: all 0.2s ease-in-out;
+	background-image: url("../assets/img/nav-font.jpg");
 	background-position: center center;
 	background-size: cover;
 }
-.nav-lateral-bg { display: none; }
+.nav-lateral-bg {
+	display: none;
+}
 .nav-lateral-content {
 	max-width: 300px;
 	height: 100%;
-	background-color: rgba(36, 41, 46, .8);
+	background-color: rgba(36, 41, 46, 0.8);
 }
 .nav-lateral-bar {
 	height: 3px;
@@ -283,14 +291,15 @@ table form {
 	width: 50%;
 	margin: 0 auto;
 	display: block;
-	border: 4px solid #FFF;
+	border: 4px solid #fff;
 	border-radius: 100%;
 }
 .nav-lateral-avatar figcaption {
 	margin-top: 20px;
-	color: #FFF;
+	color: #fff;
 }
 .nav-lateral-menu {
+	margin-top: 10px;
 	height: auto;
 }
 .nav-lateral-menu ul {
@@ -308,24 +317,29 @@ table form {
 	height: 45px;
 	line-height: 45px;
 	text-decoration: none;
-	color: #FFF;
+	color: #fff;
 	font-size: 17px;
 	box-sizing: border-box;
 	padding-left: 20px;
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 .nav-lateral-menu ul li a.active {
-	color: #FFF;
+	color: #fff;
 	background-color: var(--color-three);
 }
 .nav-lateral-menu ul li a:hover {
 	color: #fff;
-	background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, .1) 50%, transparent);
+	background-image: linear-gradient(
+		to right,
+		transparent,
+		rgba(255, 255, 255, 0.1) 50%,
+		transparent
+	);
 }
 .nav-lateral-menu ul li ul {
 	display: none;
 	border: 1px solid var(--color-three);
-	background: rgba(20, 30, 48, .5);
+	background: rgba(20, 30, 48, 0.5);
 }
 .nav-lateral-menu ul li ul a {
 	padding-left: 45px;
@@ -339,7 +353,7 @@ table form {
 	height: 45px;
 	line-height: 45px;
 	margin-right: 7px;
-	transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 /*  Page content */
@@ -357,12 +371,16 @@ table form {
 	text-align: center;
 	line-height: 50px;
 	display: inline-block;
-	transition: all .2s ease-out;
+	transition: all 0.2s ease-out;
 	user-select: none;
 }
 .navbar-info a:hover {
 	color: var(--color-three);
-	background-image: radial-gradient(circle,rgba(250, 30, 78, .1), transparent 80%);
+	background-image: radial-gradient(
+		circle,
+		rgba(250, 30, 78, 0.1),
+		transparent 80%
+	);
 }
 .navbar-info a:active,
 .navbar-info a:focus {
@@ -384,8 +402,8 @@ table form {
 	border: 1px solid var(--border-color);
 	border-radius: 3px;
 	user-select: none;
-	transition: all .2s ease-in-out;
-	background-color: #FFF;
+	transition: all 0.2s ease-in-out;
+	background-color: #fff;
 }
 .tile:hover {
 	text-decoration: none;
@@ -404,11 +422,11 @@ table form {
 	box-sizing: border-box;
 	text-transform: uppercase;
 	border-bottom: 1px solid var(--border-color);
-	transition: all .2s ease-in-out;
-	font-family: 'roboto_medium_regular';
+	transition: all 0.2s ease-in-out;
+	font-family: "roboto_medium_regular";
 }
 .tile:hover .tile-tittle {
-	color: #FFF;
+	color: #fff;
 	border-color: var(--color-three);
 	background-color: var(--color-three);
 }
@@ -422,7 +440,7 @@ table form {
 	font-size: 80px;
 }
 .tile-icon > p {
-	font-family: 'roboto_medium_regular';
+	font-family: "roboto_medium_regular";
 	height: 35px;
 	line-height: 35px;
 }
@@ -430,7 +448,6 @@ table form {
 .tile:hover .tile-icon > p {
 	color: var(--color-three);
 }
-
 
 /*----------  Breakpoints  ----------*/
 @media (max-width: 767px) {
@@ -447,7 +464,7 @@ table form {
 	.nav-lateral-bg {
 		width: 100%;
 		height: 100%;
-		background-color: rgba(3, 3, 3, .4);
+		background-color: rgba(3, 3, 3, 0.4);
 		position: relative;
 		display: block;
 		z-index: 2;
@@ -458,7 +475,7 @@ table form {
 		top: 0;
 		z-index: 3;
 		transform: translateX(-400px);
-		transition: all .3s ease-in-out;
+		transition: all 0.3s ease-in-out;
 		background-color: var(--color-two);
 	}
 	.nav-lateral.active .nav-lateral-content {
@@ -468,7 +485,7 @@ table form {
 		height: 50px;
 		width: 50px;
 		line-height: 50px;
-		color: #FFF;
+		color: #fff;
 		cursor: pointer;
 		font-size: 25px;
 		position: absolute;
@@ -476,7 +493,7 @@ table form {
 		right: 0;
 		text-align: center;
 		display: block;
-		transition: all .2s ease-out;
+		transition: all 0.2s ease-out;
 	}
 	.nav-lateral-avatar i:hover {
 		color: var(--color-three);
@@ -486,10 +503,8 @@ table form {
 	}
 }
 
-
 /*  Bootstrap breakpoints */
 @media (min-width: 576px) {
-
 }
 
 @media (min-width: 768px) {
@@ -502,11 +517,8 @@ table form {
 }
 
 @media (min-width: 992px) {
-
 }
 
 @media (min-width: 1200px) {
-
 }
 
-/*----------  Keyframes  ----------*/

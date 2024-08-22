@@ -50,19 +50,42 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="item_codigo" class="bmd-label-floating">Códido</label>
-                            <input type="text" pattern="[a-zA-Z0-9-]{1,45}" class="form-control" name="item_codigo_reg" id="item_codigo" maxlength="45" required>
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9\-]{1,45}"
+                                class="form-control"
+                                name="item_codigo_reg"
+                                id="item_codigo"
+                                maxlength="45"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="item_nombre" class="bmd-label-floating">Nombre</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,140}" class="form-control" name="item_nombre_reg" id="item_nombre" maxlength="140">
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,140}"
+                                class="form-control"
+                                name="item_nombre_reg"
+                                id="item_nombre"
+                                maxlength="140"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="item_stock" class="bmd-label-floating">Stock</label>
-                            <input type="num" pattern="[0-9]{1,9}" class="form-control" name="item_stock_reg" id="item_stock" maxlength="9">
+                            <input
+                                type="num"
+                                pattern="[0-9]{1,9}"
+                                class="form-control"
+                                name="item_stock_reg"
+                                id="item_stock"
+                                maxlength="9"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -78,7 +101,14 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="item_detalle" class="bmd-label-floating">Detalle</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="item_detalle_reg" id="item_detalle" maxlength="190">
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control"
+                                name="item_detalle_reg"
+                                id="item_detalle"
+                                maxlength="190"
+                            >
                         </div>
                     </div>
                 </div>

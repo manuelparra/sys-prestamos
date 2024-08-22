@@ -45,26 +45,58 @@ if ($query->rowCount() == 0 && $_SESSION['privilegio_spm'] == 1) {
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_nombre" class="bmd-label-floating">Nombre de la empresa</label>
-                            <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" class="form-control" name="empresa_nombre_reg" id="empresa_nombre" maxlength="70" required>
+                            <input
+                                type="text"
+                                pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}"
+                                class="form-control"
+                                name="empresa_nombre_reg"
+                                id="empresa_nombre"
+                                maxlength="70"
+                                required
+                            >
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_email" class="bmd-label-floating">Correo</label>
-                            <input type="email" patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="empresa_email_reg" id="empresa_email" maxlength="70" required>
+                            <input
+                                type="email"
+                                patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                class="form-control"
+                                name="empresa_email_reg"
+                                id="empresa_email"
+                                maxlength="70"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_telefono" class="bmd-label-floating">Telefono</label>
-                            <input type="text" pattern="[0-9()+]{9,20}" class="form-control" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" required>
+                            <input
+                                type="text"
+                                pattern="[0-9\(\)+]{9,20}"
+                                class="form-control"
+                                name="empresa_telefono_reg"
+                                id="empresa_telefono"
+                                maxlength="20"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="empresa_direccion_reg" id="empresa_direccion" maxlength="190" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control" 
+                                name="empresa_direccion_reg"
+                                id="empresa_direccion"
+                                maxlength="190"
+                                required
+                            >
                         </div>
                     </div>
                 </div>
@@ -95,26 +127,57 @@ if ($query->rowCount() == 0 && $_SESSION['privilegio_spm'] == 1) {
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_nombre" class="bmd-label-floating">Nombre de la empresa</label>
-                            <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" class="form-control" name="empresa_nombre_upd" id="empresa_nombre" maxlength="70" value="<?php echo $fields['empresa_nombre']; ?>">
+                            <input
+                                type="text"
+                                pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}"
+                                class="form-control"
+                                name="empresa_nombre_upd"
+                                id="empresa_nombre"
+                                maxlength="70"
+                                value="<?php echo $fields['empresa_nombre']; ?>"
+                            >
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_email" class="bmd-label-floating">Correo</label>
-                            <input type="email" class="form-control" name="empresa_email_upd" id="empresa_email" maxlength="70" value="<?php echo $fields['empresa_email']; ?>">
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="empresa_email_upd"
+                                id="empresa_email"
+                                maxlength="70"
+                                value="<?php echo $fields['empresa_email']; ?>"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_telefono" class="bmd-label-floating">Telefono</label>
-                            <input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="empresa_telefono_upd" id="empresa_telefono" maxlength="20" value="<?php echo $fields['empresa_telefono']; ?>">
+                            <input
+                                type="text"
+                                pattern="[0-9\(\)+]{8,20}"
+                                class="form-control"
+                                name="empresa_telefono_upd"
+                                id="empresa_telefono"
+                                maxlength="20"
+                                value="<?php echo $fields['empresa_telefono']; ?>"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="empresa_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="empresa_direccion_upd" id="empresa_direccion" maxlength="190" value="<?php echo $fields['empresa_direccion']; ?>">
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control"
+                                name="empresa_direccion_upd"
+                                id="empresa_direccion"
+                                maxlength="190"
+                                value="<?php echo $fields['empresa_direccion']; ?>"
+                            >
                         </div>
                     </div>
                 </div>

@@ -50,38 +50,86 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                     <div class="col-12 col-md-2">
                         <div class="form-group">
                             <label for="cliente_dni" class="bmd-label-floating">DNI</label>
-                            <input type="text" pattern="[0-9]{8}[-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27"
-                            title="Debe contener ocho numeros, un guión y una letra mayúscula" required >
+                            <input
+                                type="text"
+                                pattern="[0-9]{8}[\-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}"
+                                class="form-control"
+                                name="cliente_dni_reg"
+                                id="cliente_dni"
+                                maxlength="10"
+                                title="Debe contener ocho numeros, un guión y una letra mayúscula"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="form-group">
                             <label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_nombre_reg" id="cliente_nombre" maxlength="40" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="cliente_nombre_reg"
+                                id="cliente_nombre"
+                                maxlength="40"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="form-group">
                             <label for="cliente_apellido" class="bmd-label-floating">Apellido</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="cliente_apellido_reg"
+                                id="cliente_apellido"
+                                maxlength="40"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label for="cliente_telefono" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" pattern="[0-9()+]{9,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="20" required >
+                            <input
+                                type="text"
+                                pattern="[0-9\(\)+]{9,20}"
+                                class="form-control"
+                                name="cliente_telefono_reg"
+                                id="cliente_telefono"
+                                maxlength="20"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label for="cliente_email" class="bmd-label-floating">Email</label>
-                            <input type="email" patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="cliente_email_reg" id="cliente_email" maxlength="70" required >
+                            <input
+                                type="email"
+                                patter="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                class="form-control"
+                                name="cliente_email_reg"
+                                id="cliente_email"
+                                maxlength="70"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="cliente_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="cliente_direccion_reg" id="cliente_direccion" maxlength="150" required >
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control"
+                                name="cliente_direccion_reg"
+                                id="cliente_direccion"
+                                maxlength="190"
+                                required
+                            >
                         </div>
                     </div>
                 </div>

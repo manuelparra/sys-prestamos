@@ -61,37 +61,71 @@ if ($_SESSION['privilegio_spm'] != 1 && $insLoginController->encrypt_data($_SESS
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="usuario_dni" class="bmd-label-floating">DNI</label>
-                            <input type="text" pattern="[0-9]{8}[\-]{1}[TRWAGMYFPDXBNJZSQVHLCKE]{1}" class="form-control" name="usuario_dni_upd"
-                            id="usuario_dni" maxlength="10" value="<?php echo $fields['usuario_dni']; ?>">
+                            <input
+                                type="text"
+                                pattern="[0-9]{8}[\-]{1}[TRWAGMYFPDXBNJZSQVHLCKE]{1}"
+                                class="form-control"
+                                name="usuario_dni_upd"
+                                id="usuario_dni"
+                                maxlength="10"
+                                value="<?php echo $fields['usuario_dni']; ?>"
+                            >
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="usuario_nombre" class="bmd-label-floating">Nombre</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" class="form-control" name="usuario_nombre_upd"
-                            id="usuario_nombre" maxlength="35" value="<?php echo $fields['usuario_nombre']; ?>">
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="usuario_nombre_upd"
+                                id="usuario_nombre"
+                                maxlength="40" value="<?php echo $fields['usuario_nombre']; ?>"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="usuario_apellido" class="bmd-label-floating">Apellidos</label>
-                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}" class="form-control" name="usuario_apellido_upd"
-                            id="usuario_apellido" maxlength="35" value="<?php echo $fields['usuario_apellido']; ?>">
+                            <input
+                                type="text"
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"
+                                class="form-control"
+                                name="usuario_apellido_upd"
+                                id="usuario_apellido"
+                                maxlength="40"
+                                value="<?php echo $fields['usuario_apellido']; ?>"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_telefono" class="bmd-label-floating">Teléfono</label>
-                            <input type="text" pattern="[0-9()+]{9,20}" class="form-control" name="usuario_telefono_upd"
-                            id="usuario_telefono" maxlength="20" value="<?php echo $fields['usuario_telefono']; ?>">
+                            <input
+                                type="text"
+                                pattern="[0-9\(\)+]{9,20}"
+                                class="form-control"
+                                name="usuario_telefono_upd"
+                                id="usuario_telefono"
+                                maxlength="20"
+                                value="<?php echo $fields['usuario_telefono']; ?>"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_direccion" class="bmd-label-floating">Dirección</label>
-                            <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" class="form-control" name="usuario_direccion_upd"
-                            id="usuario_direccion" maxlength="190" value="<?php echo $fields['usuario_direccion']; ?>">
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
+                                class="form-control"
+                                name="usuario_direccion_upd"
+                                id="usuario_direccion"
+                                maxlength="190"
+                                value="<?php echo $fields['usuario_direccion']; ?>"
+                            >
                         </div>
                     </div>
 
@@ -135,15 +169,28 @@ if ($_SESSION['privilegio_spm'] != 1 && $insLoginController->encrypt_data($_SESS
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_usuario" class="bmd-label-floating">Nombre de usuario</label>
-                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="usuario_usuario_upd"
-                            id="usuario_usuario" maxlength="35" value="<?php echo $fields['usuario_usuario']; ?>">
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9]{1,35}"
+                                class="form-control"
+                                name="usuario_usuario_upd"
+                                id="usuario_usuario"
+                                maxlength="35"
+                                value="<?php echo $fields['usuario_usuario']; ?>"
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_email" class="bmd-label-floating">Email</label>
-                            <input type="email" class="form-control" name="usuario_email_upd"
-                            id="usuario_email" maxlength="70" value="<?php echo $fields['usuario_email']; ?>">
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="usuario_email_upd"
+                                id="usuario_email"
+                                maxlength="70"
+                                value="<?php echo $fields['usuario_email']; ?>"
+                            >
                         </div>
                     </div>
                     <?php if ($_SESSION['privilegio_spm'] == 1 && $fields['usuario_id'] != 1) { ?> <!-- Show the fallowing options if user privilege is iqual to 1 (admin) -->
@@ -176,13 +223,28 @@ if ($_SESSION['privilegio_spm'] != 1 && $insLoginController->encrypt_data($_SESS
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_clave_nueva_1" class="bmd-label-floating">Contraseña</label>
-                            <input type="password" class="form-control" name="usuario_clave_nueva_1_upd" id="usuario_clave_nueva_1" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$" maxlength="100" >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="usuario_clave_nueva_1_upd"
+                                id="usuario_clave_nueva_1"
+                                pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$"
+                                maxlength="16"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_clave_nueva_2" class="bmd-label-floating">Repetir contraseña</label>
-                            <input type="password" class="form-control" name="usuario_clave_nueva_2_upd" id="usuario_clave_nueva_2" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$" maxlength="100" >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="usuario_clave_nueva_2_upd"
+                                id="usuario_clave_nueva_2"
+                                pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16"
+                                required
+                            >
                         </div>
                     </div>
                 </div>
@@ -221,13 +283,29 @@ if ($_SESSION['privilegio_spm'] != 1 && $insLoginController->encrypt_data($_SESS
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="usuario_admin" class="bmd-label-floating">Nombre de usuario</label>
-                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="usuario_admin" id="usuario_admin" maxlength="35" required="" >
+                            <input
+                                type="text"
+                                pattern="[a-zA-Z0-9]{1,35}"
+                                class="form-control"
+                                name="usuario_admin"
+                                id="usuario_admin"
+                                maxlength="35"
+                                required
+                            >
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="clave_admin" class="bmd-label-floating">Contraseña</label>
-                            <input type="password" class="form-control" name="clave_admin" id="clave_admin" pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16" required="" >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="clave_admin"
+                                id="clave_admin"
+                                pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$"
+                                maxlength="16"
+                                required
+                            >
                         </div>
                     </div>
                 </div>
