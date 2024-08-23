@@ -332,3 +332,4 @@ if ($_SESSION['privilegio_spm'] != 1 && $insLoginController->encrypt_data($_SESS
     }
     ?>
 </div>
+

@@ -124,3 +124,4 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
         <p class="mb-0">Lo sentimos, no podemos mostrar la información solicitada debido a un error.</p>
     </div>
 </div>
+

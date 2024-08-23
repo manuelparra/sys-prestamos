@@ -44,7 +44,7 @@ class itemController extends itemModel {
         }
 
         // Check item name
-        if (itemModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,140}", $nombre)) {
+        if (itemModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9¿? ]{1,140}", $nombre)) {
             $res = itemModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
                                                       "El Nombre no coincide con el formato solicitado.");
             return $res;
@@ -57,10 +57,17 @@ class itemController extends itemModel {
             return $res;
         }
 
-        // Check item stock
-        if (itemModel::check_data("[0-9]{1,9}", $stock)) {
-            $res = itemModel::message_with_parameters("simple", "error", "Formato de stock erróneo",
-                                                      "El stock no coincide con el formato solicitado.");
+        // Check item estado
+        if (itemModel::check_data("[a-zA-Z]{1,15}", $estado)) {
+            $res = itemModel::message_with_parameters("simple", "error", "Formato de estado erróneo",
+                                                      "El estado no coincide con el formato solicitado.");
+            return $res;
+        }
+
+        // Check detalle estado
+        if (itemModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $detalle)) {
+            $res = itemModel::message_with_parameters("simple", "error", "Formato de detalle erróneo",
+                                                      "El detalle no coincide con el formato solicitado.");
             return $res;
         }
 
