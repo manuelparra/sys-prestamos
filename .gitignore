@@ -475,3 +475,6 @@ composer.lock
 *.css.map
 *.sass.map
 *.scss._compareTemp
+
+##### PHP-CS-Fixer
+.php-cs-fixer.cache

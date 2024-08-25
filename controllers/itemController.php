@@ -1,12 +1,15 @@
 <?php
 /**
  * Item Controller
- *
  * All functionality pertaining to Item Controller.
+ * PHP version 8.2.0
  *
- * @package Controller
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Controller
+ * @package  ItemController
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
@@ -14,64 +17,105 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-include_once "./models/itemModel.php";
+require_once "./models/itemModel.php";
 
-/*--- Class Item Controller ---*/
-class itemController extends itemModel {
-    /*-- Controller's function for add client --*/
-    public function add_item_controller() {
-        $codigo = itemModel::clean_string($_POST['item_codigo_reg']);
-        $nombre = itemModel::clean_string($_POST['item_nombre_reg']);
-        $stock = itemModel::clean_string($_POST['item_stock_reg']);
-        $estado = itemModel::clean_string($_POST['item_stock_reg']);
-        $detalle = itemModel::clean_string($_POST['item_detalle_reg']);
+
+/**
+ * Class Item Controller
+ *
+ * @category   Controller
+ * @package    ItemController
+ * @subpackage ItemController
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class ItemController extends ItemModel
+{
+    /**
+     * Function for add item
+     *
+     * @return object
+     */
+    public function addItemController(): object
+    {
+        $codigo = ItemModel::cleanString($_POST['item_codigo_reg']);
+        $nombre = ItemModel::cleanString($_POST['item_nombre_reg']);
+        $stock = ItemModel::cleanString($_POST['item_stock_reg']);
+        $estado = ItemModel::cleanString($_POST['item_stock_reg']);
+        $detalle = ItemModel::cleanString($_POST['item_detalle_reg']);
 
         // Check empty fields
-        if ($codigo == "" || $nombre = "" || $stock = "" ||
-            $estado = "" || $detalle = "") {
-            $res = itemModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
-                                                      "No has llenado todos los campos requeridos");
+        if ($codigo == "" || $nombre = "" || $stock = ""
+            || $estado = "" || $detalle = ""
+        ) {
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "No has llenado todos los campos requeridos"
+            );
 
             return $res;
         }
 
         // Check data's integrity
         // Check Codigo
-        if (itemModel::check_data("[a-zA-Z0-9-]{1,45}", $codigo)) {
-            $res = itemModel::message_with_parameters("simple", "error", "Formato de Código erróneo",
-                                                      "El Código no coincide con el formato solicitado.");
+        if (ItemModel::checkData(RCOD, $codigo)) {
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Código erróneo",
+                "El Código no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check item name
-        if (itemModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9¿? ]{1,140}", $nombre)) {
-            $res = itemModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
-                                                      "El Nombre no coincide con el formato solicitado.");
+        if (ItemModel::checkData(RBNAME, $nombre)) {
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Nombre erróneo",
+                "El Nombre no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check item stock
-        if (itemModel::check_data("[0-9]{1,9}", $stock)) {
-            $res = itemModel::message_with_parameters("simple", "error", "Formato de stock erróneo",
-                                                      "El stock no coincide con el formato solicitado.");
+        if (ItemModel::checkData(RSTOCK, $stock)) {
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de stock erróneo",
+                "El stock no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check item estado
-        if (itemModel::check_data("[a-zA-Z]{1,15}", $estado)) {
-            $res = itemModel::message_with_parameters("simple", "error", "Formato de estado erróneo",
-                                                      "El estado no coincide con el formato solicitado.");
+        if (ItemModel::checkData(RESTADO, $estado)) {
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de estado erróneo",
+                "El estado no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check detalle estado
-        if (itemModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $detalle)) {
-            $res = itemModel::message_with_parameters("simple", "error", "Formato de detalle erróneo",
-                                                      "El detalle no coincide con el formato solicitado.");
+        if (ItemModel::checkData(RESTADO, $detalle)) {
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de detalle erróneo",
+                "El detalle no coincide con el formato solicitado."
+            );
             return $res;
         }
 
-        $data_item_reg = [
+        $dataItemReg = [
             "codigo" => $codigo,
             "nmobre" => $nombre,
             "stock" => $stock,
@@ -79,60 +123,101 @@ class itemController extends itemModel {
             "detalle" => $detalle,
         ];
 
-        $query = itemModel::add_item_model($data_item_reg);
+        $query = ItemModel::addItemModel($dataItemReg);
 
         if ($query->rowCount() == 1) {
-            $res = itemModel::message_with_parameters("clean", "success", "Item rigistrado",
-                                                      "Los datos del item han sido registrados con éxito.");
+            $res = ItemModel::messageWithParameters(
+                "clean",
+                "success",
+                "Item rigistrado",
+                "Los datos del item han sido registrados con éxito."
+            );
         } else {
-            $res = itemModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
-                                                      "No hemos podido registrar el item.");
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "No hemos podido registrar el item."
+            );
         }
 
         return $res;
     }
 
-    /*-- Controller's function for query items --*/
-    public function query_data_item_controller($type, $id = NULL) {
-        $type = itemModel::clean_string($type);
-        $id = itemModel::clean_string($id);
+    /**
+     * Function for query item
+     *
+     * @param $type contains string
+     * @param $id   contains string
+     *
+     * @return object
+     */
+    public function queryDataItemController($type, $id = null): object
+    {
+        $type = ItemModel::cleanString($type);
+        $id = ItemModel::cleanString($id);
 
         if (!is_null($id)) {
-            $id = itemModel::decryption($id);
+            $id = ItemModel::decryption($id);
         }
 
-        return itemModel::query_data_item_model($type, $id);
+        return ItemModel::queryDataItemModel($type, $id);
     }
 
-    /*-- Controller's function for delete item --*/
-    public function delete_item_controller() {
+    /**
+     * Function for delete item
+     *
+     * @return object
+     */
+    public function deleteItemController(): object
+    {
         // recivirng item id
-        $id = itemModel::decryption($_POST['item_id_del']);
-        $id = itemModel::clean_string($id);
+        $id = ItemModel::decryption($_POST['item_id_del']);
+        $id = ItemModel::cleanString($id);
 
         // Checking that client exists in the database
         $sql = "SELECT item.item_id
                 FROM item
                 WHERE item.item_id = '$id'";
-        $query = itemModel::connection()->prepare($sql);
+        $query = ItemModel::connection()->prepare($sql);
 
         if (!$query->rowCount() > 0) {
-            $res = itemModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                      "¡El item que intenta eliminar no existe en el sistema!");
+            $res = ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "¡El item que intenta eliminar no existe en el sistema!"
+            );
             return $res;
         }
     }
 
-    /*-- Controller's function for client pagination --*/
-    public function paginator_item_controller($page, $records, $privilege, $url, $search) {
-        $page = itemModel::clean_string($page);
-        $records = itemModel::clean_string($records);
-        $privilege = itemModel::clean_string($privilege);
+    /**
+     * Function for paginator item controller
+     *
+     * @param $page      contains string
+     * @param $records   contains string
+     * @param $privilege contains string
+     * @param $url       contains string
+     * @param $search    contains string
+     *
+     * @return string
+     */
+    public function paginatorItemController(
+        $page,
+        $records,
+        $privilege,
+        $url,
+        $search
+    ): object {
+        $page = ItemModel::cleanString($page);
+        $records = ItemModel::cleanString($records);
+        $privilege = ItemModel::cleanString($privilege);
 
-        $url = itemModel::clean_string($url);
+        $url = ItemModel::cleanString($url);
         $url = SERVER_URL . $url . "/";
 
-        $search = itemModel::clean_string($search);
+        $search = ItemModel::cleanString($search);
 
         $table = "";
         $html = "";
@@ -157,7 +242,7 @@ class itemController extends itemModel {
                     LIMIT $start, $records";
         }
 
-        $dbcnn = itemModel::connection();
+        $dbcnn = ItemModel::connection();
 
         $query = $dbcnn->query($sql);
         $rows = $query->fetchAll();
@@ -193,9 +278,10 @@ class itemController extends itemModel {
 
         if ($total >= 1 && $page <= $nPages) {
             $count = $start + 1;
-            $start_record = $start + 1;
+            $startRecord = $start + 1;
 
             foreach ($rows as $row) {
+                $nombreApellido = $row['item_estado'] . ' ' . $row['item_detalle'];
                 $table .= '
                 <tr class="text-center" >
                     <td>' . $count . '</td>
@@ -203,15 +289,26 @@ class itemController extends itemModel {
                     <td>' . $row['item_nombre'] . '</td>
                     <td>' . $row['item_stock'] . '</td>
                     <td>
-                        <button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover"
-                        title="Estado y Detalle" data-content="' . $row['item_estado'] . ' ' . $row['item_detalle'] . '">
+                        <button
+                            type="button"
+                            class="btn btn-info"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            title="Estado y Detalle"
+                            data-content="' . $nombreApellido . '"
+                        >
                             <i class="fas fa-info-circle"></i>
                         </button>
                     </td>';
                 if ($privilege == 1 || $privilege == 2) {
                     $table .= '
                         <td>
-                            <a href="' . SERVER_URL . 'item-update/' . itemModel::encryption($row['item_id'])  . '/" class="btn btn-success">
+                            <a
+                                href="' . SERVER_URL . 'item-update/' .
+                                ItemModel::encryption($row['item_id'])  .
+                                '/"
+                                class="btn btn-success"
+                            >
                                 <i class="fas fa-sync-alt"></i>
                             </a>
                         </td>
@@ -220,8 +317,18 @@ class itemController extends itemModel {
                 if ($privilege == 1) {
                     $table .= '
                         <td>
-                            <form class="ajax-form"  action="' . SERVER_URL . 'endpoint/item-ajax/" method="POST" data-form="delete" autocomplete="off">
-                                <input type="hidden" name="item_id_del" value="' . itemModel::encryption($row['item_id']) . '">
+                            <form
+                                class="ajax-form"
+                                action="' . SERVER_URL . 'endpoint/item-ajax/"
+                                method="POST" data-form="delete"
+                                autocomplete="off"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="item_id_del" value="' .
+                                    ItemModel::encryption($row['item_id']) .
+                                    '"
+                                >
                                 <button type="submit" class="btn btn-warning">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
@@ -234,18 +341,27 @@ class itemController extends itemModel {
                 $count++;
             }
 
-            $end_record = $count - 1;
+            $endRecord = $count - 1;
         } else {
             if ($total >= 1) {
                 $table .= '
                 <tr class="text-center" >
-                    <td colspan="9"><a href="' . $url . '" class="btn btn-primary btn-raised btn-sm">Haga clic aquí para recargar el listado</a></td>
+                    <td colspan="9">
+                        <a
+                            href="' . $url . '"
+                            class="btn btn-primary btn-raised btn-sm"
+                        >
+                            Haga clic aquí para recargar el listado
+                        </a>
+                    </td>
                 </tr>
                 ';
             } else {
                 $table .= '
                 <tr class="text-center"
-                    <td colspan="9">No se encontro registros de items en el sistema</td>
+                    <td colspan="9">
+                        No se encontro registros de items en el sistema
+                    </td>
                 </tr>
                 ';
             }
@@ -258,21 +374,54 @@ class itemController extends itemModel {
         ';
 
         $buttons = 5;
-        $total_buttons = $nPages >= $buttons ?  $buttons : $nPages;
+        $totalButtons = $nPages >= $buttons ?  $buttons : $nPages;
 
         $html = $table;
 
         if ($total >= 1 && $page <= $nPages) {
-            $html .= '<p class="text-right">Mostrando item(s): ' . $start_record . ' al ' . $end_record . ' de un total de ' . $total . '</p>';
+            $html .= '
+                <p class="text-right">
+                    Mostrando item(s): ' .
+                    $startRecord .
+                    ' al ' .
+                    $endRecord .
+                    ' de un total de ' .
+                    $total .
+                    '
+                </p>';
 
-            $html .= itemModel::pagination_tables($page, $nPages, $url, $total_buttons);
+            $html .= ItemModel::paginationTables(
+                $page,
+                $nPages,
+                $url,
+                $totalButtons
+            );
         }
 
         return $html;
     }
 
-    /*-- Controller's function for sent message item --*/
-    public function message_item_controller($alert, $type, $title, $text) {
-        return itemModel::message_with_parameters($alert, $type, $title, $text);
+    /**
+     * Function for send message item
+     *
+     * @param $alert contains string
+     * @param $type  contains string
+     * @param $title contains string
+     * @param $text  contains string
+     *
+     * @return object
+     */
+    public function messageItemController(
+        $alert,
+        $type,
+        $title,
+        $text
+    ): object {
+        return ItemModel::messageWithParameters(
+            $alert,
+            $type,
+            $title,
+            $text
+        );
     }
 }

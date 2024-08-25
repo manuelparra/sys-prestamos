@@ -1,25 +1,43 @@
 <?php
 /**
- * Main Model Class
+ * Main Model
+ * All functionality pertaining to Main Model.
+ * PHP version 8.2.0
  *
- * All functionality pertaining to the Main Model.
- *
- * @package Model
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Model
+ * @package  Model
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 
 require_once "./config/server.php";
 
-/*--- Class Main Model ---*/
-class mainModel {
-    /*-- Fuction for connect to a database --*/
-    protected static function connection() {
+/**
+ * Class Main Model
+ *
+ * @category   Model
+ * @package    MainModel
+ * @subpackage MainModel
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class MainModel
+{
+    /**
+     * Function for connect to databes
+     *
+     * @return object
+     */
+    protected static function connection(): object
+    {
         try {
             $conn = new PDO(CONNECTIONSTRING, USER, PASSWORD);
         } catch (PDOException $e) {
@@ -30,33 +48,66 @@ class mainModel {
         return $conn;
     }
 
-    /*-- Function for execute a simple query --*/
-    protected static function execute_simple_query($sql) {
+    /**
+     * Function for execute a simple query
+     *
+     * @param $sql contains sql string
+     *
+     * @return object
+     */
+    protected static function executeSimpleQuery($sql): object
+    {
         $query = self::connection()->prepare($sql);
         $query->execute();
         return $query;
     }
 
-    /*-- Function for encrytion string --*/
-    protected static function encryption($string){
-        $output=FALSE;
+    /**
+     * Function for encrypt characters
+     *
+     * @param $characters contains string
+     *
+     * @return string
+     */
+    protected static function encryption($characters): string
+    {
+        $output=false;
         $key=hash('sha256', SECRET_KEY);
         $iv=substr(hash('sha256', SECRET_IV), 0, 16);
-        $output=openssl_encrypt($string, METHOD, $key, 0, $iv);
+        $output=openssl_encrypt($characters, METHOD, $key, 0, $iv);
         $output=base64_encode($output);
         return $output;
     }
 
-    /*-- Function for decryption string --*/
-    protected static function decryption($string){
+    /**
+     * Function for decrypt characters
+     *
+     * @param $characters contains string
+     *
+     * @return string
+     */
+    protected static function decryption($characters): string
+    {
         $key=hash('sha256', SECRET_KEY);
         $iv=substr(hash('sha256', SECRET_IV), 0, 16);
-        $output=openssl_decrypt(base64_decode($string), METHOD, $key, 0, $iv);
+        $output=openssl_decrypt(base64_decode($characters), METHOD, $key, 0, $iv);
         return $output;
     }
 
-    /*-- Function for generate random codes --*/
-    protected static function generate_rendom_codes($letter, $longitude, $number) {
+    /**
+     * Function for generate random codes
+     *
+     * @param $letter    contains string
+     * @param $longitude contains integer
+     * @param $number    contains integer
+     *
+     * @return string
+     */
+    protected static function generateRandomCodes(
+        $letter,
+        $longitude,
+        $number
+    ): string {
         for ($i = 1; $i <= $longitude; $i++) {
             $ramdom = rand(0, 9);
             $letter .= $ramdom;
@@ -64,8 +115,15 @@ class mainModel {
         return $letter . '-' . $number;
     }
 
-    /*-- Function for clean string --*/
-    protected static function clean_string($string) {
+    /**
+     * Function for clean string
+     *
+     * @param $string contains string
+     *
+     * @return string
+     */
+    protected static function cleanString($string):string
+    {
         $string = str_ireplace("<script>", "", $string);
         $string = str_ireplace("</script>", "", $string);
         $string = str_ireplace("<script src", "", $string);
@@ -97,8 +155,16 @@ class mainModel {
         return $string;
     }
 
-    /*-- Function for check data --*/
-    protected static function check_data($filter, $string) {
+    /**
+     * Function for check data
+     *
+     * @param $filter contains string
+     * @param $string contains string
+     *
+     * @return bool
+     */
+    protected static function checkData($filter, $string): bool
+    {
         if (preg_match("/^" . $filter . "$/", $string)) {
             return false;
         } else {
@@ -106,41 +172,84 @@ class mainModel {
         }
     }
 
-    /*-- Function for check date --*/
-    protected static function check_date($date) {
+    /**
+     * Function for check date
+     *
+     * @param $date contains string
+     *
+     * @return bool
+     */
+    protected static function checkDate($date): bool
+    {
         $date_arr = explode("-", $date);
 
-        if (count($date_arr) == 3 && checkdate($date_arr[1], $date_arr[2], $date_arr[0])) {
+        if (count($date_arr) == 3
+            && checkdate($date_arr[1], $date_arr[2], $date_arr[0])
+        ) {
             return false;
         } else {
             return true;
         }
     }
 
-    /*-- Function for generate alert message --*/
-    protected static function message_with_parameters($alert, $type, $title, $text, $url = NULL) {
+    /**
+     * Function for generate alert message
+     *
+     * @param $alert contains string
+     * @param $type  contains string
+     * @param $title contains string
+     * @param $text  contains string
+     * @param $url   contains string
+     *
+     * @return object
+     */
+    protected static function messageWithParameters(
+        $alert,
+        $type,
+        $title,
+        $text,
+        $url = null
+    ): object {
         if ($alert == "redirect") {
-            return json_encode([
-                "alert" => $alert,
-                "url" => $url
-            ]);
+            return json_encode(
+                [
+                    "alert" => $alert,
+                    "url" => $url
+                ]
+            );
         } else {
-            return json_encode([
-                "alert" => $alert,
-                "type" => $type,
-                "title" => $title,
-                "text" => $text
-            ]);
+            return json_encode(
+                [
+                    "alert" => $alert,
+                    "type" => $type,
+                    "title" => $title,
+                    "text" => $text
+                ]
+            );
         }
     }
 
-    /*-- Function for paginate of data pages --*/
-    protected static function pagination_tables($page, $num_page, $url, $buttons) {
+    /**
+     * Function for paginate of data pages
+     *
+     * @param $page     contains string
+     * @param $num_page contains string
+     * @param $url      contains string
+     * @param $buttons  contains string
+     *
+     * @return object
+     */
+    protected static function paginationTables(
+        $page,
+        $num_page,
+        $url,
+        $buttons
+    ): string {
         $pre_pos_mid_button = ($buttons - 1) / 2;
 
         if ($page == 1 || $page <= $pre_pos_mid_button) {
             $start = 1;
-        } elseif  ($page >= ($num_page - $pre_pos_mid_button)) {
+        } elseif ($page >= ($num_page - $pre_pos_mid_button)) {
             $start = $num_page - ($buttons - 1);
         } else {
             $start = $page - $pre_pos_mid_button;
@@ -181,13 +290,15 @@ class mainModel {
 
         if ($page == 1) {
             for ($i = 1, $ci = 0; $i <= $num_page; $i++, $ci++) {
-                if ($ci >= $buttons)
+                if ($ci >= $buttons) {
                     break;
+                }
 
                 if ($page == $i) {
                     $html .= '
                     <li class="page-item">
-                        <a class="page-link active" href="' . $url . $i . '/">' . $i . '</a>
+                        <a class="page-link active" href="'
+                        . $url . $i . '/">' . $i . '</a>
                     </li>
                     ';
                 } else {
@@ -200,12 +311,15 @@ class mainModel {
             }
         } else {
             for ($i = $start, $ci = 0; $i <= $num_page; $i++, $ci++) {
-                if ($ci >= $buttons)
+                if ($ci >= $buttons) {
                     break;
+                }
+
                 if ($page == $i) {
                     $html .= '
                     <li class="page-item">
-                        <a class="page-link active" href="' . $url . $i . '/">' . $i . '</a>
+                        <a class="page-link active" href="'
+                        . $url . $i . '/">' . $i . '</a>
                     </li>
                     ';
                 } else {

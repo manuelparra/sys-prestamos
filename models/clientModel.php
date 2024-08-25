@@ -1,13 +1,15 @@
 <?php
 /**
+ * Client Model
+ * All functionality pertaining to Client Model.
+ * PHP version 8.2.0
  *
- * Client Model Class
- *
- * All functionality pertaining to the Client Model.
- *
- * @package Model
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Login
+ * @package  Login
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
@@ -17,15 +19,32 @@ if (!defined('ABSPATH')) {
 
 require_once "./models/mainModel.php";
 
-/*--- Class Client ---*/
-class clientModel extends mainModel {
-    /*-- Function for add client --*/
-    protected static function add_client_model($data) {
+/**
+ * Class Cilent Model
+ *
+ * @category   Model
+ * @package    ClientModel
+ * @subpackage ClientModel
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class ClientModel extends MainModel
+{
+    /**
+     * Function for add client
+     *
+     * @param $data contains array
+     *
+     * @return object
+     */
+    protected static function addClientModel($data): object
+    {
         // SQL Query for insert client
         $sql = "INSERT INTO cliente (cliente_dni, cliente_nombre, cliente_apellido,
                 cliente_telefono, cliente_email, cliente_direccion)
                 VALUES (:dni, :nombre, :apellido, :telefono, :email, :direccion)";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->bindParam(":dni", $data['dni']);
         $query->bindParam(":nombre", $data['nombre']);
@@ -39,11 +58,18 @@ class clientModel extends mainModel {
         return $query;
     }
 
-    /*-- Function for delete client --*/
-    protected static function delete_client_model($id) {
+    /**
+     * Function for delete client
+     *
+     * @param $id contains int
+     *
+     * @return object
+     */
+    protected static function deleteClientModel($id): object
+    {
         $sql = "DELETE FROM cliente
                 WHERE cliente.cliente_id = :id";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->bindParam(":id", $id);
         $query->execute();
@@ -51,26 +77,41 @@ class clientModel extends mainModel {
         return $query;
     }
 
-    /*-- Function for query client data--*/
-    protected static function query_data_client_model($type, $id = NULL) {
+    /**
+     * Function for query client data
+     *
+     * @param $type contains int
+     * @param $id   contains int
+     *
+     * @return object
+     */
+    protected static function queryDataClientModel($type, $id = null): object
+    {
         if ($type == "Unique") {
             $sql = "SELECT cliente.*
                     FROM cliente
                     WHERE cliente.cliente_id = :id";
-            $query = mainModel::connection()->prepare($sql);
+            $query = MainModel::connection()->prepare($sql);
             $query->bindParam(":id", $id);
         } elseif ($type == "Count") {
             $sql = "SELECT cliente.cliente_id
                     FROM cliente";
-            $query = mainModel::connection()->prepare($sql);
+            $query = MainModel::connection()->prepare($sql);
         }
 
         $query->execute();
         return $query;
     }
 
-    /*-- Function for update client data model --*/
-    protected static function update_client_data_model($data) {
+    /**
+     * Function for update client
+     *
+     * @param $data contains array
+     *
+     * @return object
+     */
+    protected static function updateClientDataModel($data): object
+    {
         $sql = "UPDATE cliente SET
                 cliente.cliente_dni = :dni,
                 cliente.cliente_nombre = :nombre,
@@ -79,7 +120,7 @@ class clientModel extends mainModel {
                 cliente.cliente_email = :email,
                 cliente.cliente_direccion = :direccion
                 WHERE cliente.cliente_id = :id";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->bindParam(":dni", $data['dni']);
         $query->bindParam(":nombre", $data['nombre']);

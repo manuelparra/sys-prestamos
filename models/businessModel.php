@@ -1,14 +1,15 @@
 <?php
-
 /**
+ * Business Model
+ * All functionality pertaining to Item Model.
+ * PHP version 8.2.0
  *
- * Business Model Class
- *
- * All functionality pertaining to the Business Model.
- *
- * @package Model
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Model
+ * @package  BusinessModel
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
@@ -18,16 +19,33 @@ if (!defined('ABSPATH')) {
 
 require_once "./models/mainModel.php";
 
-/*--- Class Business ---*/
-class businessModel extends mainModel
+/**
+ * Class Business Model
+ *
+ * @category   Model
+ * @package    BusinessModel
+ * @subpackage BusinessModel
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class BusinessModel extends MainModel
 {
-    /*-- Function for add business information --*/
-    protected static function add_business_information_model($data)
+    /**
+     * Function for add business information
+     *
+     * @param $data contains array
+     *
+     * @return object
+     */
+    protected static function addBusinessInformationModel($data): object
     {
         // SQL Query for insert business information
-        $sql = "INSERT INTO empresa (empresa_nombre, empresa_email, empresa_telefono, empresa_direccion)
+        $sql = "INSERT INTO empresa (
+                empresa_nombre, empresa_email,
+                empresa_telefono, empresa_direccion)
                 VALUES (:nombre, :email, :telefono, :direccion)";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->bindParam(":nombre", $data['nombre']);
         $query->bindParam(":email", $data['email']);
@@ -39,8 +57,14 @@ class businessModel extends mainModel
         return $query;
     }
 
-    /*-- Function for update client data model --*/
-    protected static function update_business_data_model($data)
+    /**
+     * Function for update business information
+     *
+     * @param $data contains array
+     *
+     * @return object
+     */
+    protected static function updateBusinessDataModel($data): object
     {
         $sql = "UPDATE empresa SET
                 empresa_nombre = :nombre,
@@ -48,7 +72,7 @@ class businessModel extends mainModel
                 empresa_telefono = :telefono,
                 empresa_direccion = :direccion
                 WHERE empresa_id = :id";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->bindParam(":nombre", $data['nombre']);
         $query->bindParam(":email", $data['email']);
@@ -61,13 +85,17 @@ class businessModel extends mainModel
         return $query;
     }
 
-    /*-- Function for query information of business --*/
-    protected static function query_business_information_model()
+    /**
+     * Function for query business information
+     *
+     * @return object
+     */
+    protected static function queryBusinessInformationModel(): object
     {
         // SQL Query for query business information
         $sql = "SELECT empresa.*
                 FROM empresa";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->execute();
 

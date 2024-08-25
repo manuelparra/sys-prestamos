@@ -1,13 +1,15 @@
 <?php
 /**
+ * Item Model
+ * All functionality pertaining to Item Model.
+ * PHP version 8.2.0
  *
- * Item Model Class
- *
- * All functionality pertaining to the Item Model.
- *
- * @package Model
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Model
+ * @package  ItemModel
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
@@ -17,15 +19,32 @@ if (!defined('ABSPATH')) {
 
 require_once "./models/mainModel.php";
 
-/*--- Class Client ---*/
-class itemModel extends mainModel {
-    /*-- Function for add item --*/
-    protected static function add_item_model($data) {
+/**
+ * Class Item Model
+ *
+ * @category   Model
+ * @package    ItemModel
+ * @subpackage ItemModel
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class ItemModel extends MainModel
+{
+    /**
+     * Function for add item
+     *
+     * @param $data contains array
+     *
+     * @return object
+     */
+    protected static function addItemModel($data): object
+    {
         // SQL Query for insert item
         $sql = "INSERT INTO item (item_codigo, item_nombre,
                 item_stock, item_estado, item_detalle)
                 VALUE (:codigo, :nombre, :stock, :estado, :detalle)";
-        $query = mainModel::connection()->prepare($sql);
+        $query = MainModel::connection()->prepare($sql);
 
         $query->bindParam(":codigo", $data['codigo']);
         $query->bindParam(":nombre", $data['nombre']);
@@ -38,18 +57,26 @@ class itemModel extends mainModel {
         return $query;
     }
 
-    /*-- Function for query item data--*/
-    protected static function query_data_item_model($type, $id = NULL) {
+    /**
+     * Function for query item
+     *
+     * @param $type contains string
+     * @param $id   contains string
+     *
+     * @return object
+     */
+    protected static function queryDataItemModel($type, $id = null): object
+    {
         if ($type == "Unique") {
             $sql = "SELECT item.*
                     FROM item
                     WHERE item.item_id = :id";
-            $query = itemModel::connection()->prepare($sql);
+            $query = ItemModel::connection()->prepare($sql);
             $query->bindParam(":id", $id);
         } elseif ($type == "Count") {
             $sql = "SELECT item.item_id
                     FROM item";
-            $query = itemModel::connection()->prepare($sql);
+            $query = ItemModel::connection()->prepare($sql);
         }
 
         $query->execute();

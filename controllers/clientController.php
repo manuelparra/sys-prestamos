@@ -1,12 +1,15 @@
 <?php
 /**
  * Client Controller
+ * All functionality pertaining to Cilent Controller.
+ * PHP version 8.2.0
  *
- * All functionality pertaining to Client Controller.
- *
- * @package Controller
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Controller
+ * @package  Controller
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
@@ -14,67 +17,112 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-include_once "./models/clientModel.php";
+require_once "./models/clientModel.php";
 
-/*--- Class Client Controller ---*/
-class clientController extends clientModel {
-    /*-- Controller's function for add client --*/
-    public function add_client_controller() {
-        $dni = clientModel::clean_string($_POST['cliente_dni_reg']);
-        $nombre = clientModel::clean_string($_POST['cliente_nombre_reg']);
-        $apellido = clientModel::clean_string($_POST['cliente_apellido_reg']);
-        $telefono = clientModel::clean_string($_POST['cliente_telefono_reg']);
-        $email = clientModel::clean_string($_POST['cliente_email_reg']);
-        $direccion = clientModel::clean_string($_POST['cliente_direccion_reg']);
+/**
+ * Class Client Controller
+ *
+ * @category   Controller
+ * @package    ClientController
+ * @subpackage ClientController
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class ClientController extends ClientModel
+{
+    /**
+     * Function for add client
+     *
+     * @return object
+     */
+    public function addClientController(): object
+    {
+        $dni = ClientModel::cleanString($_POST['cliente_dni_reg']);
+        $nombre = ClientModel::cleanString($_POST['cliente_nombre_reg']);
+        $apellido = ClientModel::cleanString($_POST['cliente_apellido_reg']);
+        $telefono = ClientModel::cleanString($_POST['cliente_telefono_reg']);
+        $email = ClientModel::cleanString($_POST['cliente_email_reg']);
+        $direccion = ClientModel::cleanString($_POST['cliente_direccion_reg']);
 
         // Check empty fields
-        if ($dni == "" || $nombre == "" || $apellido == "" ||
-            $telefono == "" || $email == "" || $direccion == "") {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrió un error inesperado",
-                                                        "No has llenado todos los campos requeridos");
+        if ($dni == "" || $nombre == "" || $apellido == ""
+            || $telefono == "" || $email == "" || $direccion == ""
+        ) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrió un error inesperado",
+                "No has llenado todos los campos requeridos"
+            );
             return $res;
         }
 
         // Check data's integrity
         // Check DNI
-        if (clientModel::check_data("[0-9]{8}[-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}", $dni)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de DNI erróneo",
-                                                        "El DNI no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RDNI, $dni)
+        ) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de DNI erróneo",
+                "El DNI no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check first name
-        if (clientModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}", $nombre)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
-                                                        "El Nombre no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RNLN, $nombre)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Nombre erróneo",
+                "El Nombre no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check last name
-        if (clientModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}", $apellido)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Apellido erróneo",
-                                                        "El Apellido no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RNLN, $apellido)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Apellido erróneo",
+                "El Apellido no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check phone
-        if (clientModel::check_data("[0-9()+]{9,20}", $telefono)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Telefono erróneo",
-                                                        "El Telefono no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RPHONE, $telefono)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Telefono erróneo",
+                "El Telefono no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check email
-        if (clientModel::check_data("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", $email)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Email erróneo",
-                                                      "El Email no coincide con el formato solicitado.");
+        if (ClientModel::checkData(REMAIL, $email)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Email erróneo",
+                "El Email no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check address
-        if (clientModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)){
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Dirección erróneo",
-                                                        "La Dirección no coincide coon el formato solicitado.");
+        if (ClientModel::checkData(RADDR, $direccion)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Dirección erróneo",
+                "La Dirección no coincide coon el formato solicitado."
+            );
             return $res;
         }
 
@@ -82,10 +130,15 @@ class clientController extends clientModel {
         $sql = "SELECT cliente_dni
                 FROM cliente
                 WHERE cliente_dni = '$dni'";
-        $query = clientModel::execute_simple_query($sql);
+        $query = ClientModel::executeSimpleQuery($sql);
+
         if ($query->rowCount() > 0) {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                        "¡Ya existe un cliente con este DNI registrado en el sistema!");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "¡Ya existe un cliente con este DNI registrado en el sistema!"
+            );
             return $res;
         }
 
@@ -93,10 +146,15 @@ class clientController extends clientModel {
         $sql = "SELECT cliente_email
                 FROM cliente
                 WHERE cliente_email = '$email'";
-        $query = clientModel::execute_simple_query($sql);
+        $query = ClientModel::executeSimpleQuery($sql);
+
         if ($query->rowCount() > 0) {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                        "¡El email del cliente ya se encuentra registrado en el sistema!");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "¡El email del cliente ya se encuentra registrado en el sistema!"
+            );
             return $res;
         }
 
@@ -109,29 +167,53 @@ class clientController extends clientModel {
             "direccion" => $direccion
         ];
 
-        $query = clientModel::add_client_model($data_client_reg);
+        $query = ClientModel::addClientModel($data_client_reg);
 
         if ($query->rowCount() == 1) {
-            $res = clientModel::message_with_parameters("clean", "success", "Cliente registrado",
-                                                        "Los datos del cliente han sido registrados con éxito.");
+            $res = ClientModel::messageWithParameters(
+                "clean",
+                "success",
+                "Cliente registrado",
+                "Los datos del cliente han sido registrados con éxito."
+            );
         } else {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
-                                                        "No hemos podido registrar el cliente.");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "No hemos podido registrar el cliente."
+            );
         }
 
         return $res;
     }
 
-    /*-- Controller's function for client pagination --*/
-    public function paginator_client_controller($page, $records, $privilege, $url, $search) {
-        $page = clientModel::clean_string($page);
-        $records = clientModel::clean_string($records);
-        $privilege = clientModel::clean_string($privilege);
+    /**
+     * Function for client's pagination
+     *
+     * @param $page      contains int
+     * @param $records   contains int
+     * @param $privilege contains int
+     * @param $url       contains string
+     * @param $search    contains string
+     *
+     * @return strnig
+     */
+    public function paginatorClientController(
+        $page,
+        $records,
+        $privilege,
+        $url,
+        $search
+    ): string {
+        $page = ClientModel::cleanString($page);
+        $records = ClientModel::cleanString($records);
+        $privilege = ClientModel::cleanString($privilege);
 
-        $url = clientModel::clean_string($url);
+        $url = ClientModel::cleanString($url);
         $url = SERVER_URL . $url . "/";
 
-        $search = clientModel::clean_string($search);
+        $search = ClientModel::cleanString($search);
 
         $table = "";
         $html = "";
@@ -151,7 +233,6 @@ class clientController extends clientModel {
                     OR cliente_direccion LIKE '%$search%'
                     ORDER BY cliente_nombre ASC
                     LIMIT $start, $records";
-
         } else {
             $sql = "SELECT SQL_CALC_FOUND_ROWS *
                     FROM cliente
@@ -159,7 +240,7 @@ class clientController extends clientModel {
                     LIMIT $start, $records";
         }
 
-        $dbcnn = clientModel::connection();
+        $dbcnn = ClientModel::connection();
 
         $query = $dbcnn->query($sql);
         $rows = $query->fetchAll();
@@ -196,9 +277,13 @@ class clientController extends clientModel {
 
         if ($total >= 1 && $page <= $nPages) {
             $count = $start + 1;
-            $start_record = $start + 1;
+            $startRecord = $start + 1;
 
             foreach ($rows as $row) {
+                $id = ClientModel::encryption($row['cliente_id']);
+                $nombreApellido = $row['cliente_nombre'] .
+                ' '.$row['cliente_apellido'];
+
                 $table .= '
                 <tr class="text-center" >
                     <td>' . $count . '</td>
@@ -207,15 +292,24 @@ class clientController extends clientModel {
                     <td>' . $row['cliente_apellido'] . '</td>
                     <td>' . $row['cliente_telefono'] . '</td>
                     <td>
-                        <button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover"
-                        title="' . $row['cliente_nombre'] .' ' . $row['cliente_apellido'] . '" data-content="' . $row['cliente_direccion'] . '">
+                        <button
+                            type="button"
+                            class="btn btn-info"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            title="' . $nombreApellido . '"
+                            data-content="' . $row['cliente_direccion'] . '"
+                        >
                             <i class="fas fa-info-circle"></i>
                         </button>
                     </td>';
                 if ($privilege == 1 || $privilege == 2) {
                     $table .= '
                         <td>
-                            <a href="' . SERVER_URL . 'client-update/' . clientModel::encryption($row['cliente_id'])  . '/" class="btn btn-success">
+                            <a
+                                href="' . SERVER_URL . 'client-update/' . $id . '/"
+                                class="btn btn-success"
+                            >
                                 <i class="fas fa-sync-alt"></i>
                             </a>
                         </td>
@@ -224,8 +318,17 @@ class clientController extends clientModel {
                 if ($privilege == 1) {
                     $table .= '
                         <td>
-                            <form class="ajax-form"  action="' . SERVER_URL . 'endpoint/client-ajax/" method="POST" data-form="delete" autocomplete="off">
-                                <input type="hidden" name="cliente_id_del" value="' . clientModel::encryption($row['cliente_id']) . '">
+                            <form
+                                class="ajax-form"
+                                action="' . SERVER_URL . 'endpoint/client-ajax/"
+                                method="POST"
+                                data-form="delete"
+                                autocomplete="off"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="cliente_id_del"
+                                    value="' . $id . '">
                                 <button type="submit" class="btn btn-warning">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
@@ -238,18 +341,27 @@ class clientController extends clientModel {
                 $count++;
             }
 
-            $end_record = $count - 1;
+            $endRecord = $count - 1;
         } else {
             if ($total >= 1) {
                 $table .= '
                 <tr class="text-center" >
-                    <td colspan="9"><a href="' . $url . '" class="btn btn-primary btn-raised btn-sm">Haga clic aquí para recargar el listado</a></td>
+                    <td colspan="9">
+                        <a
+                            href="' . $url . '"
+                            class="btn btn-primary btn-raised btn-sm"
+                        >
+                            Haga clic aquí para recargar el listado
+                        </a>
+                    </td>
                 </tr>
                 ';
             } else {
                 $table .= '
                 <tr class="text-center"
-                    <td colspan="9">No se encontro registros de clientes en el sistema</td>
+                    <td colspan="9">
+                        No se encontro registros de clientes en el sistema
+                    </td>
                 </tr>
                 ';
             }
@@ -262,34 +374,53 @@ class clientController extends clientModel {
         ';
 
         $buttons = 5;
-        $total_buttons = $nPages >= $buttons ?  $buttons : $nPages;
+        $totalButtons = $nPages >= $buttons ?  $buttons : $nPages;
 
         $html = $table;
 
         if ($total >= 1 && $page <= $nPages) {
-            $html .= '<p class="text-right">Mostrando cliente(s): ' . $start_record . ' al ' . $end_record . ' de un total de ' . $total . '</p>';
+            $html .= '<p class="text-right">
+                Mostrando cliente(s): ' . $startRecord
+                . ' al ' . $endRecord
+                . ' de un total de '
+                . $total
+                . '</p>';
 
-            $html .= clientModel::pagination_tables($page, $nPages, $url, $total_buttons);
+            $html .= ClientModel::paginationTables(
+                $page,
+                $nPages,
+                $url,
+                $totalButtons
+            );
         }
 
         return $html;
     }
 
-    /*-- Controller's function for delete client --*/
-    public function delete_client_controller() {
+    /**
+     * Function for delete client
+     *
+     * @return object
+     */
+    public function deleteClientController(): string
+    {
         // reciving client id
-        $id = clientModel::decryption($_POST['cliente_id_del']);
-        $id = clientModel::clean_string($id);
+        $id = ClientModel::decryption($_POST['cliente_id_del']);
+        $id = ClientModel::cleanString($id);
 
         // Checking that the client exists in the database
         $sql = "SELECT cliente.cliente_id
                 FROM cliente
                 WHERE cliente.cliente_id = '$id'";
-        $query = clientModel::execute_simple_query($sql);
+        $query = ClientModel::executeSimpleQuery($sql);
 
         if (!$query->rowCount() > 0) {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                        "¡El cliente que intenta eliminar no existe en el sistema!");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "¡El cliente que intenta eliminar no existe en el sistema!"
+            );
             return $res;
         }
 
@@ -298,116 +429,184 @@ class clientController extends clientModel {
                 FROM prestamo
                 WHERE prestamo.cliente_id = '$id'
                 LIMIT 1";
-        $query = clientModel::execute_simple_query($sql);
+        $query = ClientModel::executeSimpleQuery($sql);
 
         if ($query->rowCount() > 0) {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                        "No podemos elminar el cliente del sistema porque tiene prestamos asociados");
-
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "El cliente tiene prestamos asociados."
+            );
             return $res;
         }
 
         // Checking privileges of current user
         session_start(['name' => 'SPM']);
         if ($_SESSION['privilegio_spm'] != 1) {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                        "¡No tienes los permisos necesarios para realizar esta operación!");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "¡No tienes los permisos necesarios!"
+            );
             return $res;
         }
 
-        // Deleting client of the system
-        $query = clientModel::delete_client_model($id);
+        // deleting client
+        $query = ClientModel::deleteClientModel($id);
 
         if ($query->rowCount() == 1) {
-            $res = clientModel::message_with_parameters("reload", "success", "Cliente eliminado",
-                                                        "El cliente ha sido eliminado del sistema con exito.");
+            $res = ClientModel::messageWithParameters(
+                "reload",
+                "success",
+                "Cliente eliminado",
+                "El cliente ha sido eliminado del sistema con exito."
+            );
         } else {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
-                                                        "No hemos podido eliminar el cliente, por favor intentelo nuevamente");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado.",
+                "No hemos podido eliminar el cliente."
+            );
         }
 
         return $res;
     }
 
-    /*-- Controller's function for query client user --*/
-    public function query_data_client_controller($type, $id = NULL) {
-        $type = clientModel::clean_string($type);
+    /**
+     * Function for query client
+     *
+     * @param $type contains string
+     * @param $id   contains int
+     *
+     * @return object
+     */
+    public function queryDataClientController($type, $id = null): object
+    {
+        $type = ClientModel::cleanString($type);
 
         if (!is_null($id)) {
-            $id = clientModel::decryption($id);
-            $id = clientModel::clean_string($id);
+            $id = ClientModel::decryption($id);
+            $id = ClientModel::cleanString($id);
         }
 
-        return clientModel::query_data_client_model($type, $id);
+        return ClientModel::queryDataClientModel($type, $id);
     }
 
-    /*-- Controller's function for sent message user --*/
-    public function message_client_controller($alert, $type, $title, $text) {
-        return clientModel::message_with_parameters($alert, $type, $title, $text);
+    /**
+     * Function for send message to user
+     *
+     * @param $alert contains string
+     * @param $type  contains string
+     * @param $title contains string
+     * @param $text  contains string
+     *
+     * @return string
+     */
+    public function messageClientController($alert, $type, $title, $text): string
+    {
+        return ClientModel::messageWithParameters(
+            $alert,
+            $type,
+            $title,
+            $text
+        );
     }
 
-    /*-- Controller's function update client data --*/
-    public function update_client_data_controller() {
-        // Recieving the id
-        $id = clientModel::decryption($_POST['cliente_id_upd']);
-        $id = clientModel::clean_string($id);
+    /**
+     * Function for update client
+     *
+     * @return object
+     */
+    public function updateClientDataController(): object
+    {
+        // recieving the id
+        $id = ClientModel::decryption($_POST['cliente_id_upd']);
+        $id = ClientModel::cleanString($id);
         $id = (int) $id;
 
-        // Checking client id in the database
+        // checking client id in the database
         $sql = "SELECT cliente.*
                 FROM cliente
                 WHERE cliente.cliente_id = $id";
-        $query = clientModel::execute_simple_query($sql);
+        $query = ClientModel::executeSimpleQuery($sql);
 
         if ($query->rowCount() == 1) {
             $fields = $query->fetch();
         } else {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado.",
-                                                        "El cliente no existe en base de datos, intente nuevamente.");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado.",
+                "El cliente no existe en base de datos, intente nuevamente."
+            );
             return $res;
         }
 
-        $dni = clientModel::clean_string($_POST['cliente_dni_upd']);
-        $nombre = clientModel::clean_string($_POST['cliente_nombre_upd']);
-        $apellido = clientModel::clean_string($_POST['cliente_apellido_upd']);
-        $telefono = clientModel::clean_string($_POST['cliente_telefono_upd']);
-        $email = clientModel::clean_string($_POST['cliente_email_upd']);
-        $direccion = clientModel::clean_string($_POST['cliente_direccion_upd']);
+        $dni = ClientModel::cleanString($_POST['cliente_dni_upd']);
+        $nombre = ClientModel::cleanString($_POST['cliente_nombre_upd']);
+        $apellido = ClientModel::cleanString($_POST['cliente_apellido_upd']);
+        $telefono = ClientModel::cleanString($_POST['cliente_telefono_upd']);
+        $email = ClientModel::cleanString($_POST['cliente_email_upd']);
+        $direccion = ClientModel::cleanString($_POST['cliente_direccion_upd']);
 
-        // Check empty fields
-        if ($dni == "" || $nombre == "" || $apellido == "" ||
-            $telefono == "" || $direccion == "") {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrió un error inesperado",
-                                                        "No has llenado todos los campos requeridos");
+        // check empty fields
+        if ($dni == "" || $nombre == "" || $apellido == ""
+            || $telefono == "" || $direccion == ""
+        ) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrió un error inesperado",
+                "No has llenado todos los campos requeridos"
+            );
             return $res;
         }
 
         // Check data's integrity
         // Check DNI
-        if (clientModel::check_data("[0-9]{8}[-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}", $dni)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de DNI erróneo",
-                                                        "El DNI no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RDNI, $dni)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de DNI erróneo",
+                "El DNI no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check first name
-        if (clientModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}", $nombre)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Nombre erróneo",
-                                                        "El Nombre no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RNLN, $nombre)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Nombre erróneo",
+                "El Nombre no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check last name
-        if (clientModel::check_data("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}", $apellido)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Apellido erróneo",
-                                                        "El Apellido no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RNLN, $apellido)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Apellido erróneo",
+                "El Apellido no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check phone
-        if (clientModel::check_data("[0-9()+]{9,20}", $telefono)) {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Telefono erróneo",
-                                                        "El Telefono no coincide con el formato solicitado.");
+        if (ClientModel::checkData(RPHONE, $telefono)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Telefono erróneo",
+                "El Telefono no coincide con el formato solicitado."
+            );
             return $res;
         }
 
@@ -415,25 +614,38 @@ class clientController extends clientModel {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Check email as unique in database
             if ($email != $fields['cliente_email']) {
-                $query = clientModel::execute_simple_query("SELECT cliente_email
-                                                            FROM cliente
-                                                            WHERE cliente_email = '$email'");
+                $sql = "SELECT cliente_email
+                        FROM cliente
+                        WHERE cliente_email = '$email'";
+                $query = ClientModel::executeSimpleQuery($sql);
                 if ($query->rowCount() > 0) {
-                    $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                                "¡El Email ya se encuentra registrado en el sistema!");
+                    $res = ClientModel::messageWithParameters(
+                        "simple",
+                        "error",
+                        "Ocurrío un error inesperado",
+                        "¡El Email ya se encuentra registrado en el sistema!"
+                    );
                     return $res;
                 }
             }
         } else {
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Email erróneo",
-                                                        "El Email no coincide con el formato solicitado.");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Email erróneo",
+                "El correo no coincide con el formato solicitado."
+            );
             return $res;
         }
 
         // Check address
-        if (clientModel::check_data("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)){
-            $res = clientModel::message_with_parameters("simple", "error", "Formato de Dirección erróneo",
-                                                        "La Dirección no coincide coon el formato solicitado.");
+        if (ClientModel::checkData(RADDR, $direccion)) {
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Dirección erróneo",
+                "La Dirección no coincide coon el formato solicitado."
+            );
             return $res;
         }
 
@@ -442,11 +654,15 @@ class clientController extends clientModel {
             $sql = "SELECT cliente_dni
                     FROM cliente
                     WHERE cliente_dni = '$dni'";
-            $query = clientModel::execute_simple_query($sql);
+            $query = ClientModel::executeSimpleQuery($sql);
 
             if ($query->rowCount() > 0) {
-                $res = clientModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                            "¡Ya existe un cliente con este DNI registrado en el sistema!");
+                $res = ClientModel::messageWithParameters(
+                    "simple",
+                    "error",
+                    "Ocurrío un error inesperado",
+                    "¡Ya existe un cliente con este DNI registrado en el sistema!"
+                );
                 return $res;
             }
         }
@@ -454,8 +670,12 @@ class clientController extends clientModel {
         // Checking privileges
         session_start(['name' => 'SPM']);
         if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
-            $res = userModel::message_with_parameters("simple", "error", "Ocurrío un error inesperado",
-                                                      "¡No tienes los permisos necesarios para realizar esta operación!");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrío un error inesperado",
+                "¡No tienes los permisos necesarios para realizar esta operación!"
+            );
             return $res;
         }
 
@@ -471,12 +691,20 @@ class clientController extends clientModel {
         ];
 
         // Sending data to update user model
-        if (clientModel::update_client_data_model($data)) {
-            $res = clientModel::message_with_parameters("reload", "success", "Datos Actualizados",
-                                                        "Los datos han sido actualizados con éxito.");
+        if (ClientModel::updateClientDataModel($data)) {
+            $res = ClientModel::messageWithParameters(
+                "reload",
+                "success",
+                "Datos Actualizados",
+                "Los datos han sido actualizados."
+            );
         } else {
-            $res = clientModel::message_with_parameters("simple", "error", "Ocurrio un error inesperado",
-                                                        "No hemos podido actualizar los datos, por favor, intentelo nuevamente.");
+            $res = ClientModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "No hemos podido actualizar los datos."
+            );
         }
 
         return $res;

@@ -299,7 +299,6 @@ table form {
 	color: #fff;
 }
 .nav-lateral-menu {
-	margin-top: 10px;
 	height: auto;
 }
 .nav-lateral-menu ul {
@@ -521,4 +520,3 @@ table form {
 
 @media (min-width: 1200px) {
 }
-

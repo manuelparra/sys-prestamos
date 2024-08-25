@@ -1,28 +1,46 @@
 <?php
 /**
  * User Controller
- *
  * All functionality pertaining to User Controller.
+ * PHP version 8.2.0
  *
- * @package Controller
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Controller
+ * @package  Controller
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 
-include_once "./models/loginModel.php";
+require_once "./models/loginModel.php";
 
-/*--- Class Login Controller ---*/
-class loginController extends loginModel {
-    /*-- Controller's function for user login */
-    public function login_controller() {
+/**
+ * Class Login Controller
+ *
+ * @category   Controller
+ * @package    LoginController
+ * @subpackage LoginController
+ * @author     Manuel Parra <manuelparra@live.com.ar>
+ * @license    MIT <https://mit.org>
+ * @link       https://manuelparra.dev
+ */
+class LoginController extends LoginModel
+{
+    /**
+     * Function for user login
+     *
+     * @return string
+     */
+    public function loginController(): ?string
+    {
         // Clean data
-        $usuario = loginModel::clean_string($_POST['usuario_log']);
-        $clave = loginModel::clean_string($_POST['clave_log']);
+        $usuario = LoginModel::cleanString($_POST['usuario_log']);
+        $clave = LoginModel::cleanString($_POST['clave_log']);
 
         /* Check empy fields */
         if ($usuario == "" || $clave == "") {
@@ -38,17 +56,17 @@ class loginController extends loginModel {
             </script>
             ';
 
-            return;
+            return null;
         }
 
         /* Check data's integrity */
         /* Check user */
-        if (loginModel::check_data("[a-zA-Z0-9]{1,35}", $usuario)) {
+        if (LoginModel::checkData(RUSER, $usuario)) {
             echo '
             <script>
                 Swal.fire({
                     title: "Ocurrió un error inesperado",
-                    text: "El Usuario no coincide con el formato requerido.",
+                    text: "El usuario no coincide con el formato requerido.",
                     type: "error",
                     type: "warning",
                     confirmButtonText: "Aceptar"
@@ -56,16 +74,16 @@ class loginController extends loginModel {
             </script>
             ';
 
-            return;
+            return null;
         }
 
         /* Check password */
-        if (loginModel::check_data("^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$", $clave)) {
+        if (LoginModel::checkData(RPASS, $clave)) {
             echo '
             <script>
                 Swal.fire({
                     title: "Ocurrió un error inesperado",
-                    text: "La Contraseña no coincide con el formato requerido.",
+                    text: "La contraseña no coincide con el formato requerido.",
                     type: "error",
                     icon: "warning",
                     confirmButtonText: "Aceptar"
@@ -73,17 +91,17 @@ class loginController extends loginModel {
             </script>
             ';
 
-            return;
+            return null;
         }
 
-        $clave_encryted = loginModel::encryption($clave);
+        $claveEncryted = LoginModel::encryption($clave);
 
-        $data_login = [
+        $dataLogin = [
             "usuario" => $usuario,
-            "clave" => $clave_encryted
+            "clave" => $claveEncryted
         ];
 
-        $query = loginModel::login_model($data_login);
+        $query = LoginModel::loginModel($dataLogin);
 
         if ($query->rowCount() == 1) {
             $row = $query->fetch();
@@ -93,7 +111,8 @@ class loginController extends loginModel {
                 <script>
                     Swal.fire({
                         title: "Cuenta Deshabilitada",
-                        text: "La cuenta de usuario se encuentra deshabilitada, por favor, contacte con el administrador de sistemas.",
+                        text: "La cuenta de usuario se encuentra deshabilitada,
+                        por favor, contacte con el administrador de sistemas.",
                         type: "error",
                         icon: "error",
                         confirmButtonText: "Aceptar"
@@ -101,7 +120,7 @@ class loginController extends loginModel {
                 </script>
                 ';
 
-                return;
+                return null;
             }
 
             session_start(['name'=>'SPM']);
@@ -120,7 +139,7 @@ class loginController extends loginModel {
             <script>
                 Swal.fire({
                     title: "Ocurrió un error inesperado",
-                    text: "El usuario o la clave son incorrectos.",
+                    text: "El usuario o la contraseña son incorrectos.",
                     type: "error",
                     icon: "error",
                     confirmButtonText: "Aceptar"
@@ -128,42 +147,75 @@ class loginController extends loginModel {
             </script>
             ';
 
-            return;
+            return null;
         }
     }
 
-    /*-- Controller's function for forse close session --*/
-    public function force_close_session_controller() {
+    /**
+     * Function for forse close session
+     *
+     * @return string
+     */
+    public function forceCloseSessionController(): string
+    {
         session_unset();
         session_destroy();
 
         if (headers_sent()) { // If headers are being sent,
-            return "<script> window.location.href='" . SERVER_URL . "login/'; </script>";
+            $str = "<script>
+                    window.location.href='" . SERVER_URL . "login/';
+                    </script>";
+
+            return $str;
         } else {
             return header("Location: " . SERVER_URL . "login/");
         }
     }
 
-    /*-- Controller's function for close session --*/
-    public function close_session_controller() {
+    /**
+     * Function for close session
+     *
+     * @return string
+     */
+    public function closeSessionController(): string
+    {
         session_start(['name' => 'SPM']);
 
-        $token = loginModel::decryption($_POST['token']);
-        $usuario = loginModel::decryption($_POST['usuario']);
+        $token = LoginModel::decryption($_POST['token']);
+        $usuario = LoginModel::decryption($_POST['usuario']);
 
-        if ($token == $_SESSION['token_spm'] && $usuario == $_SESSION['usuario_spm']) {
+        if ($token == $_SESSION['token_spm']
+            && $usuario == $_SESSION['usuario_spm']
+        ) {
             session_unset();
             session_destroy();
-            $res = loginModel::message_with_parameters("redirect", NULL, NULL, NULL, SERVER_URL . "login/");
+            $res = LoginModel::messageWithParameters(
+                "redirect",
+                null,
+                null,
+                null,
+                SERVER_URL . "login/"
+            );
         } else {
-            $res = loginModel::message_with_parameters("simple", "error", "Ocurrió un error inesperado",
-                                                       "¡No se puedo cerrar la sesión en el sistema!");
+            $res = LoginModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrió un error inesperado",
+                "¡No se puedo cerrar la sesión en el sistema!"
+            );
         }
         return $res;
     }
 
-    /*-- Controller's function for encryp data --*/
-    public function encrypt_data($string) {
-        return loginModel::encryption($string);
+    /**
+     * Function for encryp data
+     *
+     * @param string $string String to encrypt
+     *
+     * @return string
+     */
+    public function encryptData($string):string
+    {
+        return LoginModel::encryption($string);
     }
 }

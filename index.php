@@ -1,30 +1,34 @@
 <?php
 /**
  * Index File
+ * Contents of the Index File. All functionality pertaining to App Config.
+ * PHP version 8.2.0
  *
- * Contents of the Index File.
- *
- * @package View
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Config
+ * @package  Config
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  CVS: <1.0.0>
+ * @link     manuelparra.dev
  */
 
 /*--- ABS Path of the proyect. ---*/
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
+}
 
 require_once "./config/app.php";
 
 if (isset($_GET['endpoint'])) {
-    require_once "./controllers/endpointController.php";
+    include_once "./controllers/endpointController.php";
 
-    $endopointreq = new endpointController();
-    $endopoint = $endopointreq->get_endpoint_controller($_GET['endpoint']);
+    $endopointreq = new EndpointController();
+    $endopoint = $endopointreq->getEndpointController($_GET['endpoint']);
 
-    require_once $endopoint;
+    include_once $endopoint;
 }
 
 require_once "./controllers/viewController.php";
 
-$template = new viewController();
-$template->get_template_controller();
+$template = new ViewController();
+$template->getTemplateController();

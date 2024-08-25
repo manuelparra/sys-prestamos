@@ -3,15 +3,19 @@
  * Server Config
  *
  * All functionality pertaining to Server Config.
+ * PHP version 8.2.0
  *
- * @package Config
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Config
+ * @package  Config
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  CVS: <1.0.0>
+ * @link     manuelparra.dev
  */
 
-if (!defined('ABSPATH') ) {
+if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-	exit; // Exit if accessed directly
+    exit;   // Exit if accessed directly
 }
 
 const SERVER = "localhost";
