@@ -1,7 +1,7 @@
 <?php
 /**
- * API Controller
- * All functionality pertaining to API Controller.
+ * Endpoint Controller
+ * All functionality pertaining to Endpoint Controller.
  * PHP version 8.2.0
  *
  * @category Controller
@@ -12,12 +12,14 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Controller;
+
+use App\Model\EndpointModel;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
-
-require_once "./models/endpointModel.php";
 
 /**
  * Class Endpoint Controller

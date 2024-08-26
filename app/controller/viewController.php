@@ -12,12 +12,14 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Controller;
+
+use App\Model\ViewModel;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
-
-require_once "./models/viewModel.php";
 
 /**
  * Class View Controller

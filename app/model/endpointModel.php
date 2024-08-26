@@ -1,7 +1,7 @@
 <?php
 /**
- * API Model
- * All functionality pertaining to API Model.
+ * Endpoint Model
+ * All functionality pertaining to Endpoint Model.
  * PHP version 8.2.0
  *
  * @category Model
@@ -12,13 +12,15 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Model;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
 
 /**
- * Class API Model
+ * Class Endpoint Model
  *
  * @category   Model
  * @package    EnpointModel
@@ -41,11 +43,11 @@ class EndpointModel
         $whiteListView = ["client-ajax", "user-ajax", "login-ajax",
                           "search-engine-ajax", "business-ajax", "item-ajax"];
 
-        $req = "./ajax/v1/error.php";
+        $req = ".app/ajax/v1/error.php";
 
         if (in_array($file, $whiteListView)) {
-            if (is_file("./ajax/v1/" . $file . ".php")) {
-                $req = "./ajax/v1/" . $file . ".php";
+            if (is_file(".app/ajax/v1/" . $file . ".php")) {
+                $req = ".app/ajax/v1/" . $file . ".php";
             }
         }
 

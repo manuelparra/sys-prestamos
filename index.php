@@ -12,23 +12,24 @@
  * @link     manuelparra.dev
  */
 
+require_once "./vendor/autoload.php";
+require_once "./app/config/app.php";
+
+use App\Controller\ViewController;
+use App\Controller\EndpointController;
+
 /*--- ABS Path of the proyect. ---*/
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
 
-require_once "./config/app.php";
 
 if (isset($_GET['endpoint'])) {
-    include_once "./controllers/endpointController.php";
-
     $endopointreq = new EndpointController();
     $endopoint = $endopointreq->getEndpointController($_GET['endpoint']);
 
     include_once $endopoint;
 }
-
-require_once "./controllers/viewController.php";
 
 $template = new ViewController();
 $template->getTemplateController();
