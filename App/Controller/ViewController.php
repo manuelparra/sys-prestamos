@@ -40,8 +40,7 @@ class ViewController extends ViewModel
      */
     public function getTemplateController(): string
     {
-        $res = include_once "./views/layout.php";
-        return $res;
+        return include_once "./App/View/layout.php";
     }
 
     /**

@@ -12,12 +12,15 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Controller;
+
+use App\Model\LoginModel;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
 
-require_once "./models/loginModel.php";
 
 /**
  * Class Login Controller

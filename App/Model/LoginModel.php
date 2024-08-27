@@ -12,12 +12,12 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Model;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
-
-require_once "./models/mainModel.php";
 
 /**
  * Class Login Model
@@ -41,7 +41,7 @@ class LoginModel extends MainModel
     protected static function loginModel($data): object
     {
         $sql = "SELECT  usuario.*, perfil.perfil_nombre
-                FROM usuario LEFT JOIN perfil 
+                FROM usuario LEFT JOIN perfil
                 ON usuario.usuario_perfil_id = perfil.perfil_id
                 WHERE usuario.usuario_usuario = :usuario
                 AND usuario.usuario_clave = :clave";

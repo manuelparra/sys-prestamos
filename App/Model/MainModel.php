@@ -12,12 +12,14 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Model;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
 
-require_once "./config/server.php";
+require_once "./app/config/server.php";
 
 /**
  * Class Main Model
@@ -39,8 +41,8 @@ class MainModel
     protected static function connection(): object
     {
         try {
-            $conn = new PDO(CONNECTIONSTRING, USER, PASSWORD);
-        } catch (PDOException $e) {
+            $conn = new \PDO(CONNECTIONSTRING, USER, PASSWORD);
+        } catch (\PDOException $e) {
             echo 'Falló la conexión a la base de datos: ' . $e->getMessage();
         }
 

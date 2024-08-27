@@ -12,13 +12,14 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Controller;
+
+use App\Model\ItemModel;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
-
-require_once "./models/itemModel.php";
-
 
 /**
  * Class Item Controller

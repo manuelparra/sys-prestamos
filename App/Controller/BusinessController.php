@@ -13,6 +13,10 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Controller;
+
+use App\Model\BusinessModel;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly

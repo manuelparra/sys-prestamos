@@ -11,6 +11,16 @@
  * @version  CVS: <1.0.0>
  * @link     manuelparra.dev
  */
+
+namespace App\View\Content;
+
+use App\Controller\{
+    ClientController,
+    ItemController,
+    BusinessController,
+    UserController
+};
+
 ?>
 
 <!-- Page header -->
@@ -28,7 +38,6 @@
 <!-- Content -->
 <div class="full-box tile-container">
     <?php
-    require_once "./controllers/clientController.php";
     $instClientController = new ClientController();
 
     $query = $instClientController->queryDataClientController("Count");
@@ -52,7 +61,6 @@
     </a>
 
     <?php
-    require_once "./controllers/itemController.php";
     $instItemController = new ItemController();
 
     $query = $instItemController->queryDataItemController("Count");
@@ -102,8 +110,6 @@
 
     <?php
     if ($_SESSION['privilegio_spm'] == 1) {
-        include_once "./controllers/userController.php";
-
         $insUserController = new UserController();
 
         $query = $insUserController->queryDataUserController("Count");
@@ -131,7 +137,6 @@
     ?>
 
     <?php
-    require_once "./controllers/businessController.php";
     $instBusinessController = new BusinessController();
 
     $query = $instBusinessController->queryBusinessInformationController();

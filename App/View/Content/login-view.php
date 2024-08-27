@@ -12,13 +12,14 @@
  * @link     manuelparra.dev
  */
 
+namespace App\View\Content;
+
+use App\Controller\LoginController;
+
 $user = ""; // user value text
 $pass = ""; // password value text
 
-$pattern_pass = "^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$";
-
 if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
-    include_once "./controllers/loginController.php";
     $insLoginController = new LoginController();
     echo $insLoginController->loginController();
 
@@ -46,7 +47,7 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
                     class="form-control"
                     id="name"
                     name="usuario_log"
-                    pattern="[a-zA-Z0-9]{1,35}"
+                    pattern="<?php echo RUSER; ?>"
                     maxlength="35"
                     value="<?php echo $user; ?>"
                     autocomplete="off"
@@ -63,7 +64,7 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
                     class="form-control"
                     id="password"
                     name="clave_log"
-                    pattern="<?php echo $pattern_pass; ?>"
+                    pattern="<?php echo RPASS; ?>"
                     maxlength="16"
                     value="<?php echo $pass; ?>"
                     autocomplete="on"

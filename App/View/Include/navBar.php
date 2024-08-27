@@ -12,7 +12,8 @@
  * @link     manuelparra.dev
  */
 
-require_once "./controllers/loginController.php";
+use App\Controller\LoginController;
+
 if (!isset($insLoginController)) {
     $insLoginController = new LoginController();
 }

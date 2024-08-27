@@ -12,6 +12,10 @@
  * @link     manuelparra.dev
  */
 
+namespace App\View;
+
+use App\Controller\{ViewController, LoginController};
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
@@ -34,24 +38,22 @@ if (!defined('ABSPATH')) {
         <!--=============================================
         =            Include CSS files           =
         ==============================================-->
-        <?php require "./views/includes/links.php"; ?>
+
+        <?php require "./App/View/Include/links.php"; ?>
     </head>
     <body>
         <?php
-
-        require_once "./controllers/viewController.php";
-        $IV = new ViewController(); // $IV, instanacia de la vista
+        // $IV, instanacia de la vista
+        $IV = new ViewController();
 
         $view = $IV->getViewController();
 
         if ($view == "login" || $view == "404") {
-            include_once "./views/contents/" . $view . "-view.php";
+            include_once "./App/View/Content/" . $view . "-view.php";
         } else {
             session_start(['name'=>'SPM']);
 
             $currentPage = explode("/", $_GET['view']);
-
-            include_once "./controllers/loginController.php";
 
             $insLoginController = new LoginController();
 
@@ -67,24 +69,24 @@ if (!defined('ABSPATH')) {
             <!-- Main container -->
             <main class="full-box main-container">
                 <!-- Nav lateral -->
-                <?php include  "./views/includes/navLateral.php"; ?>
+                <?php include  "./App/View/Include/navLateral.php"; ?>
                 <!-- Page content -->
                 <section class="full-box page-content">
                     <!-- Nav Bar and the View -->
                     <?php
-                        include "./views/includes/navBar.php";
+                        include "./App/View/Include/navBar.php";
                         include $view;
                     ?>
                 </section>
             </main>
 
             <?php
-            include "./views/includes/logout.php";
+            include "./App/View/Include/logout.php";
         }
         ?>
         <!--=============================================
         =            Include JavaScript files           =
         ==============================================-->
-        <?php require "./views/includes/scripts.php"; ?>
+        <?php require "./App/View/Include/scripts.php"; ?>
     </body>
 </html>

@@ -12,17 +12,23 @@
  * @link     manuelparra.dev
  */
 
-require_once "./vendor/autoload.php";
-require_once "./app/config/app.php";
-
-use App\Controller\ViewController;
-use App\Controller\EndpointController;
-
 /*--- ABS Path of the proyect. ---*/
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
 
+// Autoloader Reister
+spl_autoload_register(
+    function ($className) {
+        $path = __DIR__.'/'.str_replace('\\', '/', $className).'.php';
+        include_once $path;
+    }
+);
+
+require_once "./App/Config/app.php";
+
+use App\Controller\ViewController;
+use App\Controller\EndpointController;
 
 if (isset($_GET['endpoint'])) {
     $endopointreq = new EndpointController();

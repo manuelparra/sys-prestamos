@@ -12,12 +12,12 @@
  * @link     manuelparra.dev
  */
 
+namespace App\Model;
+
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
-
-require_once "./models/mainModel.php";
 
 /**
  * Class Cilent Model
