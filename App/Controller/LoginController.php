@@ -21,7 +21,6 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-
 /**
  * Class Login Controller
  *
@@ -37,7 +36,7 @@ class LoginController extends LoginModel
     /**
      * Function for user login
      *
-     * @return string
+     * @return ?string
      */
     public function loginController(): ?string
     {

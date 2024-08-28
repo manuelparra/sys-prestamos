@@ -12,8 +12,6 @@
  * @link     manuelparra.dev
  */
 
-namespace App\View\Content;
-
 use App\Controller\LoginController;
 
 $user = ""; // user value text
@@ -21,6 +19,7 @@ $pass = ""; // password value text
 
 if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
     $insLoginController = new LoginController();
+
     echo $insLoginController->loginController();
 
     $user = $_POST['usuario_log'];

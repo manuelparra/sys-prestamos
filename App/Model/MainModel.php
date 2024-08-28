@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-require_once "./app/config/server.php";
+require_once "./App/Config/server.php";
 
 /**
  * Class Main Model

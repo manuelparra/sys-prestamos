@@ -43,11 +43,11 @@ class EndpointModel
         $whiteListView = ["client-ajax", "user-ajax", "login-ajax",
                           "search-engine-ajax", "business-ajax", "item-ajax"];
 
-        $req = "./app/ajax/v1/error.php";
+        $req = "./App/Ajax/V1/error.php";
 
         if (in_array($file, $whiteListView)) {
-            if (is_file("./app/ajax/v1/" . $file . ".php")) {
-                $req = "./app/ajax/v1/" . $file . ".php";
+            if (is_file("./App/Ajax/V1/" . $file . ".php")) {
+                $req = "./App/Ajax/V1/" . $file . ".php";
             }
         }
 

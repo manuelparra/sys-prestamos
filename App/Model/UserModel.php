@@ -19,8 +19,6 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-require_once "./models/mainModel.php";
-
 /**
  * Class User Model
  *

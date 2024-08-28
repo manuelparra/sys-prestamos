@@ -1,42 +1,49 @@
 <?php
 /**
- * Ajax Item Ajax
+ * Ajas Item Script
+ * All functionality pertaining to the Ajax Item Script
+ * PHP version 8.2.0
  *
- * All functionality pertaining to the Ajax item requests.
- *
- * @package Ajax Request
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Ajax
+ * @package  Ajax
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
+
+use App\Controller\ItemController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
 
-if (isset($_POST['item_codigo_reg']) || isset($_POST['item_id_upd']) || isset($_POST['item_id_del'])) {
+if (isset($_POST['item_codigo_reg'])
+    || isset($_POST['item_id_upd'])
+    || isset($_POST['item_id_del'])
+) {
     // instance to item controller
-    require_once "./controllers/itemController.php";
-    $insItem = new itemController();
+    $insItem = new ItemController();
 
     // Update item
     if (isset($_POST['item_id_upd'])) {
-        echo $insItem->update_item_data_controller();
+        echo $insItem->updateItemDataController();
         exit;
     }
 
     // Delete item
     if (isset($_POST['item_id_del'])) {
-        echo $insItem->delete_item_controller();
+        echo $insItem->deleteItemController();
         exit;
     }
 
     // Add item
     if (isset($_POST['item_codigo_reg']) && isset($_POST['item_nombre_reg'])) {
-        echo $insItem->add_item_controller();
+        echo $insItem->addItemController();
         exit;
     } else {
-        echo $insItem->message_item_controller("simple", "error", "Ocurrio un error inesperado",
+        echo $insItem->messageItemController("simple", "error", "Ocurrio un error inesperado",
                                                "No has llenado todos los campos requeridos");
         exit;
     }

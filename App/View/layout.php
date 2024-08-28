@@ -12,8 +12,6 @@
  * @link     manuelparra.dev
  */
 
-namespace App\View;
-
 use App\Controller\{ViewController, LoginController};
 
 if (!defined('ABSPATH')) {

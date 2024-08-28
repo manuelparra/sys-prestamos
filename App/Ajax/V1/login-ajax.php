@@ -1,26 +1,28 @@
 <?php
 /**
- * Ajax Login Script
+ * Ajas Login Script
+ * All functionality pertaining to the Ajax Login Script
+ * PHP version 8.2.0
  *
- * All functionality pertaining to the Ajax Login requests.
- *
- * @package Ajax Request
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Ajax
+ * @package  Ajax
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
+
+use App\Controller\LoginController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 
 if (isset($_POST['token']) && isset($_POST['usuario'])) {
-
     // Instance to Login controller
-    require_once "./controllers/loginController.php";
-    $insLogin = new loginController();
-
-    echo $insLogin->close_session_controller();
+    $insLogin = new LoginController();
+    echo $insLogin->closeSessionController();
     exit;
 } else {
     session_start(['name' => 'SPM']);

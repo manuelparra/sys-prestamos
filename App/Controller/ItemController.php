@@ -146,6 +146,16 @@ class ItemController extends ItemModel
     }
 
     /**
+     * Function for update item
+     *
+     * @return object
+     */
+    public function updateItemDataController(): object
+    {
+
+    }
+
+    /**
      * Function for query item
      *
      * @param $type contains string

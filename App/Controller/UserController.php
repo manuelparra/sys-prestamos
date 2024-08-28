@@ -745,8 +745,8 @@ class UserController extends UserModel
 
         // Check Perfil as a record stored in database
         $perfil_id = !is_null($fields['usuario_perfil_id']) ?
-        (int) $fields['usuario_perfil_id'] :
-        null;
+            (int) $fields['usuario_perfil_id'] :
+            null;
 
         if ($perfil != "" && $perfil != "Seleccione") {
             $sql = "SELECT perfil.perfil_id

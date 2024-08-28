@@ -12,8 +12,6 @@
  * @link     manuelparra.dev
  */
 
-namespace App\View\Content;
-
 use App\Controller\{
     ClientController,
     ItemController,
@@ -31,7 +29,7 @@ use App\Controller\{
     <p class="text-justify">
         Sistema para la gestión de prestamos, este es el panel principal del
         sistema, en esta vista puede seleccionar cualquiera de las opciones
-        que se muestran a continuación.
+        que se muestran.
     </p>
 </div>
 
