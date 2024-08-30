@@ -38,7 +38,7 @@ class LoginController extends LoginModel
      *
      * @return ?string
      */
-    public function loginController(): ?string
+    public function loginController(): string|null
     {
         // Clean data
         $usuario = LoginModel::cleanString($_POST['usuario_log']);
@@ -179,7 +179,7 @@ class LoginController extends LoginModel
      *
      * @return string
      */
-    public function closeSessionController(): string
+    public function closeSessionController(): object
     {
         session_start(['name' => 'SPM']);
 
@@ -191,7 +191,7 @@ class LoginController extends LoginModel
         ) {
             session_unset();
             session_destroy();
-            $res = LoginModel::messageWithParameters(
+            return LoginModel::messageWithParameters(
                 "redirect",
                 null,
                 null,
@@ -199,14 +199,13 @@ class LoginController extends LoginModel
                 SERVER_URL . "login/"
             );
         } else {
-            $res = LoginModel::messageWithParameters(
+            return LoginModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrió un error inesperado",
                 "¡No se puedo cerrar la sesión en el sistema!"
             );
         }
-        return $res;
     }
 
     /**

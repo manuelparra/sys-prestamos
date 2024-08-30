@@ -301,7 +301,7 @@ class UserController extends UserModel
         $type,
         $title,
         $text
-    ): string {
+    ): object {
         return UserModel::messageWithParameters(
             $alert,
             $type,
@@ -329,7 +329,7 @@ class UserController extends UserModel
         $id,
         $url,
         $search
-    ): object {
+    ): string {
         $page = UserModel::cleanString($page);
         $records = UserModel::cleanString($records);
         $privilege = UserModel::cleanString($privilege);

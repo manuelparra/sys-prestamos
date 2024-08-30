@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bussiness Controller
  *
@@ -21,8 +22,6 @@ if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
-
-require_once "./models/businessModel.php";
 
 /**
  * Class Business Controller
@@ -48,13 +47,12 @@ class BusinessController extends BusinessModel
                 FROM empresa";
         $query = BusinessModel::executeSimpleQuery($sql);
         if ($query->rowCount() > 0) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "¡Los datos de la empresa ya se encuentran registrados en sistema!"
             );
-            return $res;
         }
 
         // Clean data
@@ -64,61 +62,57 @@ class BusinessController extends BusinessModel
         $direccion = BusinessModel::cleanString($_POST['empresa_direccion_reg']);
 
         // Check empty fields
-        if ($nombre == "" || $email == ""
+        if (
+            $nombre == "" || $email == ""
             || $telefono == "" || $direccion == ""
         ) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrió un error inesperado.",
                 "No has llenado todos los campos requeridos."
             );
-            return $res;
         }
 
         // Check data's integrity
         // Check business name
         if (BusinessModel::checkData(RNLN, $nombre)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Nombre erróneo.",
                 "El Nombre no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check email
         if (BusinessModel::checkData(REMAIL, $email)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Email erróneo.",
                 "El Email no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check phone
         if ($telefono != "" && BusinessModel::checkData(RPHONE, $telefono)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Teléfono erróneo.",
                 "El Teléfono no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         //Check address
         if ($direccion != "" && BusinessModel::checkData(RADDR, $direccion)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Dirección erróneo.",
                 "La Dirección no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         $dataBusinessReg = [
@@ -131,21 +125,20 @@ class BusinessController extends BusinessModel
         $query = BusinessModel::addBusinessInformationModel($dataBusinessReg);
 
         if ($query->rowCount() == 1) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "reload",
                 "success",
                 "Datos de Empresa registrados.",
                 "Los datos de la Empresa han sido registrados con éxito."
             );
         } else {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "No hemos podido registrar los datos de la Empresa."
             );
         }
-        return $res;
     }
 
     /**
@@ -163,62 +156,57 @@ class BusinessController extends BusinessModel
         $direccion = BusinessModel::cleanString($_POST['empresa_direccion_upd']);
 
         // Check empty fields
-        if ($nombre == "" || $email == ""
+        if (
+            $nombre == "" || $email == ""
             || $telefono == "" || $direccion == ""
         ) {
-
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrió un error inesperado",
                 "No has llenado todos los campos requeridos."
             );
-            return $res;
         }
 
         // Check data's integrity
         // Check business name
         if (BusinessModel::checkData(RNLN, $nombre)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Nombre erróneo",
                 "El Nombre no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check email
         if (BusinessModel::checkData(REMAIL, $email)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Email erróneo",
                 "El Email no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check phone
         if ($telefono != "" && BusinessModel::checkData(RPHONE, $telefono)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Teléfono erróneo",
                 "El Teléfono no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         //Check address
         if ($direccion != "" && BusinessModel::checkData(RADDR, $direccion)) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Dirección erróneo",
                 "La Dirección no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         $dataBusinessUpd = [
@@ -232,22 +220,20 @@ class BusinessController extends BusinessModel
         $query = BusinessModel::updateBusinessDataModel($dataBusinessUpd);
 
         if ($query->rowCount() == 1) {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "reload",
                 "success",
                 "Datos de Empresa actualizados",
                 "Los datos de la empresa han sido actualizados con éxito."
             );
         } else {
-            $res = BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "No hemos podido actualizar los datos de la empresa."
             );
         }
-
-        return $res;
     }
 
     /**
@@ -267,7 +253,7 @@ class BusinessController extends BusinessModel
      *
      * @return object
      */
-    public function tokenBusinessController($string): object
+    public function tokenBusinessController($string): string
     {
         return BusinessModel::encryption($string);
     }

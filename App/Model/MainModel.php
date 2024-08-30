@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Main Model
  * All functionality pertaining to Main Model.
@@ -73,11 +74,11 @@ class MainModel
      */
     protected static function encryption($characters): string
     {
-        $output=false;
-        $key=hash('sha256', SECRET_KEY);
-        $iv=substr(hash('sha256', SECRET_IV), 0, 16);
-        $output=openssl_encrypt($characters, METHOD, $key, 0, $iv);
-        $output=base64_encode($output);
+        $output = false;
+        $key = hash('sha256', SECRET_KEY);
+        $iv = substr(hash('sha256', SECRET_IV), 0, 16);
+        $output = openssl_encrypt($characters, METHOD, $key, 0, $iv);
+        $output = base64_encode($output);
         return $output;
     }
 
@@ -90,9 +91,9 @@ class MainModel
      */
     protected static function decryption($characters): string
     {
-        $key=hash('sha256', SECRET_KEY);
-        $iv=substr(hash('sha256', SECRET_IV), 0, 16);
-        $output=openssl_decrypt(base64_decode($characters), METHOD, $key, 0, $iv);
+        $key = hash('sha256', SECRET_KEY);
+        $iv = substr(hash('sha256', SECRET_IV), 0, 16);
+        $output = openssl_decrypt(base64_decode($characters), METHOD, $key, 0, $iv);
         return $output;
     }
 
@@ -124,7 +125,7 @@ class MainModel
      *
      * @return string
      */
-    protected static function cleanString($string):string
+    protected static function cleanString($string): string
     {
         $string = str_ireplace("<script>", "", $string);
         $string = str_ireplace("</script>", "", $string);
@@ -185,7 +186,8 @@ class MainModel
     {
         $date_arr = explode("-", $date);
 
-        if (count($date_arr) == 3
+        if (
+            count($date_arr) == 3
             && checkdate($date_arr[1], $date_arr[2], $date_arr[0])
         ) {
             return false;
@@ -211,7 +213,7 @@ class MainModel
         $title,
         $text,
         $url = null
-    ): object {
+    ): string|bool {
         if ($alert == "redirect") {
             return json_encode(
                 [
@@ -257,7 +259,7 @@ class MainModel
             $start = $page - $pre_pos_mid_button;
         }
 
-        $html ='
+        $html = '
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
         ';

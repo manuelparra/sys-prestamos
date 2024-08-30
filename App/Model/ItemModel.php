@@ -58,6 +58,36 @@ class ItemModel extends MainModel
     }
 
     /**
+     * Function for update item
+     *
+     * @param $data contains array
+     *
+     * @return object
+     */
+    protected static function updateItemDataModel($data): object
+    {
+        $sql = "UPDATE item SET
+                item.item_codigo = :codigo,
+                item.item_nombre = :nombre,
+                item.item_stock = :stock,
+                item.item_estado = :estado,
+                item.item_detalle = :detalle,
+                WHERE item.item_id = :id";
+        $query = MainModel::connection()->prepare($sql);
+
+        $query->bindParam(":codigo", $data['codigo']);
+        $query->bindParam(":nombre", $data['nombre']);
+        $query->bindParam(":stock", $data['stock']);
+        $query->bindParam(":estado", $data['estado']);
+        $query->bindParam(":detalle", $data['detalle']);
+        $query->bindParam(":id", $data['id']);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    /**
      * Function for query item
      *
      * @param $type contains string

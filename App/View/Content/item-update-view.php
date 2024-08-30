@@ -53,7 +53,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                                 type="text"
                                 pattern="[a-zA-Z0-9\-]{1,45}"
                                 class="form-control"
-                                name="item_codigo_up"
+                                name="item_codigo_upd"
                                 id="item_codigo"
                                 maxlength="45"
                             >
@@ -67,7 +67,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                                 type="text"
                                 pattern="[a-zA-záéíóúÁÉÍÓÚñÑ0-9 ]{1,140}"
                                 class="form-control"
-                                name="item_nombre_up"
+                                name="item_nombre_upd"
                                 id="item_nombre"
                                 maxlength="140"
                             >
@@ -80,7 +80,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                                 type="num"
                                 pattern="[0-9]{1,9}"
                                 class="form-control"
-                                name="item_stock_up"
+                                name="item_stock_upd"
                                 id="item_stock"
                                 maxlength="9"
                             >
@@ -89,7 +89,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="item_estado" class="bmd-label-floating">Estado</label>
-                            <select class="form-control" name="item_estado_up" id="item_estado">
+                            <select class="form-control" name="item_estado_upd" id="item_estado">
                                 <option value="" selected="" disabled="">Seleccione una opción</option>
                                 <option value="Habilitado">Habilitado</option>
                                 <option value="Deshabilitado">Deshabilitado</option>
@@ -103,7 +103,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                                 type="text"
                                 pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}"
                                 class="form-control"
-                                name="item_detalle_up"
+                                name="item_detalle_upd"
                                 id="item_detalle"
                                 maxlength="190"
                             >

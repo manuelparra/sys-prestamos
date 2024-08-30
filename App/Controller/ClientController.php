@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Client Controller
  * All functionality pertaining to Cilent Controller.
@@ -51,81 +52,73 @@ class ClientController extends ClientModel
         if ($dni == "" || $nombre == "" || $apellido == ""
             || $telefono == "" || $email == "" || $direccion == ""
         ) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrió un error inesperado",
                 "No has llenado todos los campos requeridos"
             );
-            return $res;
         }
 
         // Check data's integrity
         // Check DNI
-        if (ClientModel::checkData(RDNI, $dni)
-        ) {
-            $res = ClientModel::messageWithParameters(
+        if (ClientModel::checkData(RDNI, $dni)) {
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de DNI erróneo",
                 "El DNI no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check first name
         if (ClientModel::checkData(RNLN, $nombre)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Nombre erróneo",
                 "El Nombre no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check last name
         if (ClientModel::checkData(RNLN, $apellido)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Apellido erróneo",
                 "El Apellido no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check phone
         if (ClientModel::checkData(RPHONE, $telefono)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Telefono erróneo",
                 "El Telefono no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check email
         if (ClientModel::checkData(REMAIL, $email)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Email erróneo",
                 "El Email no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check address
         if (ClientModel::checkData(RADDR, $direccion)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Dirección erróneo",
                 "La Dirección no coincide coon el formato solicitado."
             );
-            return $res;
         }
 
         // Check DNI as unique data in database
@@ -135,13 +128,12 @@ class ClientController extends ClientModel
         $query = ClientModel::executeSimpleQuery($sql);
 
         if ($query->rowCount() > 0) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "¡Ya existe un cliente con este DNI registrado en el sistema!"
             );
-            return $res;
         }
 
         // Check email as unique data in database
@@ -151,13 +143,12 @@ class ClientController extends ClientModel
         $query = ClientModel::executeSimpleQuery($sql);
 
         if ($query->rowCount() > 0) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "¡El email del cliente ya se encuentra registrado en el sistema!"
             );
-            return $res;
         }
 
         $data_client_reg = [
@@ -172,22 +163,20 @@ class ClientController extends ClientModel
         $query = ClientModel::addClientModel($data_client_reg);
 
         if ($query->rowCount() == 1) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "clean",
                 "success",
                 "Cliente registrado",
                 "Los datos del cliente han sido registrados con éxito."
             );
         } else {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrio un error inesperado",
                 "No hemos podido registrar el cliente."
             );
         }
-
-        return $res;
     }
 
     /**
@@ -284,7 +273,7 @@ class ClientController extends ClientModel
             foreach ($rows as $row) {
                 $id = ClientModel::encryption($row['cliente_id']);
                 $nombreApellido = $row['cliente_nombre'] .
-                ' '.$row['cliente_apellido'];
+                    ' ' . $row['cliente_apellido'];
 
                 $table .= '
                 <tr class="text-center" >
@@ -404,7 +393,7 @@ class ClientController extends ClientModel
      *
      * @return object
      */
-    public function deleteClientController(): string
+    public function deleteClientController(): object
     {
         // reciving client id
         $id = ClientModel::decryption($_POST['cliente_id_del']);
@@ -417,13 +406,12 @@ class ClientController extends ClientModel
         $query = ClientModel::executeSimpleQuery($sql);
 
         if (!$query->rowCount() > 0) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "¡El cliente que intenta eliminar no existe en el sistema!"
             );
-            return $res;
         }
 
         // Cheching if the client has associated loan records
@@ -434,47 +422,43 @@ class ClientController extends ClientModel
         $query = ClientModel::executeSimpleQuery($sql);
 
         if ($query->rowCount() > 0) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "El cliente tiene prestamos asociados."
             );
-            return $res;
         }
 
         // Checking privileges of current user
         session_start(['name' => 'SPM']);
         if ($_SESSION['privilegio_spm'] != 1) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "¡No tienes los permisos necesarios!"
             );
-            return $res;
         }
 
         // deleting client
         $query = ClientModel::deleteClientModel($id);
 
         if ($query->rowCount() == 1) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "reload",
                 "success",
                 "Cliente eliminado",
                 "El cliente ha sido eliminado del sistema con exito."
             );
         } else {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "No hemos podido eliminar el cliente."
             );
         }
-
-        return $res;
     }
 
     /**
@@ -507,7 +491,7 @@ class ClientController extends ClientModel
      *
      * @return string
      */
-    public function messageClientController($alert, $type, $title, $text): string
+    public function messageClientController($alert, $type, $title, $text): object
     {
         return ClientModel::messageWithParameters(
             $alert,
@@ -558,58 +542,53 @@ class ClientController extends ClientModel
         if ($dni == "" || $nombre == "" || $apellido == ""
             || $telefono == "" || $direccion == ""
         ) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrió un error inesperado",
                 "No has llenado todos los campos requeridos"
             );
-            return $res;
         }
 
         // Check data's integrity
         // Check DNI
         if (ClientModel::checkData(RDNI, $dni)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de DNI erróneo",
                 "El DNI no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check first name
         if (ClientModel::checkData(RNLN, $nombre)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Nombre erróneo",
                 "El Nombre no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check last name
         if (ClientModel::checkData(RNLN, $apellido)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Apellido erróneo",
                 "El Apellido no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check phone
         if (ClientModel::checkData(RPHONE, $telefono)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Telefono erróneo",
                 "El Telefono no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check email
@@ -621,34 +600,31 @@ class ClientController extends ClientModel
                         WHERE cliente_email = '$email'";
                 $query = ClientModel::executeSimpleQuery($sql);
                 if ($query->rowCount() > 0) {
-                    $res = ClientModel::messageWithParameters(
+                    return ClientModel::messageWithParameters(
                         "simple",
                         "error",
                         "Ocurrío un error inesperado",
                         "¡El Email ya se encuentra registrado en el sistema!"
                     );
-                    return $res;
                 }
             }
         } else {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Email erróneo",
                 "El correo no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check address
         if (ClientModel::checkData(RADDR, $direccion)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Dirección erróneo",
                 "La Dirección no coincide coon el formato solicitado."
             );
-            return $res;
         }
 
         // Check DNI as unique data in database
@@ -659,26 +635,24 @@ class ClientController extends ClientModel
             $query = ClientModel::executeSimpleQuery($sql);
 
             if ($query->rowCount() > 0) {
-                $res = ClientModel::messageWithParameters(
+                return ClientModel::messageWithParameters(
                     "simple",
                     "error",
                     "Ocurrío un error inesperado",
                     "¡Ya existe un cliente con este DNI registrado en el sistema!"
                 );
-                return $res;
             }
         }
 
         // Checking privileges
         session_start(['name' => 'SPM']);
         if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "¡No tienes los permisos necesarios para realizar esta operación!"
             );
-            return $res;
         }
 
         // Preparing data to send to the model
@@ -694,21 +668,19 @@ class ClientController extends ClientModel
 
         // Sending data to update user model
         if (ClientModel::updateClientDataModel($data)) {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "reload",
                 "success",
                 "Datos Actualizados",
                 "Los datos han sido actualizados."
             );
         } else {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrio un error inesperado",
                 "No hemos podido actualizar los datos."
             );
         }
-
-        return $res;
     }
 }
