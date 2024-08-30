@@ -39,6 +39,8 @@ use App\Controller\{
     $instClientController = new ClientController();
 
     $query = $instClientController->queryDataClientController("Count");
+
+    $word = $query->rowCount() > 0 ? "Registros" : "Registro";
     ?>
 
     <a href="<?php echo SERVER_URL; ?>client-list/" class="tile">
@@ -48,12 +50,7 @@ use App\Controller\{
             <p>
                 <?php
                 echo $query->rowCount();
-                ?>&nbsp;Registro
-                <?php
-                if ($query->rowCount() > 1) {
-                    echo 's';
-                }
-                ?>
+                ?>&nbsp;<?php echo $word; ?>
             </p>
         </div>
     </a>
@@ -62,6 +59,7 @@ use App\Controller\{
     $instItemController = new ItemController();
 
     $query = $instItemController->queryDataItemController("Count");
+    $word = $query->rowCount() > 0 ? "Registros" : "Registro";
     ?>
 
     <a href="<?php echo SERVER_URL; ?>item-list/" class="tile">
@@ -71,13 +69,7 @@ use App\Controller\{
             <p>
                 <?php
                 echo $query->rowCount();
-                ?>
-                &nbsp;Registro
-                <?php
-                if ($query->rowCount() > 1) {
-                    echo 's';
-                }
-                ?>
+                ?>&nbsp;<?php echo $word; ?>
             </p>
         </div>
     </a>
@@ -111,6 +103,7 @@ use App\Controller\{
         $insUserController = new UserController();
 
         $query = $insUserController->queryDataUserController("Count");
+        $word = $query->rowCount() > 0 ? "Registros" : "Registro";
         ?>
 
         <a href="<?php echo SERVER_URL; ?>user-list/" class="tile">
@@ -120,13 +113,7 @@ use App\Controller\{
                 <p>
                     <?php
                     echo $query->rowCount();
-                    ?>
-                    &nbsp;Registro
-                    <?php
-                    if ($query->rowCount() > 1) {
-                        echo 's';
-                    }
-                    ?>
+                    ?>&nbsp;<?php echo $word; ?>
                 </p>
             </div>
         </a>

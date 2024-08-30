@@ -11,6 +11,11 @@
  * @version  CVS: <1.0.0>
  * @link     manuelparra.dev
  */
+
+namespace App\View;
+
+use App\Controller\ClientController
+
 ?>
 
 <!-- Page header -->
@@ -19,8 +24,8 @@
         <i class="fas fa-clipboard-list fa-fw"></i>&nbsp;LISTA DE CLIENTES
     </h3>
     <p class="text-justify">
-        Esta vista contiene el listado de todos los clientes registrados, 
-        puede seleccionar un cliente para actualizar o eliminar sus datos 
+        Esta vista contiene el listado de todos los clientes registrados,
+        puede seleccionar un cliente para actualizar o eliminar sus datos
         del sistema.
     </p>
 </div>
@@ -52,15 +57,13 @@
 <div class="container-fluid">
     <?php
 
-    require_once "./controllers/clientController.php";
-    $insClient = new ClientController();
+    $insClientController = new ClientController();
 
-    echo $insClient->paginatorClientController(
-        $currentPage[1],
+    echo $insClientController->paginatorClientController(
+        $_SESSION(['currentPage'][0]),
         15,
         $_SESSION['privilegio_spm'],
-        $currentPage[0],
-        ""
+        $_SESSION(['currentPage'][0]),
     );
     ?>
 </div>

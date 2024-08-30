@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
         } else {
             session_start(['name'=>'SPM']);
 
-            $currentPage = explode("/", $_GET['view']);
+            $_SESSION['currentPage'] = explode("/", $_GET['view']);
 
             $insLoginController = new LoginController();
 
@@ -61,7 +61,6 @@ if (!defined('ABSPATH')) {
                 echo $insLoginController->forceCloseSessionController();
                 exit; // Exit after force to close session
             }
-
             ?>
 
             <!-- Main container -->

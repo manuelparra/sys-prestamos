@@ -34,6 +34,7 @@ const ERROR_DIR = "/Users/manuel/Sites/prestamos/logs/";
 //const SERVER_URL = "https://prestamos.desliate.com/";
 //const ERROR_DIR = "/var/www/desliate.com/prestamos/logs/";
 
+// Constantes del sistema
 const COMPANY = "Sistema de Prestamos";
 const MONEDA = "€";
 

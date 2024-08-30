@@ -195,7 +195,7 @@ class ClientController extends ClientModel
         $records,
         $privilege,
         $url,
-        $search
+        $search = null
     ): string {
         $page = ClientModel::cleanString($page);
         $records = ClientModel::cleanString($records);
@@ -213,7 +213,7 @@ class ClientController extends ClientModel
 
         $start = $page > 0 ? (($page * $records) - $records) : 0;
 
-        if (isset($search) && $search != "") {
+        if (isset($search)) {
             $sql = "SELECT SQL_CALC_FOUND_ROWS *
                     FROM cliente
                     WHERE cliente_dni LIKE '%$search%'
