@@ -1,8 +1,7 @@
 <?php
-
 /**
  * Client Controller
- * All functionality pertaining to Cilent Controller.
+ * All functionality pertaining to Client Controller.
  * PHP version 8.2.0
  *
  * @category Controller
@@ -37,9 +36,9 @@ class ClientController extends ClientModel
     /**
      * Function for add client
      *
-     * @return object
+     * @return string
      */
-    public function addClientController(): object
+    public function addClientController(): string
     {
         $dni = ClientModel::cleanString($_POST['cliente_dni_reg']);
         $nombre = ClientModel::cleanString($_POST['cliente_nombre_reg']);
@@ -391,9 +390,9 @@ class ClientController extends ClientModel
     /**
      * Function for delete client
      *
-     * @return object
+     * @return string
      */
-    public function deleteClientController(): object
+    public function deleteClientController(): string
     {
         // reciving client id
         $id = ClientModel::decryption($_POST['cliente_id_del']);
@@ -445,12 +444,12 @@ class ClientController extends ClientModel
         $query = ClientModel::deleteClientModel($id);
 
         if ($query->rowCount() == 1) {
-            return ClientModel::messageWithParameters(
+            return (ClientModel::messageWithParameters(
                 "reload",
                 "success",
                 "Cliente eliminado",
                 "El cliente ha sido eliminado del sistema con exito."
-            );
+            ));
         } else {
             return ClientModel::messageWithParameters(
                 "simple",
@@ -491,8 +490,12 @@ class ClientController extends ClientModel
      *
      * @return string
      */
-    public function messageClientController($alert, $type, $title, $text): object
-    {
+    public function messageClientController(
+        $alert,
+        $type,
+        $title,
+        $text
+    ): string {
         return ClientModel::messageWithParameters(
             $alert,
             $type,
@@ -504,9 +507,9 @@ class ClientController extends ClientModel
     /**
      * Function for update client
      *
-     * @return object
+     * @return string|bool
      */
-    public function updateClientDataController(): object
+    public function updateClientDataController(): string
     {
         // recieving the id
         $id = ClientModel::decryption($_POST['cliente_id_upd']);
@@ -522,13 +525,12 @@ class ClientController extends ClientModel
         if ($query->rowCount() == 1) {
             $fields = $query->fetch();
         } else {
-            $res = ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "El cliente no existe en base de datos, intente nuevamente."
             );
-            return $res;
         }
 
         $dni = ClientModel::cleanString($_POST['cliente_dni_upd']);
@@ -540,7 +542,7 @@ class ClientController extends ClientModel
 
         // check empty fields
         if ($dni == "" || $nombre == "" || $apellido == ""
-            || $telefono == "" || $direccion == ""
+            || $telefono == "" || $email == "" || $direccion == ""
         ) {
             return ClientModel::messageWithParameters(
                 "simple",
@@ -672,14 +674,14 @@ class ClientController extends ClientModel
                 "reload",
                 "success",
                 "Datos Actualizados",
-                "Los datos han sido actualizados."
+                "Los datos han sido actualizados.",
             );
         } else {
             return ClientModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrio un error inesperado",
-                "No hemos podido actualizar los datos."
+                "No hemos podido actualizar los datos.",
             );
         }
     }

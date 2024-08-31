@@ -1,43 +1,56 @@
 <?php
 /**
- * Ajax Client Ajax
+ * Ajax Client
+ * All functionality pertaining to Ajax Cilent
+ * PHP version 8.2.0
  *
- * All functionality pertaining to the Ajax User requests.
- *
- * @package Ajax Request
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Ajax
+ * @package  AjaxRequest
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
+
+use App\Controller\ClientController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
 
-if (isset($_POST['cliente_dni_reg']) || isset($_POST['cliente_id_del']) || isset($_POST['cliente_id_upd'])) {
+if (isset($_POST['cliente_dni_reg'])
+    || isset($_POST['cliente_id_del'])
+    || isset($_POST['cliente_id_upd'])
+) {
     // Instance to client controller
-    require_once "./controllers/clientController.php";
-    $insClient = new clientController();
+    $insClientController = new ClientController();
 
     // Update client
     if (isset($_POST['cliente_id_upd'])) {
-        echo $insClient->update_client_data_controller();
+        echo $insClientController->updateClientDataController();
         exit;
     }
 
     // Delete client
     if (isset($_POST['cliente_id_del'])) {
-        echo $insClient->delete_client_controller();
+        echo $insClientController->deleteClientController();
         exit;
     }
 
     // Add client
-    if (isset($_POST['cliente_dni_reg']) && isset($_POST['cliente_nombre_reg'])) {
-        echo $insClient->add_client_controller();
+    if (isset($_POST['cliente_dni_reg'])
+        && isset($_POST['cliente_nombre_reg'])
+    ) {
+        echo $insClientController->addClientController();
         exit;
     } else {
-        echo $insClient->message_client_controller("simple", "error", "Ocurrió un error inesperado",
-                                                   "No has llenado todos los campos requeridos.");
+        echo $insClientController->messageClientController(
+            "simple",
+            "error",
+            "Ocurrió un error inesperado",
+            "No has llenado todos los campos requeridos."
+        );
         exit;
     }
 } else {

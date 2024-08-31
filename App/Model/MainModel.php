@@ -186,8 +186,7 @@ class MainModel
     {
         $date_arr = explode("-", $date);
 
-        if (
-            count($date_arr) == 3
+        if (count($date_arr) == 3
             && checkdate($date_arr[1], $date_arr[2], $date_arr[0])
         ) {
             return false;
@@ -213,7 +212,7 @@ class MainModel
         $title,
         $text,
         $url = null
-    ): string|bool {
+    ): string {
         if ($alert == "redirect") {
             return json_encode(
                 [

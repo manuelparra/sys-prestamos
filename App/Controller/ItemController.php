@@ -37,9 +37,9 @@ class ItemController extends ItemModel
     /**
      * Function for add item
      *
-     * @return object
+     * @return string
      */
-    public function addItemController(): object
+    public function addItemController(): string
     {
         $codigo = ItemModel::cleanString($_POST['item_codigo_reg']);
         $nombre = ItemModel::cleanString($_POST['item_nombre_reg']);
@@ -48,74 +48,66 @@ class ItemController extends ItemModel
         $detalle = ItemModel::cleanString($_POST['item_detalle_reg']);
 
         // Check empty fields
-        if (
-            $codigo == "" || $nombre = "" || $stock = ""
+        if ($codigo == "" || $nombre = "" || $stock = ""
             || $estado = "" || $detalle = ""
         ) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrio un error inesperado",
                 "No has llenado todos los campos requeridos"
             );
-
-            return $res;
         }
 
         // Check data's integrity
         // Check Codigo
         if (ItemModel::checkData(RCOD, $codigo)) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Código erróneo",
                 "El Código no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check item name
         if (ItemModel::checkData(RBNAME, $nombre)) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de Nombre erróneo",
                 "El Nombre no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check item stock
         if (ItemModel::checkData(RSTOCK, $stock)) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de stock erróneo",
                 "El stock no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check item estado
         if (ItemModel::checkData(RESTADO, $estado)) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de estado erróneo",
                 "El estado no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         // Check detalle estado
         if (ItemModel::checkData(RESTADO, $detalle)) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Formato de detalle erróneo",
                 "El detalle no coincide con el formato solicitado."
             );
-            return $res;
         }
 
         $dataItemReg = [
@@ -129,30 +121,28 @@ class ItemController extends ItemModel
         $query = ItemModel::addItemModel($dataItemReg);
 
         if ($query->rowCount() == 1) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "clean",
                 "success",
                 "Item rigistrado",
                 "Los datos del item han sido registrados con éxito."
             );
         } else {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrio un error inesperado",
                 "No hemos podido registrar el item."
             );
         }
-
-        return $res;
     }
 
     /**
      * Function for update item
      *
-     * @return object
+     * @return string
      */
-    public function updateItemDataController(): object
+    public function updateItemDataController(): string
     {
         $id = ItemModel::decryption(['item_id_upd']);
         $id = ItemModel::cleanString($id);
@@ -182,8 +172,7 @@ class ItemController extends ItemModel
         $detalle = ItemModel::cleanString(['item_detalle_upd']);
 
         // Check empty fields
-        if (
-            $codigo == "" || $nombre == ""
+        if ($codigo == "" || $nombre == ""
             || $stock == "" || $estado == ""
             || $detalle == ""
         ) {
@@ -343,9 +332,9 @@ class ItemController extends ItemModel
     /**
      * Function for delete item
      *
-     * @return object
+     * @return string
      */
-    public function deleteItemController(): object
+    public function deleteItemController(): string
     {
         // recivirng item id
         $id = ItemModel::decryption($_POST['item_id_del']);
@@ -358,13 +347,12 @@ class ItemController extends ItemModel
         $query = ItemModel::connection()->prepare($sql);
 
         if (!$query->rowCount() > 0) {
-            $res = ItemModel::messageWithParameters(
+            return ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado",
                 "¡El item que intenta eliminar no existe en el sistema!"
             );
-            return $res;
         }
     }
 
@@ -591,7 +579,7 @@ class ItemController extends ItemModel
         $type,
         $title,
         $text
-    ): object {
+    ): string {
         return ItemModel::messageWithParameters(
             $alert,
             $type,

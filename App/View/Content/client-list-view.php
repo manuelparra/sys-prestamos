@@ -1,21 +1,18 @@
 <?php
 /**
- * Contents of Client List View.
+ * Client List View.
  * Contents of Client List View.
  * PHP version 8.2.0
  *
- * @category Layout
- * @package  Layout
+ * @category View
+ * @package  ViewContent
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  CVS: <1.0.0>
  * @link     manuelparra.dev
  */
 
-namespace App\View;
-
-use App\Controller\ClientController
-
+use App\Controller\ClientController;
 ?>
 
 <!-- Page header -->
@@ -28,7 +25,7 @@ use App\Controller\ClientController
         puede seleccionar un cliente para actualizar o eliminar sus datos
         del sistema.
     </p>
-</div>
+</div
 
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
@@ -60,10 +57,10 @@ use App\Controller\ClientController
     $insClientController = new ClientController();
 
     echo $insClientController->paginatorClientController(
-        $_SESSION(['currentPage'][0]),
+        $_SESSION['currentPage'][1],
         15,
         $_SESSION['privilegio_spm'],
-        $_SESSION(['currentPage'][0]),
+        $_SESSION['currentPage'][0],
     );
     ?>
 </div>

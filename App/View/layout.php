@@ -1,11 +1,11 @@
 <?php
 /**
- * Layout Template view
+ * Layout View
  * Contents of the Layout Template view.
  * PHP version 8.2.0
  *
- * @category Layout
- * @package  Layout
+ * @category View
+ * @package  ViewLayout
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  GIT: 1.0.0

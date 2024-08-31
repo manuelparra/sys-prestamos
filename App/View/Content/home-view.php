@@ -1,11 +1,11 @@
 <?php
 /**
- * Contents of Home view.
+ * Home View.
  * Contents of the Home page view.
  * PHP version 8.2.0
  *
- * @category Config
- * @package  Config
+ * @category View
+ * @package  ViewContent
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  CVS: <1.0.0>
@@ -18,7 +18,6 @@ use App\Controller\{
     BusinessController,
     UserController
 };
-
 ?>
 
 <!-- Page header -->

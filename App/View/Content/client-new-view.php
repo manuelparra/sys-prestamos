@@ -1,23 +1,26 @@
 <?php
 /**
- * Contents of Now Client View.
- * Contents of the new client view.
+ * New Client View.
+ * Contents of New Client View.
  * PHP version 8.2.0
  *
- * @category Layout
- * @package  Layout
+ * @category View
+ * @package  ViewContent
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  CVS: <1.0.0>
  * @link     manuelparra.dev
  */
 
-if (isset($insLoginController)) {
-    include_once "./controllers/loginController.php";
+use App\Controller\LoginController;
+
+if (!isset($insLoginController)) {
     $insLoginController = new LoginController();
 }
 
-if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
+if ($_SESSION['privilegio_spm'] != 1
+    && $_SESSION['privilegio_spm'] != 2
+) {
     echo $insLoginController->forceCloseSessionController();
     exit;
 }
@@ -64,7 +67,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
         action="<?php echo SERVER_URL; ?>endpoint/client-ajax/"
         method="POST"
         id="new_registration_form"
-        data-form="save" 
+        data-form="save"
         autocomplete="off"
     >
         <fieldset>
@@ -109,7 +112,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                                 class="form-control"
                                 name="cliente_nombre_reg"
                                 id="cliente_nombre"
-                                maxlength="40"
+                                maxlength="35"
                                 required
                             >
                         </div>
@@ -128,7 +131,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                                 class="form-control"
                                 name="cliente_apellido_reg"
                                 id="cliente_apellido"
-                                maxlength="40"
+                                maxlength="35"
                                 required
                             >
                         </div>
@@ -162,7 +165,7 @@ if ($_SESSION['privilegio_spm'] != 1 && $_SESSION['privilegio_spm'] != 2) {
                             </label>
                             <input
                                 type="email"
-                                patter="<?php echo REMAIL; ?>"
+                                pattern="<?php echo REMAILHTML; ?>"
                                 class="form-control"
                                 name="cliente_email_reg"
                                 id="cliente_email"

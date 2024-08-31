@@ -1,11 +1,11 @@
 <?php
 /**
- * Contents of NavBar.
+ * NavBar.
  * Contents of the NavBar
  * PHP version 8.2.0
  *
- * @category Layout
- * @package  Layout
+ * @category View
+ * @package  ViewLayout
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  CVS: <1.0.0>

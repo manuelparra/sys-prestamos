@@ -52,6 +52,7 @@ function send_ajaxs_form(e) {
 			// Utilizamos ajax para enviar el formulario con el metodo POST al backend
 			fetch(action, config)
 				.then((res) => {
+					console.log(res);
 					return res.json();
 				})
 				.then((res) => {
@@ -66,7 +67,7 @@ ajax_forms.forEach((forms) => {
 });
 
 function ajax_alerts(alert) {
-	console.log(alert.alert);
+	console.log(alert);
 	if (alert.alert === "simple") {
 		Swal.fire({
 			icon: alert.type,

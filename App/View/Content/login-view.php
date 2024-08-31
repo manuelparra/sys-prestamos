@@ -19,7 +19,6 @@ $pass = ""; // password value text
 
 if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
     $insLoginController = new LoginController();
-
     echo $insLoginController->loginController();
 
     $user = $_POST['usuario_log'];
@@ -66,7 +65,7 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
                     pattern="<?php echo RPASS; ?>"
                     maxlength="16"
                     value="<?php echo $pass; ?>"
-                    autocomplete="on"
+                    autocomplete="off"
                     required
                 >
             </div>

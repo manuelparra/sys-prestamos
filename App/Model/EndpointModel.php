@@ -50,7 +50,6 @@ class EndpointModel
                 $req = "./App/Ajax/V1/" . $file . ".php";
             }
         }
-
         return $req;
     }
 }
