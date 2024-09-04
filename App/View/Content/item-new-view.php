@@ -11,19 +11,6 @@
  * @version  CVS: <1.0.0>
  * @link     manuelparra.dev
  */
-
-use App\Controller\LoginController;
-
-if (!isset($insLoginController)) {
-    $insLoginController = new LoginController();
-}
-
-if ($_SESSION['privilegio_spm'] != 1
-    && $_SESSION['privilegio_spm'] != 2
-) {
-    echo $insLoginController->forceCloseSessionController();
-    exit;
-}
 ?>
 
 <!-- Page header -->
@@ -38,6 +25,7 @@ if ($_SESSION['privilegio_spm'] != 1
     </p>
 </div>
 
+<!-- Navegation -->
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
@@ -106,11 +94,11 @@ if ($_SESSION['privilegio_spm'] != 1
                             </label>
                             <input
                                 type="text"
-                                pattern="<?php echo RBNAME; ?>"
+                                pattern="<?php echo RNAME; ?>"
                                 class="form-control"
                                 name="item_nombre_reg"
                                 id="item_nombre"
-                                maxlength="140"
+                                maxlength="150"
                                 required
                             >
                         </div>
@@ -169,7 +157,7 @@ if ($_SESSION['privilegio_spm'] != 1
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label
-                                for="item_detalle" 
+                                for="item_detalle"
                                 class="bmd-label-floating"
                             >
                                 Detalle

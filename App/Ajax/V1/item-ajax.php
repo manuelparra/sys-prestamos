@@ -39,7 +39,7 @@ if (isset($_POST['item_codigo_reg'])
     }
 
     // Add item
-    if (isset($_POST['item_codigo_reg']) 
+    if (isset($_POST['item_codigo_reg'])
         && isset($_POST['item_nombre_reg'])
     ) {
         echo $insItemController->addItemController();

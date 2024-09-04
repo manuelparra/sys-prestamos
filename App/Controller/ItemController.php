@@ -44,12 +44,12 @@ class ItemController extends ItemModel
         $codigo = ItemModel::cleanString($_POST['item_codigo_reg']);
         $nombre = ItemModel::cleanString($_POST['item_nombre_reg']);
         $stock = ItemModel::cleanString($_POST['item_stock_reg']);
-        $estado = ItemModel::cleanString($_POST['item_stock_reg']);
+        $estado = ItemModel::cleanString($_POST['item_estado_reg']);
         $detalle = ItemModel::cleanString($_POST['item_detalle_reg']);
 
         // Check empty fields
-        if ($codigo == "" || $nombre = "" || $stock = ""
-            || $estado = "" || $detalle = ""
+        if ($codigo == "" || $nombre == "" || $stock == ""
+            || $estado == "" || $detalle == ""
         ) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -71,7 +71,7 @@ class ItemController extends ItemModel
         }
 
         // Check item name
-        if (ItemModel::checkData(RBNAME, $nombre)) {
+        if (ItemModel::checkData(RNAME, $nombre)) {
             return ItemModel::messageWithParameters(
                 "simple",
                 "error",
@@ -100,8 +100,8 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check detalle estado
-        if (ItemModel::checkData(RESTADO, $detalle)) {
+        // Check item detalle
+        if (ItemModel::checkData(RDETALLE, $detalle)) {
             return ItemModel::messageWithParameters(
                 "simple",
                 "error",
@@ -110,9 +110,40 @@ class ItemController extends ItemModel
             );
         }
 
+        // Check Codigo as unique data in database
+        $sql = "SELECT item.item_codigo
+                FROM item
+                WHERE item.item_codigo = '$codigo'";
+        $query = ItemModel::executeSimpleQuery($sql);
+
+        if ($query->rowCount() > 0) {
+            return ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Valores duplicados en sistema.",
+                "El Código ya se encuentra registrado en base de datos."
+            );
+        }
+
+        // Checj Nombre as unique data in database
+        $sql = "SELECT item.item_nombre
+                FROM item
+                WHERE item.item_nombre = '$nombre'";
+        $query = ItemModel::executeSimpleQuery($sql);
+
+        if (query->rowCount() > 0) {
+            return ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Valores duplicados en sistema.",
+                "El Nombre del Item ya se encuentra registrado en el sistama."
+            );
+        }
+
+        // Arreglo de datos para el rigistro del Item
         $dataItemReg = [
             "codigo" => $codigo,
-            "nmobre" => $nombre,
+            "nombre" => $nombre,
             "stock" => $stock,
             "estado" => $estado,
             "detalle" => $detalle,
@@ -468,8 +499,8 @@ class ItemController extends ItemModel
                         <td>
                             <a
                                 href="' . SERVER_URL . 'item-update/' .
-                        ItemModel::encryption($row['item_id'])  .
-                        '/"
+                                ItemModel::encryption($row['item_id'])  .
+                                '/"
                                 class="btn btn-success"
                             >
                                 <i class="fas fa-sync-alt"></i>
@@ -489,8 +520,8 @@ class ItemController extends ItemModel
                                 <input
                                     type="hidden"
                                     name="item_id_del" value="' .
-                        ItemModel::encryption($row['item_id']) .
-                        '"
+                                    ItemModel::encryption($row['item_id']) .
+                                    '"
                                 >
                                 <button type="submit" class="btn btn-warning">
                                     <i class="far fa-trash-alt"></i>

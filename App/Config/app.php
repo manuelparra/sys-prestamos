@@ -46,7 +46,7 @@ const RCOD = "[a-zA-Z0-9-]{1,45}";
 // for business name
 const RBNAME = "[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9¿? ]{1,140}";
 
-// for business name
+// for item name
 const RNAME = "[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9¿? ]{1,150}";
 
 // for item stock
