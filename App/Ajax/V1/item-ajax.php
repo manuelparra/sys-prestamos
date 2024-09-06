@@ -28,7 +28,7 @@ if (isset($_POST['item_codigo_reg'])
 
     // Update item
     if (isset($_POST['item_id_upd'])) {
-        echo $insItemController->updateItemDataController();
+        echo $insItemController->updateItemDataController($_POST['item_id_upd']);
         exit;
     }
 

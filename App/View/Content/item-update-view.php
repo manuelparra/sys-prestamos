@@ -66,14 +66,21 @@ use App\Controller\ItemController;
             $_SESSION['currentPage'][1]
         );
 
-        if ($query->rowCount == 1) {
+        if ($query->rowCount() == 1) {
             $fields = $query->fetch();
             ?>
             <form
-                action=""
-                class="form-neon"
+                class="form-neon ajax-form"
+                action="<?php echo SERVER_URL; ?>endpoint/item-ajax/"
+                method="POST"
+                data-form="update"
                 autocomplete="off"
             >
+                <input
+                    type="hidden"
+                    name="item_id_upd"
+                    value="<?php echo $_SESSION['currentPage'][1]; ?>"
+                >
                 <fieldset>
                     <legend>
                         <i class="far fa-plus-square"></i>
@@ -95,7 +102,7 @@ use App\Controller\ItemController;
                                         class="form-control"
                                         name="item_codigo_upd"
                                         id="item_codigo"
-                                        value="<?php echo $fields[0]; ?>"
+                                        value="<?php echo $fields[1]; ?>"
                                         maxlength="45"
                                     >
                                 </div>
@@ -115,7 +122,7 @@ use App\Controller\ItemController;
                                         class="form-control"
                                         name="item_nombre_upd"
                                         id="item_nombre"
-                                        value="<?php echo $fields[1]; ?>"
+                                        value="<?php echo $fields[2]; ?>"
                                         maxlength="140"
                                     >
                                 </div>
@@ -134,7 +141,7 @@ use App\Controller\ItemController;
                                         class="form-control"
                                         name="item_stock_upd"
                                         id="item_stock"
-                                        value="<?php echo $fields[2]; ?>"
+                                        value="<?php echo $fields[3]; ?>"
                                         maxlength="9"
                                     >
                                 </div>
@@ -152,22 +159,53 @@ use App\Controller\ItemController;
                                         name="item_estado_upd"
                                         id="item_estado"
                                     >
-                                        <option
-                                            value="" selected=""
-                                            disabled=""
-                                        >
-                                            Seleccione una opción
-                                        </option>
-                                        <option
-                                            value="Habilitado"
-                                        >
-                                            Habilitado
-                                        </option>
-                                        <option
-                                            value="Deshabilitado"
-                                        >
-                                            Deshabilitado
-                                        </option>
+                                        <?php
+                                        if (is_null($fields[4])) {
+                                            ?>
+                                            <option
+                                                value="" selected=""
+                                                disabled=""
+                                            >
+                                                Seleccione una opción
+                                            </option>
+                                            <option
+                                                value="Habilitado"
+                                            >
+                                                Habilitado
+                                            </option>
+                                            <option
+                                                value="Deshabilitado"
+                                            >
+                                                Deshabilitado
+                                            </option>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <option
+                                                value="<?php echo  $fields[4]; ?>"
+                                            >
+                                                <?php echo  $fields[4]; ?>
+                                            </option>
+                                            <?php
+                                            if ($fields[4] == "Habilitado") {
+                                                ?>
+                                                <option
+                                                    value="Deshabilitado"
+                                                >
+                                                    Deshabilitado
+                                                </option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <option
+                                                    value="Habilitado"
+                                                >
+                                                    Habilitado
+                                                </option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -185,7 +223,7 @@ use App\Controller\ItemController;
                                         class="form-control"
                                         name="item_detalle_upd"
                                         id="item_detalle"
-                                        value="<?php echo $fields[4]; ?>"
+                                        value="<?php echo $fields[5]; ?>"
                                         maxlength="190"
                                     >
                                 </div>

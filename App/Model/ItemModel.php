@@ -71,7 +71,7 @@ class ItemModel extends MainModel
                 item.item_nombre = :nombre,
                 item.item_stock = :stock,
                 item.item_estado = :estado,
-                item.item_detalle = :detalle,
+                item.item_detalle = :detalle
                 WHERE item.item_id = :id";
         $query = MainModel::connection()->prepare($sql);
 

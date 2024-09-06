@@ -171,11 +171,13 @@ class ItemController extends ItemModel
     /**
      * Function for update item
      *
+     * @param $id contains string
+     *
      * @return string
      */
-    public function updateItemDataController(): string
+    public function updateItemDataController(string $id): string
     {
-        $id = ItemModel::decryption(['item_id_upd']);
+        $id = ItemModel::decryption($id);
         $id = ItemModel::cleanString($id);
         $id = (int) $id;
 
@@ -198,9 +200,10 @@ class ItemController extends ItemModel
 
         $codigo = ItemModel::cleanString($_POST['item_codigo_upd']);
         $nombre = ItemModel::cleanString($_POST['item_nombre_upd']);
-        $stock = ItemModel::cleanString(['item_stock_upd']);
-        $estado = ItemModel::cleanString(['item_estado_upd']);
-        $detalle = ItemModel::cleanString(['item_detalle_upd']);
+        $stock = ItemModel::cleanString($_POST['item_stock_upd']);
+        $stock = (int) $stock;
+        $estado = ItemModel::cleanString($_POST['item_estado_upd']);
+        $detalle = ItemModel::cleanString($_POST['item_detalle_upd']);
 
         // Check empty fields
         if ($codigo == "" || $nombre == ""
@@ -228,7 +231,7 @@ class ItemController extends ItemModel
 
         // Verfico si el código introducido por el usuario se encuentra
         // registrado en el sistema.
-        if ($codigo != $fields('item_codigo')) { // Si el usuario introdujo un codigo
+        if ($codigo != $fields['item_codigo']) { // Si el usuario introdujo un codigo
             $sql = "SELECT item.item_codigo
                     FROM item
                     WHERE item.item_codigo = '$codigo'";
@@ -256,7 +259,7 @@ class ItemController extends ItemModel
         // Verifico si el nombre introducido por el usuario es encuentra
         // registrado en el sistema
 
-        if ($nombre != $fields('item_nombre')) {
+        if ($nombre != $fields['item_nombre']) {
             $sql = "SELECT item.item_nombre
                     FROM item
                     WHERE item.item_nombre = '$nombre'";
