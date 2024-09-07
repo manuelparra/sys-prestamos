@@ -16,29 +16,29 @@ use App\Controller\ClientController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-    exit; // Exit if accessed directly
+    exit; // exit if accessed directly
 }
 
 if (isset($_POST['cliente_dni_reg'])
     || isset($_POST['cliente_id_del'])
     || isset($_POST['cliente_id_upd'])
 ) {
-    // Instance to client controller
+    // instance to client controller
     $insClientController = new ClientController();
 
-    // Update client
+    // update client
     if (isset($_POST['cliente_id_upd'])) {
         echo $insClientController->updateClientDataController();
         exit;
     }
 
-    // Delete client
+    // delete client
     if (isset($_POST['cliente_id_del'])) {
         echo $insClientController->deleteClientController();
         exit;
     }
 
-    // Add client
+    // add client
     if (isset($_POST['cliente_dni_reg'])
         && isset($_POST['cliente_nombre_reg'])
     ) {

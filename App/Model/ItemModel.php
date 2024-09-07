@@ -112,4 +112,23 @@ class ItemModel extends MainModel
         $query->execute();
         return $query;
     }
+
+    /**
+     * Funciton for delete item
+     *
+     * @param $id contains integer
+     *
+     * @return string
+     */
+    protected static function deleteItemModel($id): object
+    {
+        $sql = "DELETE FROM item
+                WHERE item.item_id = :id";
+        $query = MainModel::connection()->prepare($sql);
+
+        $query->bindParam(":id", $id);
+        $query->execute();
+
+        return $query;
+    }
 }

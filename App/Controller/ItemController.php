@@ -47,7 +47,7 @@ class ItemController extends ItemModel
         $estado = ItemModel::cleanString($_POST['item_estado_reg']);
         $detalle = ItemModel::cleanString($_POST['item_detalle_reg']);
 
-        // Check empty fields
+        // check empty fields
         if ($codigo == "" || $nombre == "" || $stock == ""
             || $estado == "" || $detalle == ""
         ) {
@@ -59,8 +59,8 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check data's integrity
-        // Check Codigo
+        // check data's integrity
+        // check Codigo
         if (ItemModel::checkData(RCOD, $codigo)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -70,7 +70,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check item name
+        // check item name
         if (ItemModel::checkData(RNAME, $nombre)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -80,7 +80,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check item stock
+        // check item stock
         if (ItemModel::checkData(RSTOCK, $stock)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -90,7 +90,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check item estado
+        // check item estado
         if (ItemModel::checkData(RESTADO, $estado)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -100,7 +100,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check item detalle
+        // check item detalle
         if (ItemModel::checkData(RDETALLE, $detalle)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -110,7 +110,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check Codigo as unique data in database
+        // check Codigo as unique data in database
         $sql = "SELECT item.item_codigo
                 FROM item
                 WHERE item.item_codigo = '$codigo'";
@@ -125,13 +125,13 @@ class ItemController extends ItemModel
             );
         }
 
-        // Checj Nombre as unique data in database
+        // checking Nombre as unique data in database
         $sql = "SELECT item.item_nombre
                 FROM item
                 WHERE item.item_nombre = '$nombre'";
         $query = ItemModel::executeSimpleQuery($sql);
 
-        if (query->rowCount() > 0) {
+        if ($query->rowCount() > 0) {
             return ItemModel::messageWithParameters(
                 "simple",
                 "error",
@@ -140,7 +140,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Arreglo de datos para el rigistro del Item
+        // arreglo de datos para el rigistro del Item
         $dataItemReg = [
             "codigo" => $codigo,
             "nombre" => $nombre,
@@ -155,7 +155,7 @@ class ItemController extends ItemModel
             return ItemModel::messageWithParameters(
                 "clean",
                 "success",
-                "Item rigistrado",
+                "Item registrado",
                 "Los datos del item han sido registrados con éxito."
             );
         } else {
@@ -181,7 +181,7 @@ class ItemController extends ItemModel
         $id = ItemModel::cleanString($id);
         $id = (int) $id;
 
-        /* Checking item id in the database */
+        /* checking item id in the database */
         $sql = "SELECT item.*
                 FROM item
                 WHERE item.item_id = '$id'";
@@ -205,7 +205,7 @@ class ItemController extends ItemModel
         $estado = ItemModel::cleanString($_POST['item_estado_upd']);
         $detalle = ItemModel::cleanString($_POST['item_detalle_upd']);
 
-        // Check empty fields
+        // check empty fields
         if ($codigo == "" || $nombre == ""
             || $stock == "" || $estado == ""
             || $detalle == ""
@@ -218,8 +218,8 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check data integrity
-        // Check codigo item
+        // check data integrity
+        // check codigo item
         if (ItemModel::checkData(RCOD, $codigo)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -229,7 +229,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Verfico si el código introducido por el usuario se encuentra
+        // verfico si el código introducido por el usuario se encuentra
         // registrado en el sistema.
         if ($codigo != $fields['item_codigo']) { // Si el usuario introdujo un codigo
             $sql = "SELECT item.item_codigo
@@ -246,7 +246,7 @@ class ItemController extends ItemModel
             }
         }
 
-        // Check name
+        // check name
         if (ItemModel::checkData(RNAME, $nombre)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -256,7 +256,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Verifico si el nombre introducido por el usuario es encuentra
+        // verifico si el nombre introducido por el usuario es encuentra
         // registrado en el sistema
 
         if ($nombre != $fields['item_nombre']) {
@@ -274,7 +274,7 @@ class ItemController extends ItemModel
             }
         }
 
-        // Check Stock
+        // check Stock
         if (ItemModel::checkData(RSTOCK, $stock)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -284,7 +284,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check Estado
+        // check Estado
         if (ItemModel::checkData(RESTADO, $estado)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -294,7 +294,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Verifico si el Estado es una de las dos opciones
+        // verifico si el Estado es una de las dos opciones
         // definidas en el frontend
         if ($estado != "Habilitado" && $estado != "Deshabilitado") {
             return ItemModel::messageWithParameters(
@@ -305,7 +305,7 @@ class ItemController extends ItemModel
             );
         }
 
-        // Check Detalle
+        // check Detalle
         if (ItemModel::checkData(RDETALLE, $detalle)) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -315,7 +315,7 @@ class ItemController extends ItemModel
             );
         }
 
-        //  Preparing data to update item in the detabase
+        // preparing data to update item in the detabase
         $data = [
             "codigo" => $codigo,
             "nombre" => $nombre,
@@ -325,7 +325,7 @@ class ItemController extends ItemModel
             "id" => $id
         ];
 
-        // Sending data to update item model
+        // sending data to update item model
         if (ItemModel::updateItemDataModel($data)) {
             return ItemModel::messageWithParameters(
                 "reload",
@@ -360,6 +360,8 @@ class ItemController extends ItemModel
             $id = ItemModel::decryption($id);
         }
 
+        $id = (int) $id;
+
         return ItemModel::queryDataItemModel($type, $id);
     }
 
@@ -373,12 +375,13 @@ class ItemController extends ItemModel
         // recivirng item id
         $id = ItemModel::decryption($_POST['item_id_del']);
         $id = ItemModel::cleanString($id);
+        $id = (int) $id;
 
-        // Checking that client exists in the database
+        // checking that client exists in the database
         $sql = "SELECT item.item_id
                 FROM item
-                WHERE item.item_id = '$id'";
-        $query = ItemModel::connection()->prepare($sql);
+                WHERE item.item_id = $id";
+        $query = ItemModel::executeSimpleQuery($sql);
 
         if (!$query->rowCount() > 0) {
             return ItemModel::messageWithParameters(
@@ -386,6 +389,53 @@ class ItemController extends ItemModel
                 "error",
                 "Ocurrío un error inesperado",
                 "¡El item que intenta eliminar no existe en el sistema!"
+            );
+        }
+
+        // checking if the Item has associated loan records
+        $sql = "SELECT detalle.item_id
+                FROM detalle LEFT JOIN prestamo
+                ON detalle.prestamo_codigo = prestamo.prestamo_codigo 
+                WHERE prestamo.prestamo_estado = 'Activo'
+                AND detalle.item_id = $id";
+        $query = ItemModel::executeSimpleQuery($sql);
+
+        if ($query->rowCount() > 0) {
+            return ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "¡El Item tiene prestamos activos asociados!"
+            );
+        }
+
+        // checking privilages of current user
+        session_start(['name' => 'SPM']);
+        if ($_SESSION['privilegio_spm'] != 1) {
+            return ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "¡No tienes los permisos necesarios!"
+            );
+        }
+
+        // deleting item
+        $query = ItemModel::deleteItemModel($id);
+
+        if ($query->rowCount() == 1) {
+            return ItemModel::messageWithParameters(
+                "reload",
+                "success",
+                "Item eliminado",
+                "El item ha sido elimminado del sistema con exito."
+            );
+        } else {
+            return ItemModel::messageWithParameters(
+                "simple",
+                "error",
+                "Ocurrio un error inesperado",
+                "No hemos podido eliminar el item."
             );
         }
     }
@@ -478,7 +528,7 @@ class ItemController extends ItemModel
             $startRecord = $start + 1;
 
             foreach ($rows as $row) {
-                $nombreApellido = $row['item_estado'] . ' ' . $row['item_detalle'];
+                $estadoDetalle = $row['item_estado'] . '. ' . $row['item_detalle'];
                 $table .= '
                 <tr class="text-center" >
                     <td>' . $count . '</td>
@@ -492,7 +542,7 @@ class ItemController extends ItemModel
                             data-toggle="popover"
                             data-trigger="hover"
                             title="Estado y Detalle"
-                            data-content="' . $nombreApellido . '"
+                            data-content="' . $estadoDetalle . '"
                         >
                             <i class="fas fa-info-circle"></i>
                         </button>

@@ -16,29 +16,29 @@ use App\Controller\ItemController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-    exit; // Exit if accessed directly
+    exit; // exit if accessed directly
 }
 
 if (isset($_POST['item_codigo_reg'])
     || isset($_POST['item_id_upd'])
     || isset($_POST['item_id_del'])
 ) {
-    // Instance to item controller
+    // instance to item controller
     $insItemController = new ItemController();
 
-    // Update item
+    // update item
     if (isset($_POST['item_id_upd'])) {
         echo $insItemController->updateItemDataController($_POST['item_id_upd']);
         exit;
     }
 
-    // Delete item
+    // delete item
     if (isset($_POST['item_id_del'])) {
         echo $insItemController->deleteItemController();
         exit;
     }
 
-    // Add item
+    // add item
     if (isset($_POST['item_codigo_reg'])
         && isset($_POST['item_nombre_reg'])
     ) {

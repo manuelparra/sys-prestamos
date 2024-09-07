@@ -397,6 +397,7 @@ class ClientController extends ClientModel
         // reciving client id
         $id = ClientModel::decryption($_POST['cliente_id_del']);
         $id = ClientModel::cleanString($id);
+        $id = (int) $id;
 
         // Checking that the client exists in the database
         $sql = "SELECT cliente.cliente_id
@@ -444,12 +445,12 @@ class ClientController extends ClientModel
         $query = ClientModel::deleteClientModel($id);
 
         if ($query->rowCount() == 1) {
-            return (ClientModel::messageWithParameters(
+            return ClientModel::messageWithParameters(
                 "reload",
                 "success",
                 "Cliente eliminado",
                 "El cliente ha sido eliminado del sistema con exito."
-            ));
+            );
         } else {
             return ClientModel::messageWithParameters(
                 "simple",

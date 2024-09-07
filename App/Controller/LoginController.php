@@ -165,7 +165,7 @@ class LoginController extends LoginModel
 
         if (headers_sent()) { // If headers are being sent,
             $str = "<script>
-                    window.location.href='" . SERVER_URL . "login/';
+                        window.location.href='" . SERVER_URL . "login/';
                     </script>";
 
             return $str;
@@ -179,7 +179,7 @@ class LoginController extends LoginModel
      *
      * @return string
      */
-    public function closeSessionController(): object
+    public function closeSessionController(): string
     {
         session_start(['name' => 'SPM']);
 

@@ -21,8 +21,8 @@ if (!defined('ABSPATH')) {
 
 if (isset($_POST['token']) && isset($_POST['usuario'])) {
     // Instance to Login controller
-    $insLogin = new LoginController();
-    echo $insLogin->closeSessionController();
+    $insLoginController = new LoginController();
+    echo $insLoginController->closeSessionController();
     exit;
 } else {
     session_start(['name' => 'SPM']);
