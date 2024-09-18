@@ -52,7 +52,7 @@ use App\Controller\ClientController;
     </ul>
 </div>
 
-<!-- Content here-->
+<!-- Content -->
 <?php
 if (!isset($_SESSION['busqueda_cliente'])
     || empty($_SESSION['busqueda_cliente'])

@@ -48,9 +48,9 @@ if ($query->rowCount() == 0) {
     <div class="container-fluid">
         <form
             class="form-neon ajax-form"
-            action="<?php echo SERVER_URL; ?>endpoint/business-ajax/" 
+            action="<?php echo SERVER_URL; ?>endpoint/business-ajax/"
             method="POST"
-            id="new_registration_form" 
+            id="new_registration_form"
             data-form="save"
             autocomplete="off"
         >
@@ -121,7 +121,7 @@ if ($query->rowCount() == 0) {
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label
-                                    for="empresa_direccion" 
+                                    for="empresa_direccion"
                                     class="bmd-label-floating"
                                 >
                                     Dirección
@@ -141,8 +141,8 @@ if ($query->rowCount() == 0) {
                 </div>
             </fieldset>
             <p class="text-center" style="margin-top: 40px;">
-                <button 
-                    type="reset" 
+                <button
+                    type="reset"
                     class="btn btn-raised btn-secondary btn-sm">
                     <i class="fas fa-paint-roller"></i>
                     &nbsp;LIMPIAR
@@ -173,7 +173,7 @@ if ($query->rowCount() == 0) {
         >
             <input
                 type="hidden"
-                name="business_id_upd" 
+                name="business_id_upd"
                 value="<?php echo $token; ?>"
             >
             <fieldset>
@@ -186,7 +186,7 @@ if ($query->rowCount() == 0) {
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label
-                                    for="empresa_nombre" 
+                                    for="empresa_nombre"
                                     class="bmd-label-floating"
                                 >
                                     Nombre de la empresa
@@ -243,7 +243,7 @@ if ($query->rowCount() == 0) {
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label
-                                    for="empresa_direccion" 
+                                    for="empresa_direccion"
                                     class="bmd-label-floating"
                                 >
                                     Dirección

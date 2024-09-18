@@ -395,7 +395,7 @@ class ItemController extends ItemModel
         // checking if the Item has associated loan records
         $sql = "SELECT detalle.item_id
                 FROM detalle LEFT JOIN prestamo
-                ON detalle.prestamo_codigo = prestamo.prestamo_codigo 
+                ON detalle.prestamo_codigo = prestamo.prestamo_codigo
                 WHERE prestamo.prestamo_estado = 'Activo'
                 AND detalle.item_id = $id";
         $query = ItemModel::executeSimpleQuery($sql);
@@ -479,7 +479,7 @@ class ItemController extends ItemModel
                     FROM item
                     WHERE item_codigo LIKE '%$search%'
                     OR item_nombre LIKE '%$search%'
-                    OR cliente_apellido LIKE '%$search%'
+                    OR item_detalle LIKE '%$search%'
                     ORDER BY item_nombre ASC
                     LIMIT $start, $records";
         } else {
