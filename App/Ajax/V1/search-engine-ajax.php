@@ -93,7 +93,7 @@ if (isset($_POST['busqueda_inicial'])
     } else {
         $name_var = "busqueda_" . $modulo;
 
-        // Begin search
+        // begin search
         if (isset($_POST['busqueda_inicial'])) {
             if ($_POST['busqueda_inicial'] == "") {
                 echo json_encode(
@@ -109,7 +109,7 @@ if (isset($_POST['busqueda_inicial'])
             $_SESSION[$name_var] = $_POST['busqueda_inicial'];
         }
 
-        // Delete search
+        // delete search
         if (isset($_POST['eliminar_busqueda'])) {
             unset($_SESSION[$name_var]);
         }
@@ -117,7 +117,7 @@ if (isset($_POST['busqueda_inicial'])
 
     $url = $url_reload[$modulo];
 
-    // Redirect
+    // redirect
     echo json_encode(
         [
             "alert" => "redirect",

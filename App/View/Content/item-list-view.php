@@ -18,7 +18,8 @@ use App\Controller\ItemController;
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fas fa-clipboard-list fa-fw"></i>&nbsp;LISTA DE ITEMS
+        <i class="fas fa-clipboard-list fa-fw"></i>
+        &nbsp;LISTA DE ITEMS
     </h3>
     <p class="text-justify">
         Esta vista contiene el listado de todos items registrados,
@@ -49,7 +50,7 @@ use App\Controller\ItemController;
     </ul>
 </div>
 
-<!-- Content here-->
+<!-- Content -->
 <div class="container-fluid">
     <?php
 

@@ -28,7 +28,7 @@
                 <li>
                     <a href="#" class="nav-btn-submenu">
                         <i class="fas fa-users fa-fw"></i>
-                        &nbsp;clientes
+                        &nbsp;Clientes
                         <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul>
@@ -56,7 +56,7 @@
                 <li>
                     <a href="#" class="nav-btn-submenu">
                         <i class="fas fa-pallet fa-fw"></i>
-                        &nbsp;items
+                        &nbsp;Items
                         <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul>

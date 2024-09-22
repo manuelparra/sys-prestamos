@@ -159,7 +159,7 @@ if (!isset($_SESSION['busqueda_item'])
             15,
             $_SESSION['privilegio_spm'],
             $_SESSION['currentPage'][0],
-            $_SESSION['busqueda_cliente']
+            $_SESSION['busqueda_item']
         )
         ?>
     </div>

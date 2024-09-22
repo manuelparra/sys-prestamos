@@ -35,9 +35,6 @@ $(document).ready(function () {
 			}
 		});
 	});
-	//reset_button.addEventListener('click', (e) => {
-
-	//});
 
 	/*  Show/Hidden Nav Lateral */
 	$(".show-nav-lateral").on("click", function (e) {

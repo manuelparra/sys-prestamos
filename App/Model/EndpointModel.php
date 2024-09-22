@@ -41,7 +41,8 @@ class EndpointModel
     protected static function getEndpointModel($file): string
     {
         $whiteListView = ["client-ajax", "user-ajax", "login-ajax",
-                          "search-engine-ajax", "business-ajax", "item-ajax"];
+                            "search-engine-ajax", "business-ajax",
+                            "item-ajax"];
 
         $req = "./App/Ajax/V1/error.php";
 
