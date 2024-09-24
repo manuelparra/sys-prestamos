@@ -73,7 +73,7 @@ if ($_SESSION['privilegio_spm'] != 1) {
     }
     ?>
 
-    <form 
+    <form
         class="form-neon ajax-form"
         action="<?php echo SERVER_URL; ?>endpoint/user-ajax/"
         method="POST"
@@ -371,7 +371,7 @@ if ($_SESSION['privilegio_spm'] != 1) {
             class="text-center"
             style="margin-top: 40px;"
         >
-            <button 
+            <button
                 type="button"
                 class="btn btn-raised btn-secondary btn-sm"
                 id="button_reset"
