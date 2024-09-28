@@ -1,16 +1,25 @@
 <?php
 /**
- * Contents of User Search view.
+ * New User View.
+ * Contents of New User View.
+ * PHP version 8.2.0
  *
- * Contents of the User Search page view.
- *
- * @package View
- * @author Manuel Parra
- * @version 1.0.0
+ * @category View
+ * @package  ViewContent
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  CVS: <1.0.0>
+ * @link     manuelparra.dev
  */
 
+use App\Controller\{UserController, LoginController};
+
+if (!isset($insLoginController)) {
+    $insLoginController = new LoginController();
+}
+
 if ($_SESSION['privilegio_spm'] != 1) {
-    echo $insLoginController->force_close_session_controller();
+    echo $insLoginController->forceCloseSessionController();
     exit;
 }
 ?>

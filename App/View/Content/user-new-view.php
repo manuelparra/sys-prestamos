@@ -199,12 +199,15 @@ if ($_SESSION['privilegio_spm'] != 1) {
                                 </option>
                                 <?php
                                 if (!is_null($profiles)) {
-                                    foreach ($profiles as $profile) {
-                                        echo '<option value="'
-                                        . $profile['perfil_nombre']
+                                    $profile = null;
+                                    foreach ($profiles as [ , $profile]) {
+                                        echo '
+                                        <option value="'
+                                        . $profile
                                         . '">'
-                                        . $profile['perfil_nombre']
-                                        . '</option>';
+                                        . $profile
+                                        . '</option>'
+                                        ;
                                     }
                                 }
                                 ?>

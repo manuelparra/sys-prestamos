@@ -29,14 +29,13 @@ if ($_SESSION['privilegio_spm'] != 1
 
 
 /**
- * Function for user login
+ * Function for Profile List User.
  *
  * @param $object Object instance of UserController
  *
  * @return object
  */
-function prefilListUser($object)
-{
+$prefilListUser = function ($object) {
     return $object->queryPerfilListUserModel();
 }
 ?>
@@ -54,35 +53,28 @@ function prefilListUser($object)
     </p>
 </div>
 
-// show the fallowing options if user privilege is iqual to 1 (admin)
-<?php
-if ($_SESSION['privilegio_spm'] == 1) {
-    ?>
-    <div class="container-fluid">
-        <ul class="full-box list-unstyled page-nav-tabs">
-            <li>
-                <a href="<?php echo SERVER_URL; ?>user-new/">
-                    <i class="fas fa-plus fa-fw"></i>
-                    &nbsp;NUEVO USUARIO
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo SERVER_URL; ?>user-list/">
-                    <i class="fas fa-clipboard-list fa-fw"></i>
-                    &nbsp;LISTA DE USUARIOS
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo SERVER_URL; ?>user-search/">
-                    <i class="fas fa-search fa-fw"></i>
-                    &nbsp;BUSCAR USUARIO
-                </a>
-            </li>
-        </ul>
-    </div>
-    <?php
-}
-?>
+<div class="container-fluid">
+    <ul class="full-box list-unstyled page-nav-tabs">
+        <li>
+            <a href="<?php echo SERVER_URL; ?>user-new/">
+                <i class="fas fa-plus fa-fw"></i>
+                &nbsp;NUEVO USUARIO
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo SERVER_URL; ?>user-list/">
+                <i class="fas fa-clipboard-list fa-fw"></i>
+                &nbsp;LISTA DE USUARIOS
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo SERVER_URL; ?>user-search/">
+                <i class="fas fa-search fa-fw"></i>
+                &nbsp;BUSCAR USUARIO
+            </a>
+        </li>
+    </ul>
+</div>
 
 <!-- Content -->
 <div class="container-fluid">
@@ -96,6 +88,21 @@ if ($_SESSION['privilegio_spm'] == 1) {
 
     if ($query->rowCount() == 1) {
         $fields = $query->fetch();
+        [
+            $id,
+            $dni,
+            $name,
+            $lastName,
+            $phone,
+            $address,
+            $email,
+            $user,
+            $password,
+            $status,
+            $privilage,
+            $profileId,
+            $profileName
+        ] = $fields;
         ?>
         <form
             class="form-neon ajax-form"
@@ -131,12 +138,11 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_dni_upd"
                                     id="usuario_dni"
                                     maxlength="10"
-                                    value="<?php echo $fields[0]; ?>"
+                                    value="<?php echo $dni; ?>"
                                     required
                                 >
                             </div>
                         </div>
-
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label
@@ -152,7 +158,7 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_nombre_upd"
                                     id="usuario_nombre"
                                     maxlength="35"
-                                    value="<?php echo $fields[1]; ?>"
+                                    value="<?php echo $name; ?>"
                                     required
                                 >
                             </div>
@@ -172,7 +178,7 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_apellido_upd"
                                     id="usuario_apellido"
                                     maxlength="35"
-                                    value="<?php echo $fields[2]; ?>"
+                                    value="<?php echo $lastName; ?>"
                                     required
                                 >
                             </div>
@@ -192,7 +198,7 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_telefono_upd"
                                     id="usuario_telefono"
                                     maxlength="20"
-                                    value="<?php echo $fields[3]; ?>"
+                                    value="<?php echo $phone; ?>"
                                 >
                             </div>
                         </div>
@@ -211,14 +217,13 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_direccion_upd"
                                     id="usuario_direccion"
                                     maxlength="190"
-                                    value="<?php echo $fields[4]; ?>"
+                                    value="<?php echo $address; ?>"
                                 >
                             </div>
                         </div>
-
+                        <?php
                         // show the fallowing options if user privilege
                         // is iqual to 1 (admin)
-                        <?php
                         if ($_SESSION['privilegio_spm'] == 1) {
                             ?>
                             <div class="col-12">
@@ -229,7 +234,7 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                         id="usuario_perfil"
                                     >
                                     <?php
-                                    if (is_null($fields[5])) {
+                                    if (is_null($profileId)) {
                                         ?>
                                         <option
                                             value="Seleccione"
@@ -242,28 +247,30 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     } else {
                                         ?>
                                         <option
-                                            value="<?php echo  $fields[5]; ?>"
+                                            value="<?php echo  $profileName; ?>"
                                             selected=""
                                         >
-                                            <?php echo  $fields[5]; ?>
+                                            <?php echo  $profileName; ?>
                                         </option>
                                         <?php
                                     }
-
                                     $profiles = null;
-
-                                    $query = prefilListUser($insUserController);
+                                    $query = $prefilListUser($insUserController);
                                     if ($query->rowCount() > 0) {
                                         $profiles = $query->fetchAll();
                                     }
 
                                     if (!is_null($profiles)) {
-                                        foreach ($profiles as $profile) {
-                                            if ($fields[11] != $profile[0]) {
-                                                echo '<option value="'
-                                                . $profile['perfil_nombre']
-                                                . '">' . $profile['perfil_nombre']
-                                                . '</option>';
+                                        $profile = null;
+                                        foreach ($profiles as [  , $profile]) {
+                                            if ($profileName != $profile) {
+                                                echo '
+                                                <option value="'
+                                                . $profile
+                                                . '">'
+                                                . $profile
+                                                . '</option>
+                                                ';
                                             }
                                         }
                                     }
@@ -271,7 +278,9 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     </select>
                                 </div>
                             </div>
-                        <?php } ?>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </fieldset>
@@ -297,14 +306,15 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_usuario_upd"
                                     id="usuario_usuario"
                                     maxlength="35"
-                                    value="<?php echo $fields[8]; ?>"
+                                    value="<?php echo $user; ?>"
+                                    required
                                 >
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label
-                                    for="usuario_email" 
+                                    for="usuario_email"
                                     class="bmd-label-floating"
                                 >
                                     Email
@@ -315,14 +325,27 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                     name="usuario_email_upd"
                                     id="usuario_email"
                                     maxlength="70"
-                                    value="<?php echo $fields[7]; ?>"
+                                    value="<?php echo $email; ?>"
+                                    required
                                 >
                             </div>
                         </div>
                         <?php
                         // show the fallowing options if user
                         // privilege is iqual to 1 (admin)
-                        if ($_SESSION['privilegio_spm'] == 1 && $fields[0] != 1) {
+                        if ($_SESSION['privilegio_spm'] == 1) {
+                            $act = '
+                                <span
+                                    class="badge badge-info"
+                                >
+                                    Activa
+                                </span>';
+                            $iact = '
+                                <span
+                                    class="badge badge-danger"
+                                >
+                                    Deshabilitada
+                                </span>';
                             ?>
                             <div class="col-12">
                                 <div class="form-group">
@@ -330,19 +353,48 @@ if ($_SESSION['privilegio_spm'] == 1) {
                                         Estado de la cuenta
                                         &nbsp;
                                         <?php
-                                        echo ($fields[9] == "Activa") ?
-                                        '<span class="badge badge-info">Activa</span>' :
-                                        '<span class="badge badge-danger">Deshabilitada</span>';
+                                        echo ($status == "Activa") ?
+                                        $act :
+                                        $iact;
                                         ?>
                                     </span>
-                                    <select class="form-control" name="usuario_estado_upd">
+                                    <select
+                                        class="form-control"
+                                        name="usuario_estado_upd"
+                                    >
                                         <?php
-                                        if ($fields['usuario_estado'] == "Activa") {
-                                            echo '<option value="Activa" selected="">Activa</option>';
-                                            echo '<option value="Deshabilitada">Deshabilitada</option>';
+                                        if ($status == "Activa") {
+                                            echo '
+                                                <option
+                                                    value="Activa"
+                                                    selected=""
+                                                >
+                                                    Activa
+                                                </option>
+                                            ';
+                                            echo '
+                                                <option
+                                                    value="Deshabilitada"
+                                                >
+                                                    Deshabilitada
+                                                </option>
+                                            ';
                                         } else {
-                                            echo '<option value="Activa">Activa</option>';
-                                            echo '<option value="Deshabilitada" selected="" >Deshabilitada</option>';
+                                            echo '
+                                                <option
+                                                    value="Activa"
+                                                >
+                                                    Activa
+                                                </option>
+                                            ';
+                                            echo '
+                                                <option
+                                                    value="Deshabilitada"
+                                                    selected=""
+                                                >
+                                                    Deshabilitada
+                                                </option>
+                                            ';
                                         }
                                         ?>
                                     </select>
@@ -354,36 +406,53 @@ if ($_SESSION['privilegio_spm'] == 1) {
                     </div>
                 </div>
             </fieldset>
-            <br><br><br>
             <fieldset>
-                <legend style="margin-top: 40px;"><i class="fas fa-lock"></i> &nbsp; Nueva contraseña</legend>
-                <p>Para actualizar la contraseña de esta cuenta ingrese una nueva y vuelva a escribirla. En caso que no desee actualizarla debe dejar vacíos los dos campos de las contraseñas.</p>
+                <legend style="margin-top: 40px;">
+                    <i class="fas fa-lock"></i>
+                    &nbsp;Nueva contraseña
+                </legend>
+                <p>Para actualizar la contraseña de esta cuenta ingrese
+                    la nueva contraseña dos veces. En caso que no
+                    desee actualizarla debe dejar vacíos los dos campos
+                    de contraseña.
+                </p>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="usuario_clave_nueva_1" class="bmd-label-floating">Contraseña</label>
+                                <label
+                                    for="usuario_clave_nueva_1"
+                                    class="bmd-label-floating"
+                                >
+                                    Contraseña
+                                </label>
                                 <input
                                     type="password"
+                                    pattern="<?php echo RPASS; ?>"
                                     class="form-control"
                                     name="usuario_clave_nueva_1_upd"
                                     id="usuario_clave_nueva_1"
-                                    pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$"
                                     maxlength="16"
-                                    required
+                                    title="Debe contener al menos un número y una
+                                    letra mayúscula y minúscula, y al menos 8 o
+                                    más caracteres"
                                 >
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="usuario_clave_nueva_2" class="bmd-label-floating">Repetir contraseña</label>
+                                <label
+                                    for="usuario_clave_nueva_2"
+                                    class="bmd-label-floating"
+                                >
+                                    Repetir contraseña
+                                </label>
                                 <input
                                     type="password"
+                                    pattern="<?php echo RPASS; ?>"
                                     class="form-control"
                                     name="usuario_clave_nueva_2_upd"
                                     id="usuario_clave_nueva_2"
-                                    pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$" maxlength="16"
-                                    required
                                 >
                             </div>
                         </div>
@@ -391,41 +460,125 @@ if ($_SESSION['privilegio_spm'] == 1) {
                 </div>
             </fieldset>
 
-            <?php if ($_SESSION['privilegio_spm'] == 1 && $fields['usuario_id'] != 1) { ?> <!-- Show the fallowing options if user privilege is iqual to 1 (admin) -->
-            <br><br><br>
-            <fieldset>
-                <legend><i class="fas fa-medal"></i> &nbsp; Nivel de privilegio</legend>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <p><span class="badge badge-info">Control total</span> Permisos para registrar, actualizar y eliminar</p>
-                            <p><span class="badge badge-success">Edición</span> Permisos para registrar y actualizar</p>
-                            <p><span class="badge badge-dark">Registrar</span> Solo permisos para registrar</p>
-                            <div class="form-group">
-                                <select class="form-control" name="usuario_privilegio_upd">
-                                    <option value="" <?php echo (is_null($fields['usuario_privilegio'])) ? 'selected=""' : ''; ?> disabled="">Seleccione una opción</option>
-                                    <option value="1" <?php if ($fields['usuario_privilegio'] == 1) { echo 'selected=""'; } ?>>Control total <?php if ($fields['usuario_privilegio'] == 1) { echo '(Actual)'; } ?></option>
-                                    <option value="2" <?php if ($fields['usuario_privilegio'] == 2) { echo 'selected=""'; } ?>>Edición <?php if ($fields['usuario_privilegio'] == 2) { echo '(Actual)'; } ?></option>
-                                    <option value="3" <?php if ($fields['usuario_privilegio'] == 3) { echo 'selected=""'; } ?>>Registrar <?php if ($fields['usuario_privilegio'] == 3) { echo '(Actual)'; } ?></option>
-                                </select>
+            <?php
+            // Show the fallowing options if user privilege is iqual to 1 (admin)
+            if ($_SESSION['privilegio_spm'] == 1) {
+                ?>
+                <fieldset>
+                    <legend><i class="fas fa-medal"></i>
+                    &nbsp;Nivel de privilegio
+                </legend>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>
+                                    <span
+                                        class="badge badge-info"
+                                    >
+                                        Control total
+                                    </span>
+                                    Permisos para registrar, actualizar y eliminar
+                                </p>
+                                <p>
+                                    <span
+                                        class="badge badge-success"
+                                    >
+                                        Edición
+                                    </span>
+                                    Permisos para registrar y actualizar
+                                </p>
+                                <p>
+                                    <span class="badge badge-dark">
+                                        Registrar
+                                    </span>
+                                    Solo permisos para registrar
+                                </p>
+                                <div class="form-group">
+                                    <select
+                                        class="form-control"
+                                        name="usuario_privilegio_upd"
+                                    >
+                                        <option
+                                            value=""
+                                            <?php
+                                            echo (is_null($privilage)) ?
+                                            'selected=""' :
+                                            '';
+                                            ?>
+                                            disabled=""
+                                        >
+                                            Seleccione una opción
+                                        </option>
+                                        <option
+                                            value="1"
+                                            <?php
+                                            if ($privilage == 1) {
+                                                echo 'selected=""';
+                                            }
+                                            ?>
+                                        >
+                                            Control total
+                                            <?php
+                                            if ($privilage == 1) {
+                                                echo '(Actual)';
+                                            } ?>
+                                        </option>
+                                        <option
+                                            value="2"
+                                            <?php
+                                            if ($privilage == 2) {
+                                                echo 'selected=""';
+                                            } ?>
+                                        >
+                                            Edición
+                                            <?php
+                                            if ($privilage == 2) {
+                                                echo '(Actual)';
+                                            }
+                                            ?>
+                                        </option>
+                                        <option
+                                            value="3"
+                                            <?php
+                                            if ($privilage == 3) {
+                                                echo 'selected=""';
+                                            }
+                                            ?>
+                                        >
+                                            Registrar
+                                            <?php
+                                            if ($privilage == 3) {
+                                                echo '(Actual)';
+                                            }
+                                            ?>
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-            <?php } ?>
-
-            <br><br><br>
+                </fieldset>
+                <?php
+            }
+            ?>
             <fieldset>
-                <p class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre de usuario y contraseña</p>
+                <p class="text-center">
+                    Para poder guardar los cambios en esta cuenta
+                    debe de ingresar su nombre de usuario y contraseña
+                </p>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="usuario_admin" class="bmd-label-floating">Nombre de usuario</label>
+                                <label
+                                    for="usuario_admin"
+                                    class="bmd-label-floating"
+                                >
+                                    Nombre de usuario
+                                </label>
                                 <input
                                     type="text"
-                                    pattern="[a-zA-Z0-9]{1,35}"
+                                    pattern="<?php echo RUSER; ?>"
                                     class="form-control"
                                     name="usuario_admin"
                                     id="usuario_admin"
@@ -436,13 +589,18 @@ if ($_SESSION['privilegio_spm'] == 1) {
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="clave_admin" class="bmd-label-floating">Contraseña</label>
+                                <label
+                                    for="clave_admin"
+                                    class="bmd-label-floating"
+                                >
+                                    Contraseña
+                                </label>
                                 <input
                                     type="password"
+                                    pattern="<?php echo RPASS; ?>"
                                     class="form-control"
                                     name="clave_admin"
                                     id="clave_admin"
-                                    pattern="^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$"
                                     maxlength="16"
                                     required
                                 >
@@ -451,25 +609,49 @@ if ($_SESSION['privilegio_spm'] == 1) {
                     </div>
                 </div>
             </fieldset>
-            <?php if ($insLoginController->encrypt_data($_SESSION['id_spm']) != $current_page[1]) { ?>
-            <input type="hidden" name="account_type" value="Impropia">
-            <?php } else { ?>
-            <input type="hidden" name="account_type" value="Propia">
-            <?php } ?>
-            <p class="text-center" style="margin-top: 40px;">
-                <button type="submit" class="btn btn-raised btn-success btn-sm"><i class="fas fa-sync-alt"></i> &nbsp; ACTUALIZAR</button>
+            <?php
+            $idSessionSPM = null;
+            $idEncrytSPM = $insLoginController->encryptData($_SESSION['id_spm']);
+            $idSessionSPM = $_SESSION['currentPage'][1];
+            if ($idEncrytSPM != $idSessionSPM) {
+                ?>
+                <input type="hidden" name="account_type" value="Impropia">
+                <?php
+            } else {
+                ?>
+                <input type="hidden" name="account_type" value="Propia">
+                <?php
+            }
+            ?>
+            <p
+                class="text-center"
+                style="margin-top: 40px;"
+            >
+                <button
+                    type="submit"
+                    class="btn btn-raised btn-success btn-sm"
+                >
+                    <i class="fas fa-sync-alt"></i>
+                    &nbsp;ACTUALIZAR
+                </button>
             </p>
         </form>
         <?php
     } else {
-    ?>
-    <div class="alert alert-danger text-center" role="alert">
-        <p><i class="fas fa-exclamation-triangle fa-5x"></i></p>
-        <h4 class="alert-heading">¡Ocurrió un error inesperado!</h4>
-        <p class="mb-0">Lo sentimos, no podemos mostrar la información solicitada debido a un error.</p>
-    </div>
-    <?php
+        ?>
+        <div class="alert alert-danger text-center" role="alert">
+            <p>
+                <i class="fas fa-exclamation-triangle fa-5x"></i>
+            </p>
+            <h4 class="alert-heading">
+                ¡Ocurrió un error inesperado!
+            </h4>
+            <p class="mb-0">
+                Lo sentimos, no podemos mostrar la información
+                solicitada debido a un error.
+            </p>
+        </div>
+        <?php
     }
     ?>
 </div>
-

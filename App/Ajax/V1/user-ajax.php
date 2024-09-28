@@ -16,29 +16,29 @@ use App\Controller\UserController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-    exit; // Exit if accessed directly
+    exit; // exit if accessed directly
 }
 
 if (isset($_POST['usuario_dni_reg'])
     || isset($_POST['usuario_id_del'])
     || isset($_POST['usuario_id_upd'])
 ) {
-    // Instance to user controller
-    $insUser = new UserController();
+    // instance to user controller
+    $insUserController = new UserController();
 
-    // Update user
+    // update user
     if (isset($_POST['usuario_id_upd'])) {
-        echo $insUser->updateUserDataController();
+        echo $insUserController->updateUserDataController();
         exit;
     }
 
     // Delete user
     if (isset($_POST['usuario_id_del'])) {
-        echo $insUser->deleteUserController();
+        echo $insUserController->deleteUserController();
         exit;
     }
 
-    // Add user
+    // add user
     if ((isset($_POST['usuario_dni_reg'])
         && !empty($_POST['usuario_dni_reg']))
         && (isset($_POST['usuario_nombre_reg'])
@@ -54,10 +54,10 @@ if (isset($_POST['usuario_dni_reg'])
         && (isset($_POST['usuario_privilegio_reg'])
         && !empty($_POST['usuario_privilegio_reg']))
     ) {
-        echo $insUser->addUserController();
+        echo $insUserController->addUserController();
         exit;
     } else {
-        echo $insUser->messageUserController(
+        echo $insUserController->messageUserController(
             "simple",
             "error",
             "Ocurrió un error inesperado",

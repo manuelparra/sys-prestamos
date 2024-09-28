@@ -715,8 +715,8 @@ class UserController extends UserModel
 
         // check perfil as a record stored in database
         $perfil_id = !is_null($fields['usuario_perfil_id']) ?
-            (int) $fields['usuario_perfil_id'] :
-            null;
+        (int) $fields['usuario_perfil_id'] :
+        null;
 
         if ($perfil != "" && $perfil != "Seleccione") {
             $sql = "SELECT perfil.perfil_id
@@ -837,7 +837,7 @@ class UserController extends UserModel
             );
         }
 
-        $admin_clave = UserModel::encryption($adminClave);
+        $adminClave = UserModel::encryption($adminClave);
 
         // check DNI as unique data
         if ($dni != $fields['usuario_dni']) {
@@ -875,7 +875,7 @@ class UserController extends UserModel
         if ($accountType == "Propia") {
             $sql = "SELECT usuario_id
                     FROM usuario
-                    WHERE usuario_usuario = '$adminUsuario'
+                    WHERE usuario_usuario = BINARY '$adminUsuario'
                     AND usuario_clave = '$adminClave'
                     AND usuario_id = '$id'";
             $query = UserModel::executeSimpleQuery($sql);
@@ -894,7 +894,7 @@ class UserController extends UserModel
 
             $sql = "SELECT usuario_id
                     FROM usuario
-                    WHERE usuario_usuario = '$adminUsuario'
+                    WHERE usuario_usuario = BINARY '$adminUsuario'
                     AND usuario_clave = '$adminClave'
                     AND usuario_id = $adminId";
             $query = UserModel::executeSimpleQuery($sql);

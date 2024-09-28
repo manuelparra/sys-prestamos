@@ -96,7 +96,20 @@ class UserModel extends MainModel
     protected static function queryDataUserModel($type, $id = null): object
     {
         if ($type == "Unique") {
-            $sql = "SELECT usuario.*, perfil.perfil_nombre
+            $sql = "SELECT
+                    usuario.usuario_id,
+                    usuario.usuario_dni,
+                    usuario.usuario_nombre,
+                    usuario.usuario_apellido,
+                    usuario.usuario_telefono,
+                    usuario.usuario_direccion,
+                    usuario.usuario_email,
+                    usuario.usuario_usuario,
+                    usuario.usuario_clave,
+                    usuario.usuario_estado,
+                    usuario.usuario_privilegio,
+                    usuario.usuario_perfil_id,
+                    perfil.perfil_nombre
                     FROM prestamos.usuario
                     LEFT JOIN prestamos.perfil
                     ON usuario.usuario_perfil_id = perfil.perfil_id
