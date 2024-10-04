@@ -248,7 +248,7 @@ table form {
 }
 .page-content,
 .nav-lateral {
-	height: 100%;
+	height: calc(100% - 23px);
 	overflow: hidden;
 }
 .page-content {
@@ -354,7 +354,20 @@ table form {
 	margin-right: 7px;
 	transition: all 0.2s ease-in-out;
 }
-
+/* ScrollBar*/
+.mCSB_scrollTools_vertical {
+	top: 52px;
+	bottom: 12px;
+}
+/* Status Bar */
+.status-bar {
+	background-color: #fff;
+	height: 23px;
+	border-top: 1px solid var(--border-color);
+	text-align: right;
+	padding-right: 15px;
+	font-size: smaller;
+}
 /*  Page content */
 .navbar-info {
 	height: 50px;

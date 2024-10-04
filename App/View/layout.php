@@ -75,8 +75,8 @@ if (!defined('ABSPATH')) {
                         include $view;
                     ?>
                 </section>
+                <?php include  "./App/View/Include/statusBar.php"; ?>
             </main>
-
             <?php
             include "./App/View/Include/logout.php";
         }
