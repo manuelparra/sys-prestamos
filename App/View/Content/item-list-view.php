@@ -27,6 +27,7 @@ use App\Controller\ItemController;
     </p>
 </div>
 
+<!-- Navegation -->
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
@@ -53,9 +54,7 @@ use App\Controller\ItemController;
 <!-- Content -->
 <div class="container-fluid">
     <?php
-
     $insItemController = new ItemController();
-
     echo $insItemController->paginatorItemController(
         $_SESSION['currentPage'][1],
         15,

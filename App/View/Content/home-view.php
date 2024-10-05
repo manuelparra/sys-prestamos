@@ -23,7 +23,8 @@ use App\Controller\{
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
+        <i class="fab fa-dashcube fa-fw"></i>
+        &nbsp;DASHBOARD
     </h3>
     <p class="text-justify">
         Sistema para la gestión de prestamos, este es el panel principal del
@@ -36,9 +37,7 @@ use App\Controller\{
 <div class="full-box tile-container">
     <?php
     $instClientController = new ClientController();
-
     $query = $instClientController->queryDataClientController("Count");
-
     $word = $query->rowCount() > 0 ? "Registros" : "Registro";
     ?>
 
@@ -56,7 +55,6 @@ use App\Controller\{
 
     <?php
     $instItemController = new ItemController();
-
     $query = $instItemController->queryDataItemController("Count");
     $word = $query->rowCount() > 0 ? "Registros" : "Registro";
     ?>
@@ -73,7 +71,7 @@ use App\Controller\{
         </div>
     </a>
 
-    <a href="<?php echo SERVER_URL; ?>reservation-reservation/" class="tile">
+    <a href="<?php echo SERVER_URL; ?>loan-reservation/" class="tile">
         <div class="tile-tittle">Reservaciones</div>
         <div class="tile-icon">
             <i class="far fa-calendar-alt fa-fw"></i>
@@ -81,7 +79,7 @@ use App\Controller\{
         </div>
     </a>
 
-    <a href="<?php echo SERVER_URL; ?>reservation-pending/" class="tile">
+    <a href="<?php echo SERVER_URL; ?>loan-pending/" class="tile">
         <div class="tile-tittle">Prestamos</div>
         <div class="tile-icon">
             <i class="fas fa-hand-holding-usd fa-fw"></i>
@@ -89,7 +87,7 @@ use App\Controller\{
         </div>
     </a>
 
-    <a href="<?php echo SERVER_URL; ?>reservation-list/" class="tile">
+    <a href="<?php echo SERVER_URL; ?>loan-list/" class="tile">
         <div class="tile-tittle">Finalizados</div>
         <div class="tile-icon">
             <i class="fas fa-clipboard-list fa-fw"></i>
@@ -116,21 +114,20 @@ use App\Controller\{
                 </p>
             </div>
         </a>
+
+        <?php
+        $instBusinessController = new BusinessController();
+        $query = $instBusinessController->queryBusinessInformationController();
+        ?>
+
+        <a href="<?php echo SERVER_URL; ?>company/" class="tile">
+            <div class="tile-tittle">Empresa</div>
+            <div class="tile-icon">
+                <i class="fas fa-store-alt fa-fw"></i>
+                <p><?php echo $query->rowCount(); ?> Registro</p>
+            </div>
+        </a>
         <?php
     }
     ?>
-
-    <?php
-    $instBusinessController = new BusinessController();
-
-    $query = $instBusinessController->queryBusinessInformationController();
-    ?>
-
-    <a href="<?php echo SERVER_URL; ?>company/" class="tile">
-        <div class="tile-tittle">Empresa</div>
-        <div class="tile-icon">
-            <i class="fas fa-store-alt fa-fw"></i>
-            <p><?php echo $query->rowCount(); ?> Registro</p>
-        </div>
-    </a>
 </div>

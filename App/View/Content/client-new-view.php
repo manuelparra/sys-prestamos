@@ -38,6 +38,7 @@ if ($_SESSION['privilegio_spm'] != 1
     </p>
 </div>
 
+<!-- Navegation -->
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>

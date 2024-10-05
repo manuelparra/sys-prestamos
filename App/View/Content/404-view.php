@@ -14,10 +14,11 @@
 
 if (!defined('ABSPATH')) {
     header("Location: /login/");
-    exit; // Exit if accessed directly
+    exit; // exit if accessed directly
 }
 ?>
 
+<!-- Contents -->
 <div class="full-box container-404">
     <div>
         <p class="text-center">

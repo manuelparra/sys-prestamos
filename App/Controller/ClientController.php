@@ -5,7 +5,7 @@
  * PHP version 8.2.0
  *
  * @category Controller
- * @package  Controller
+ * @package  ClientController
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  GIT: 1.0.0

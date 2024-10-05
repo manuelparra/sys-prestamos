@@ -18,7 +18,8 @@ use App\Controller\ClientController;
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fas fa-clipboard-list fa-fw"></i>&nbsp;LISTA DE CLIENTES
+        <i class="fas fa-clipboard-list fa-fw"></i>
+        &nbsp;LISTA DE CLIENTES
     </h3>
     <p class="text-justify">
         Esta vista contiene el listado de todos los clientes registrados,
@@ -27,6 +28,7 @@ use App\Controller\ClientController;
     </p>
 </div
 
+<!-- Navegation -->
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>

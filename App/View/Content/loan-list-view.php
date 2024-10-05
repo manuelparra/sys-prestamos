@@ -1,29 +1,66 @@
+<?php
+/**
+ * Client List View.
+ * Contents of Client List View.
+ * PHP version 8.2.0
+ *
+ * @category View
+ * @package  ViewContent
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  CVS: <1.0.0>
+ * @link     manuelparra.dev
+ */
+
+use App\Controller\LoanController;
+?>
+
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; FINALIZADOS
+        <i class="fas fa-clipboard-list fa-fw"></i>
+        &nbsp;FINALIZADOS
     </h3>
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
+        Esta vista contiene el listado de todas las reservaciones
+        de ítems para los préstamos que se van a realizar.
+        Puede seleccionar una reservación para gestionarla,
+        actualizar o eliminar.
     </p>
 </div>
 
+<!-- Navegation -->
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO PRÉSTAMO</a>
+            <a href="<?php echo SERVER_URL; ?>loan-new/">
+                <i class="fas fa-plus fa-fw"></i>
+                &nbsp;NUEVO PRÉSTAMO
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-reservation/"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
+            <a href="<?php echo SERVER_URL; ?>loan-reservation/">
+                <i class="far fa-calendar-alt"></i>
+                &nbsp;RESERVACIONES
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-pending/"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; PRÉSTAMOS</a>
+            <a href="<?php echo SERVER_URL; ?>loan-pending/">
+                <i class="fas fa-hand-holding-usd fa-fw"></i>
+                &nbsp; PRÉSTAMOS
+            </a>
         </li>
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>reservation-list/"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; FINALIZADOS</a>
+            <a class="active" href="<?php echo SERVER_URL; ?>loan-list/">
+                <i class="fas fa-clipboard-list fa-fw"></i>
+                &nbsp;FINALIZADOS
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-search/"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
+            <a href="<?php echo SERVER_URL; ?>loan-search/">
+                <i class="fas fa-search-dollar fa-fw"></i>
+                &nbsp;BUSCAR POR FECHA
+            </a>
         </li>
     </ul>
 </div>
@@ -50,21 +87,38 @@
                     <td>NOMBRE CLIENTE</td>
                     <td>2017/10/8</td>
                     <td>2017/10/10</td>
-                    <td><span class="badge badge-dark">Finalizado</span></td>
-                    <td><span class="badge badge-primary">Cancelado</span></td>
                     <td>
-                        <a href="#" class="btn btn-info">
+                        <span class="badge badge-dark">
+                            Finalizado
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge badge-primary">
+                            Cancelado
+                        </span>
+                    </td>
+                    <td>
+                        <a
+                            href="#"
+                            class="btn btn-info"
+                        >
                             <i class="fas fa-file-pdf"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="<?php echo SERVER_URL; ?>reservation-update/" class="btn btn-success">
+                        <a
+                            href="<?php echo SERVER_URL; ?>loan-update/"
+                            class="btn btn-success"
+                        >
                             <i class="fas fa-sync-alt"></i>
                         </a>
                     </td>
                     <td>
                         <form action="">
-                            <button type="button" class="btn btn-warning">
+                            <button
+                                type="button"
+                                class="btn btn-warning"
+                            >
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
@@ -75,21 +129,35 @@
                     <td>NOMBRE CLIENTE</td>
                     <td>2017/10/8</td>
                     <td>2017/10/10</td>
-                    <td><span class="badge badge-dark">Finalizado</span></td>
-                    <td><span class="badge badge-primary">Cancelado</span></td>
+                    <td>
+                        <span class="badge badge-dark">
+                            Finalizado
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge badge-primary">
+                            Cancelado
+                        </span>
+                    </td>
                     <td>
                         <a href="#" class="btn btn-info">
                             <i class="fas fa-file-pdf"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="<?php echo SERVER_URL; ?>reservation-update/" class="btn btn-success">
+                        <a
+                            href="<?php echo SERVER_URL; ?>loan-update/"
+                            class="btn btn-success"
+                        >
                             <i class="fas fa-sync-alt"></i>
                         </a>
                     </td>
                     <td>
                         <form action="">
-                            <button type="button" class="btn btn-warning">
+                            <button
+                                type="button"
+                                class="btn btn-warning"
+                            >
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>

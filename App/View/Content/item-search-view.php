@@ -92,7 +92,10 @@ if (!isset($_SESSION['busqueda_item'])
                         </div>
                     </div>
                     <div class="col-12">
-                        <p class="text-center" style="margin-top: 40px;">
+                        <p
+                            class="text-center" 
+                            style="margin-top: 40px;"
+                        >
                             <button
                                 type="submit"
                                 class="btn btn-raised btn-info"
@@ -129,7 +132,10 @@ if (!isset($_SESSION['busqueda_item'])
             <div class="container-fluid">
                 <div class="row justify-content-md-center">
                     <div class="col-12 col-md-6">
-                        <p class="text-center" style="font-size: 20px;">
+                        <p
+                            class="text-center"
+                            style="font-size: 20px;"
+                        >
                             Resultados de la busqueda
                             <strong>
                                 “<?php echo $_SESSION['busqueda_item']; ?>”
@@ -137,7 +143,10 @@ if (!isset($_SESSION['busqueda_item'])
                         </p>
                     </div>
                     <div class="col-12">
-                        <p class="text-center" style="margin-top: 20px;">
+                        <p
+                            class="text-center"
+                            style="margin-top: 20px;"
+                        >
                             <button
                                 type="submit"
                                 class="btn btn-raised btn-danger"

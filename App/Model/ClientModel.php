@@ -4,8 +4,8 @@
  * All functionality pertaining to Client Model.
  * PHP version 8.2.0
  *
- * @category Login
- * @package  Login
+ * @category Model
+ * @package  ClientModel
  * @author   Manuel Parra <manuelparra@live.com.ar>
  * @license  MIT <https://mit.org>
  * @version  GIT: 1.0.0

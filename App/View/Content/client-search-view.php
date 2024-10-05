@@ -92,7 +92,10 @@ if (!isset($_SESSION['busqueda_cliente'])
                         </div>
                     </div>
                     <div class="col-12">
-                        <p class="text-center" style="margin-top: 40px;">
+                        <p
+                            class="text-center"
+                            style="margin-top: 40px;"
+                        >
                             <button
                                 type="submit"
                                 class="btn btn-raised btn-info"
@@ -137,7 +140,10 @@ if (!isset($_SESSION['busqueda_cliente'])
                         </p>
                     </div>
                     <div class="col-12">
-                        <p class="text-center" style="margin-top: 20px;">
+                        <p
+                            class="text-center"
+                            style="margin-top: 20px;"
+                        >
                             <button
                                 type="submit"
                                 class="btn btn-raised btn-danger"

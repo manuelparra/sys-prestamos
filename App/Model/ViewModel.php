@@ -42,8 +42,8 @@ class ViewModel
     {
         $whiteListView = ["home", "client-list", "client-new", "client-search",
         "client-update", "company", "item-list", "item-new", "item-search",
-        "item-update", "reservation-list", "reservation-new", "reservation-pending",
-        "reservation-reservation", "reservation-search", "reservation-update",
+        "item-update", "loan-list", "loan-new", "loan-pending",
+        "loan-reservation", "loan-search", "loan-update",
         "user-list", "user-new", "user-search", "user-update"];
 
         $content = "404";
