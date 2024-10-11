@@ -34,4 +34,63 @@ if (!defined('ABSPATH')) {
 class LoanController extends LoanModel
 {
 
+    /**
+     * Function for paginator loan reservation cotroller
+     *
+     * @param $page      contains string
+     * @param $records   contains string
+     * @param $privilage contains string
+     * @param $url       contains string
+     * @param $search    contains string
+     *
+     * @return string
+     */
+    public function paginatorLoanReservationController(
+        $page,
+        $records,
+        $privilage,
+        $url,
+        $search
+    ): string {
+        $page = LoanModel::cleanString($page);
+        $records = LoanModel::cleanString($records);
+        $privilage = LoanModel::cleanString($privilage);
+
+        $url = LoanModel::cleanString($url);
+        $url = SERVER_URL . $url . "/";
+
+        $search = LoanModel::cleanString($search);
+
+        $table = "";
+        $html = "";
+
+        $page = (isset($page) && $page > 0) ? (int) $page : 1;
+
+        $start = $page > 0 ? (($page * $records) - $records) : 0;
+
+        if (isset($search) && $search != "") {
+            $sql = "SELECT SQL_CALC_FOUND_ROWS *
+            FROM prestamo
+            WHERE prestamo_fecha_inicio LIKE '%$search%'
+            ORDER BY prestamo_fecha_inicio ASC
+            LIMIT $start, $records";;
+        } else {
+            $sql = "SELECT SQL_CALC_FOUND_ROWS *
+                    FROM prestamo
+                    ORDER BY prestamo_fecha_inicio ASC
+                    LIMIT $start, $records";
+        }
+
+        $dbcnn = LoanModel::connection();
+
+        $query = $dbcnn->query($sql);
+        $rows = $query->fetchAll();
+
+        $total = $dbcnn->query("SELECT FOUND_ROWS()");
+        $total = (int) $total->fetchColumn();
+
+        $nPages = ceil($total / $records);
+
+        $table .= '';
+    }
 }
