@@ -1,33 +1,69 @@
+<?php
+/**
+ * Contents of Loan Pending View.
+ * Contents of the loan pending view.
+ * PHP version 8.2.0
+ *
+ * @category View
+ * @package  ViewContent
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  CVS: <1.0.0>
+ * @link     manuelparra.dev
+ */
+
+use App\Controller\LoanController;
+?>
+
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; PRÉSTAMOS
+        <i class="fas fa-hand-holding-usd fa-fw"></i>
+        &nbsp;PRÉSTAMOS
     </h3>
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
+        Esta vista contiene el listado de todas las prestamos registrados.
+        Puede seleccionar un prestamo para actualizarlo, eliminarlo o
+        gestionarlo.
     </p>
 </div>
 
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO PRÉSTAMO</a>
+            <a href="<?php echo SERVER_URL; ?>loan-new/">
+                <i class="fas fa-plus fa-fw"></i>
+                &nbsp;NUEVO PRÉSTAMO
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-reservation/"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
+            <a href="<?php echo SERVER_URL; ?>loan-reservation/">
+                <i class="far fa-calendar-alt"></i>
+                &nbsp;RESERVACIONES
+            </a>
         </li>
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>reservation-pending/"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; PRÉSTAMOS</a>
+            <a class="active" href="<?php echo SERVER_URL; ?>loan-pending/">
+                <i class="fas fa-hand-holding-usd fa-fw"></i> 
+                &nbsp;PRÉSTAMOS
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-list/"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; FINALIZADOS</a>
+            <a href="<?php echo SERVER_URL; ?>loan-list/">
+                <i class="fas fa-clipboard-list fa-fw"></i>
+                &nbsp;FINALIZADOS
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-search/"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
+            <a href="<?php echo SERVER_URL; ?>loan-search/">
+                <i class="fas fa-search-dollar fa-fw"></i>
+                &nbsp;BUSCAR POR FECHA
+            </a>
         </li>
     </ul>
 </div>
 
+<!-- Content -->
 <div class="container-fluid">
     <div class="table-responsive">
         <table class="table table-dark table-sm">

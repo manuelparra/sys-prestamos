@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
 
 // Local Enviroment (macOS), comment this lines if you put this files in a
 // production environment,
-const SERVER_URL = "https://prestamos.com/";
+const SERVER_URL = "https://prestamos:8890/";
 const ERROR_DIR = "/Users/manuel/Sites/prestamos/logs/";
 
 // Production Enviroment, comment this lines if you put this files in a developer

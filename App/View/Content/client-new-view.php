@@ -12,18 +12,18 @@
  * @link     manuelparra.dev
  */
 
-use App\Controller\LoginController;
+//use App\Controller\LoginController;
 
-if (!isset($insLoginController)) {
-    $insLoginController = new LoginController();
-}
-
-if ($_SESSION['privilegio_spm'] != 1
-    && $_SESSION['privilegio_spm'] != 2
-) {
-    echo $insLoginController->forceCloseSessionController();
-    exit;
-}
+//if (!isset($insLoginController)) {
+//    $insLoginController = new LoginController();
+//}
+//
+//if ($_SESSION['privilegio_spm'] != 1
+//    && $_SESSION['privilegio_spm'] != 2
+//) {
+//    echo $insLoginController->forceCloseSessionController();
+//    exit;
+//}
 ?>
 
 <!-- Page header -->

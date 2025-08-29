@@ -193,8 +193,8 @@ class ItemController extends ItemModel
             return ItemModel::messageWithParameters(
                 "simple",
                 "error",
-                "Ocurrio un error inesperado",
-                "El item no existe en base de datos."
+                "Ocurrió un error inesperado.",
+                "El ítem no existe en la base de datos."
             );
         }
 
@@ -240,8 +240,8 @@ class ItemController extends ItemModel
                 return ItemModel::messageWithParameters(
                     "simple",
                     "error",
-                    "Ocurrio un error inesperado",
-                    "¡El Código ya se encuentra registrado en sistema!"
+                    "Ocurrió un error inesperado.",
+                    "¡El código ya se encuentra registrado en el sistema!"
                 );
             }
         }
@@ -325,21 +325,21 @@ class ItemController extends ItemModel
             "id" => $id
         ];
 
-        // sending data to update item model
+        // Sending data to update item model
         if (ItemModel::updateItemDataModel($data)) {
-            return ItemModel::messageWithParameters(
+            return (ItemModel::messageWithParameters(
                 "reload",
                 "success",
                 "Datos actualizados",
                 "Los datos del item han sido actualizados."
-            );
+            ));
         } else {
-            return ItemModel::messageWithParameters(
+            return (ItemModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrio un error inesperado",
                 "No hemos podido actualizar los datos"
-            );
+            ));
         }
     }
 
@@ -518,10 +518,9 @@ class ItemController extends ItemModel
             $table .= '<th>ELIMINAR</th>';
         }
 
-        $table .= ' </tr>
+        $table .= '</tr>
                 </thead>
-                <tbody>
-        ';
+                <tbody>';
 
         if ($total >= 1 && $page <= $nPages) {
             $count = $start + 1;
@@ -546,14 +545,15 @@ class ItemController extends ItemModel
                         >
                             <i class="fas fa-info-circle"></i>
                         </button>
-                    </td>';
+                    </td>
+                    ';
                 if ($privilege == 1 || $privilege == 2) {
                     $table .= '
                         <td>
                             <a
                                 href="' . SERVER_URL . 'item-update/' .
-                                ItemModel::encryption($row['item_id'])  .
-                                '/"
+                        ItemModel::encryption($row['item_id'])  .
+                        '/"
                                 class="btn btn-success"
                             >
                                 <i class="fas fa-sync-alt"></i>
@@ -567,16 +567,20 @@ class ItemController extends ItemModel
                             <form
                                 class="ajax-form"
                                 action="' . SERVER_URL . 'endpoint/item-ajax/"
-                                method="POST" data-form="delete"
+                                method="POST"
+                                data-form="delete"
                                 autocomplete="off"
                             >
                                 <input
                                     type="hidden"
                                     name="item_id_del" value="' .
-                                    ItemModel::encryption($row['item_id']) .
-                                    '"
+                        ItemModel::encryption($row['item_id']) .
+                        '"
+                                />
+                                <button
+                                    type="submit"
+                                    class="btn btn-warning"
                                 >
-                                <button type="submit" class="btn btn-warning">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </form>
@@ -592,24 +596,24 @@ class ItemController extends ItemModel
         } else {
             if ($total >= 1) {
                 $table .= '
-                <tr class="text-center" >
-                    <td colspan="9">
-                        <a
-                            href="' . $url . '"
-                            class="btn btn-primary btn-raised btn-sm"
-                        >
-                            Haga clic aquí para recargar el listado
-                        </a>
-                    </td>
-                </tr>
+                    <tr class="text-center" >
+                        <td colspan="9">
+                            <a
+                                href="' . $url . '"
+                                class="btn btn-primary btn-raised btn-sm"
+                            >
+                                Haga clic aquí para recargar el listado
+                            </a>
+                        </td>
+                    </tr>
                 ';
             } else {
                 $table .= '
-                <tr class="text-center"
-                    <td colspan="9">
-                        No se encontro registros de items en el sistema
-                    </td>
-                </tr>
+                    <tr class="text-center"
+                        <td colspan="9">
+                            No se encontro registros de items en el sistema
+                        </td>
+                    </tr>
                 ';
             }
         }
@@ -649,14 +653,14 @@ class ItemController extends ItemModel
     }
 
     /**
-     * Function for send message item
+     * Function to send message item
      *
      * @param $alert contains string
      * @param $type  contains string
      * @param $title contains string
      * @param $text  contains string
      *
-     * @return object
+     * @return string
      */
     public function messageItemController(
         $alert,

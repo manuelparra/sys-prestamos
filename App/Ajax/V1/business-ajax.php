@@ -1,33 +1,40 @@
 <?php
 /**
  * Ajax Business Script
+ * All functionality pertaining to Endpoint Model.
+ * PHP version 8.3.0
  *
- * All functionality pertaining to the Ajax Business requests.
- *
- * @package Ajax Request
- * @author Manuel Parra
- * @version 1.0.0
+ * @category Ajax
+ * @package  Ajax-Request
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  GIT: 1.0.0
+ * @link     manuelparra.dev
  */
+
+use App\Controller\BusinessController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
 
-if (isset($_POST['empresa_nombre_reg']) || isset($_POST['business_id_upd'])) {
-    // Instance to business controller
-    require_once "./controllers/businessController.php";
-    $insBusiness = new businessController();
 
-    // Add Business Information
-    if(isset($_POST['empresa_nombre_reg'])) {
-        echo $insBusiness->add_business_information_controller();
+if (isset($_POST['empresa_nombre_reg'])
+    || isset($_POST['business_id_upd'])
+) {
+    // Instance to Business Controller
+    $insBusiness = new BusinessController();
+
+    // Add business information
+    if (isset($_POST['empresa_nombre_reg'])) {
+        echo $insBusiness->addBusinessInformationController();
         exit;
     }
 
     // Update Business Information
     if (isset($_POST['business_id_upd'])) {
-        echo $insBusiness->update_business_information_controller();
+        echo $insBusiness->updateBusinessController();
         exit;
     }
 } else {

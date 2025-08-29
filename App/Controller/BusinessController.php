@@ -62,8 +62,7 @@ class BusinessController extends BusinessModel
         $direccion = BusinessModel::cleanString($_POST['empresa_direccion_reg']);
 
         // Check empty fields
-        if (
-            $nombre == "" || $email == ""
+        if ($nombre == "" || $email == ""
             || $telefono == "" || $direccion == ""
         ) {
             return BusinessModel::messageWithParameters(
@@ -144,9 +143,9 @@ class BusinessController extends BusinessModel
     /**
      * Function for update business information
      *
-     * @return object
+     * @return string
      */
-    public function updateBusinessInformationController(): object
+    public function updateBusinessController(): string
     {
         // Clean data
         $id = BusinessModel::cleanString($_POST['business_id_upd']);
@@ -156,8 +155,7 @@ class BusinessController extends BusinessModel
         $direccion = BusinessModel::cleanString($_POST['empresa_direccion_upd']);
 
         // Check empty fields
-        if (
-            $nombre == "" || $email == ""
+        if ($nombre == "" || $email == ""
             || $telefono == "" || $direccion == ""
         ) {
             return BusinessModel::messageWithParameters(
@@ -209,7 +207,7 @@ class BusinessController extends BusinessModel
             );
         }
 
-        $dataBusinessUpd = [
+        $data = [
             "id" => BusinessModel::decryption($id),
             "nombre" => $nombre,
             "email" => $email,
@@ -217,22 +215,22 @@ class BusinessController extends BusinessModel
             "direccion" => $direccion
         ];
 
-        $query = BusinessModel::updateBusinessDataModel($dataBusinessUpd);
-
-        if ($query->rowCount() == 1) {
-            return BusinessModel::messageWithParameters(
+        // Sending data to update item model
+        if (BusinessModel::updateBusinessDataModel($data)) {
+            $result = (BusinessModel::messageWithParameters(
                 "reload",
                 "success",
-                "Datos de Empresa actualizados",
-                "Los datos de la empresa han sido actualizados con éxito."
-            );
+                "Datos actualizados",
+                "Los datos de la empresa han sido actualizados."
+            ));
+            return $result;
         } else {
-            return BusinessModel::messageWithParameters(
+            return (BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "No hemos podido actualizar los datos de la empresa."
-            );
+            ));
         }
     }
 

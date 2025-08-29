@@ -95,7 +95,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>loan-reserve/">
+                            <a href="<?php echo SERVER_URL; ?>loan-reservation/">
                                 <i class="far fa-calendar-alt fa-fw"></i>
                                 &nbsp;Reservaciones
                             </a>

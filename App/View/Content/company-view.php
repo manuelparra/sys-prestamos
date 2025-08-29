@@ -71,7 +71,7 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="text"
-                                    pattern="<?php RBNAME; ?>"
+                                    pattern="<?php echo RBNAME; ?>"
                                     class="form-control"
                                     name="empresa_nombre_reg"
                                     id="empresa_nombre"
@@ -90,7 +90,7 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="email"
-                                    patter="<?php REMAILHTML; ?>"
+                                    patter="<?php echo REMAILHTML; ?>"
                                     class="form-control"
                                     name="empresa_email_reg"
                                     id="empresa_email"
@@ -109,7 +109,7 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="text"
-                                    pattern="<?php RPHONEHTML; ?>"
+                                    pattern="<?php echo RPHONEHTML; ?>"
                                     class="form-control"
                                     name="empresa_telefono_reg"
                                     id="empresa_telefono"
@@ -128,7 +128,7 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="text"
-                                    pattern="<?php RADDRHTML; ?>"
+                                    pattern="<?php echo RADDRHTML; ?>"
                                     class="form-control"
                                     name="empresa_direccion_reg"
                                     id="empresa_direccion"
@@ -193,12 +193,13 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="text"
-                                    pattern="<?php RBNAME; ?>"
+                                    pattern="<?php echo RBNAME; ?>"
                                     class="form-control"
                                     name="empresa_nombre_upd"
                                     id="empresa_nombre"
                                     maxlength="140"
                                     value="<?php echo $fields[1]; ?>"
+                                    required
                                 >
                             </div>
                         </div>
@@ -213,7 +214,7 @@ if ($query->rowCount() == 0) {
                                 <input
                                     type="email"
                                     class="form-control"
-                                    patter="<?php REMAILHTML; ?>"
+                                    patter="<?php echo REMAILHTML; ?>"
                                     name="empresa_email_upd"
                                     id="empresa_email"
                                     maxlength="70"
@@ -231,7 +232,7 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="text"
-                                    pattern="<?php RPHONEHTML; ?>"
+                                    pattern="<?php echo RPHONEHTML; ?>"
                                     class="form-control"
                                     name="empresa_telefono_upd"
                                     id="empresa_telefono"
@@ -250,7 +251,7 @@ if ($query->rowCount() == 0) {
                                 </label>
                                 <input
                                     type="text"
-                                    pattern="<?php RADDRHTML; ?>"
+                                    pattern="<?php echo RADDRHTML; ?>"
                                     class="form-control"
                                     name="empresa_direccion_upd"
                                     id="empresa_direccion"

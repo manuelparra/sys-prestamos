@@ -50,6 +50,7 @@ function send_ajaxs_form(e) {
 	}).then((res) => {
 		if (res.isConfirmed) {
 			// Utilizamos ajax para enviar el formulario con el metodo POST al backend
+			console.log(action, config);
 			fetch(action, config)
 				.then((res) => {
 					console.log(res);

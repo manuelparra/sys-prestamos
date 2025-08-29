@@ -202,9 +202,9 @@ class MainModel
      * @param $type  contains string
      * @param $title contains string
      * @param $text  contains string
-     * @param $url   contains string
+     * @param $url   contains string|null
      *
-     * @return object
+     * @return string|false
      */
     protected static function messageWithParameters(
         $alert,
@@ -212,7 +212,7 @@ class MainModel
         $title,
         $text,
         $url = null
-    ): string {
+    ): string|false {
         if ($alert == "redirect") {
             return json_encode(
                 [

@@ -1,47 +1,110 @@
+<?php
+/**
+ * New Loan View.
+ * Contents of New Loan View.
+ * PHP version 8.2.0
+ *
+ * @category View
+ * @package  ViewContent
+ * @author   Manuel Parra <manuelparra@live.com.ar>
+ * @license  MIT <https://mit.org>
+ * @version  CVS: <1.0.0>
+ * @link     manuelparra.dev
+ */
+?>
+
 <!-- Page header -->
 <div class="full-box page-header">
     <h3 class="text-left">
-        <i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO PRÉSTAMO
+        <i class="fas fa-plus fa-fw"></i>
+        &nbsp;NUEVO PRÉSTAMO
     </h3>
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
+        Esta vista permite registrar nuevos prestamos en el sistema, puede
+        ingresar los datos del prestamo para registrarlo a continuación.
     </p>
 </div>
 
+<!-- Navegation -->
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>reservation-new/"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO PRÉSTAMO</a>
+            <a class="active" href="<?php echo SERVER_URL; ?>loan-new/">
+                <i class="fas fa-plus fa-fw"></i>
+                &nbsp;NUEVO PRÉSTAMO
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-reservation/"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
+            <a href="<?php echo SERVER_URL; ?>loan-reservation/">
+                <i class="far fa-calendar-alt"></i>
+                &nbsp;RESERVACIONES
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-pending/"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; PRÉSTAMOS</a>
+            <a href="<?php echo SERVER_URL; ?>loan-pending/">
+                <i class="fas fa-hand-holding-usd fa-fw"></i>
+                &nbsp;PRÉSTAMOS
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-list/"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; FINALIZADOS</a>
+            <a href="<?php echo SERVER_URL; ?>loan-list/">
+                <i class="fas fa-clipboard-list fa-fw"></i>
+                &nbsp;FINALIZADOS
+            </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>reservation-search/"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
+            <a href="<?php echo SERVER_URL; ?>loan-search/">
+                <i class="fas fa-search-dollar fa-fw"></i>
+                &nbsp;BUSCAR POR FECHA
+            </a>
         </li>
     </ul>
 </div>
 
+<!-- Content -->
 <div class="container-fluid">
     <div class="container-fluid form-neon">
         <div class="container-fluid">
-            <p class="text-center roboto-medium">AGREGAR CLIENTE O ITEMS</p>
+            <p class="text-center roboto-medium">
+                AGREGAR CLIENTE O ITEMS
+            </p>
             <p class="text-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCliente"><i class="fas fa-user-plus"></i> &nbsp; Agregar cliente</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#ModalCliente"
+                >
+                    <i class="fas fa-user-plus"></i>
+                    &nbsp;Agregar cliente
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#ModalItem"
+                >
+                    <i class="fas fa-box-open"></i>
+                    &nbsp;Agregar item
+                </button>
             </p>
             <div>
-                <span class="roboto-medium">CLIENTE:</span>
-                <span class="text-danger">&nbsp; <i class="fas fa-exclamation-triangle"></i> Seleccione un cliente</span>
+                <span class="roboto-medium">
+                    CLIENTE:
+                </span>
+                <span class="text-danger">
+                    &nbsp;
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Seleccione un cliente
+                </span>
                 <form action="" style="display: inline-block !important;">
                     Carlos Alfaro
-                    <button type="button" class="btn btn-danger"><i class="fas fa-user-times"></i></button>
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                    >
+                        <i class="fas fa-user-times"></i>
+                    </button>
                 </form>
             </div>
             <div class="table-responsive">

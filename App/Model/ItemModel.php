@@ -118,7 +118,7 @@ class ItemModel extends MainModel
      *
      * @param $id contains integer
      *
-     * @return string
+     * @return object
      */
     protected static function deleteItemModel($id): object
     {

@@ -16,7 +16,7 @@ use App\Controller\UserController;
 
 if (!defined('ABSPATH')) {
     echo "Acceso no autorizado.";
-    exit; // exit if accessed directly
+    exit; // Exit if accessed derectly
 }
 
 if (isset($_POST['usuario_dni_reg'])
