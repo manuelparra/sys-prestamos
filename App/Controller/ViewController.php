@@ -56,7 +56,7 @@ class ViewController extends ViewModel
         } else {
             $response = "login";
         }
-        error_log(print_r($response . "\n", true), 3, ERROR_DIR . "my-errors.log");
+        //error_log(print_r($response . "\n", true), 3, ERROR_DIR . "my-errors.log");
         return $response;
     }
 }

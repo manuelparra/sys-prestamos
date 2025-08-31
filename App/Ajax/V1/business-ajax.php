@@ -20,20 +20,20 @@ if (!defined('ABSPATH')) {
 }
 
 
-if (isset($_POST['empresa_nombre_reg'])
-    || isset($_POST['business_id_upd'])
+if (isset($_POST['empresa_nif_reg'])
+    || isset($_POST['empresa_id_upd'])
 ) {
     // Instance to Business Controller
     $insBusiness = new BusinessController();
 
     // Add business information
-    if (isset($_POST['empresa_nombre_reg'])) {
+    if (isset($_POST['empresa_nif_reg'])) {
         echo $insBusiness->addBusinessInformationController();
         exit;
     }
 
     // Update Business Information
-    if (isset($_POST['business_id_upd'])) {
+    if (isset($_POST['empresa_id_upd'])) {
         echo $insBusiness->updateBusinessController();
         exit;
     }

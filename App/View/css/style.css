@@ -85,14 +85,17 @@ html {
 	flex-wrap: wrap;
 	margin-bottom: 30px;
 }
+
 .page-nav-tabs li,
 .page-nav-tabs li a {
 	height: 40px;
 	line-height: 40px;
 }
+
 .page-nav-tabs li {
 	margin: 5px 20px;
 }
+
 .page-nav-tabs li a {
 	color: var(--accent-color);
 	font-size: 17px;
@@ -104,11 +107,13 @@ html {
 	transition: all 0.2s ease-in-out;
 	border-bottom: 2px solid transparent;
 }
+
 .page-nav-tabs li a.active {
 	color: var(--color-three);
 	cursor: none;
 	pointer-events: none;
 }
+
 .page-nav-tabs li a:hover {
 	text-decoration: none;
 	color: #333;
@@ -119,41 +124,51 @@ html {
 .form-control[readonly] {
 	background-color: transparent;
 }
+
 .form-control:focus,
 .form-control:active {
 	outline: none;
 	box-shadow: none;
 	border: none;
 }
+
 .form-control-file:active,
 .form-control-file:focus {
 	outline: none;
 }
+
 .table .btn {
 	margin-bottom: 0;
 }
+
 .table thead th {
 	color: #fff;
 }
+
 .table tbody tr {
 	color: #333;
 	transition: all 0.2s ease-in-out;
 }
+
 .table-dark,
 .table {
 	background-color: #fff;
 }
+
 .table-dark {
 	border: 1px solid var(--accent-color);
 }
+
 .table-dark thead tr {
 	background-color: var(--accent-color);
 }
+
 .table-dark td,
 .table-dark thead th,
 .table-dark th {
 	border: none;
 }
+
 .table-dark tr:hover {
 	color: var(--color-three);
 	background-image: linear-gradient(
@@ -163,27 +178,34 @@ html {
 		transparent
 	);
 }
+
 .page-link {
 	transition: all 0.2s ease-in-out;
 }
+
 .page-link:hover,
 .page-link.active {
 	background-color: var(--color-three);
 	color: #fff;
 }
+
 table form {
 	margin-bottom: 0;
 }
+
 /*----------  Text Styles  ----------*/
 .roboto-medium {
 	font-family: "roboto_medium_regular";
 }
+
 .roboto-condensed-light {
 	font-family: "roboto_condensed_light";
 }
+
 .roboto-condensed-regular {
 	font-family: "roboto_condensed_regular";
 }
+
 /*----------  Page 404 styles  ----------*/
 .container-404 {
 	background: #000428;
@@ -194,6 +216,7 @@ table form {
 	align-items: center;
 	justify-content: center;
 }
+
 /*----------  login Styles  ----------*/
 .login-container {
 	width: 100vw;
@@ -205,6 +228,7 @@ table form {
 	background: -webkit-linear-gradient(to right, #021b79, #0575e6);
 	background: linear-gradient(to right, #021b79, #0575e6);
 }
+
 .login-content {
 	width: 95%;
 	max-width: 320px;
@@ -215,6 +239,7 @@ table form {
 	padding: 15px;
 	color: var(--accent-color);
 }
+
 .btn-login {
 	width: 90%;
 	padding: 10px 0;
@@ -227,12 +252,14 @@ table form {
 	border: 1px solid var(--accent-color);
 	transition: all 0.2s ease-out;
 }
+
 .btn-login:hover {
 	background-color: var(--color-three);
 	border: 1px solid var(--color-three);
 	text-decoration: none;
 	color: #fff;
 }
+
 .btn-login:active,
 .btn-login:focus {
 	outline: none;
@@ -246,17 +273,20 @@ table form {
 	left: 0;
 	overflow: hidden;
 }
+
 .page-content,
 .nav-lateral {
 	height: calc(100% - 23px);
 	overflow: hidden;
 }
+
 .page-content {
 	position: relative;
 	padding-left: 300px;
 	transition: all 0.2s ease-in-out;
 	padding-bottom: 20px;
 }
+
 /*  Nav Lateral */
 .nav-lateral {
 	width: 300px;
@@ -269,24 +299,30 @@ table form {
 	background-position: center center;
 	background-size: cover;
 }
+
 .nav-lateral-bg {
 	display: none;
 }
+
 .nav-lateral-content {
 	max-width: 300px;
 	height: 100%;
 	background-color: rgba(36, 41, 46, 0.8);
 }
+
 .nav-lateral-bar {
 	height: 3px;
 	background-color: var(--color-three);
 }
+
 .nav-lateral-avatar {
 	padding: 40px 0;
 }
+
 .nav-lateral-avatar i {
 	display: none;
 }
+
 .nav-lateral-avatar img {
 	width: 50%;
 	margin: 0 auto;
@@ -294,22 +330,27 @@ table form {
 	border: 4px solid #fff;
 	border-radius: 100%;
 }
+
 .nav-lateral-avatar figcaption {
 	margin-top: 20px;
 	color: #fff;
 }
+
 .nav-lateral-menu {
 	height: auto;
 }
+
 .nav-lateral-menu ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
+
 .nav-lateral-menu ul li {
 	width: 100%;
 	height: auto;
 }
+
 .nav-lateral-menu ul li a {
 	display: block;
 	width: 100%;
@@ -322,10 +363,12 @@ table form {
 	padding-left: 20px;
 	transition: all 0.2s ease-in-out;
 }
+
 .nav-lateral-menu ul li a.active {
 	color: #fff;
 	background-color: var(--color-three);
 }
+
 .nav-lateral-menu ul li a:hover {
 	color: #fff;
 	background-image: linear-gradient(
@@ -335,17 +378,21 @@ table form {
 		transparent
 	);
 }
+
 .nav-lateral-menu ul li ul {
 	display: none;
 	border: 1px solid var(--color-three);
 	background: rgba(20, 30, 48, 0.5);
 }
+
 .nav-lateral-menu ul li ul a {
 	padding-left: 45px;
 }
+
 .show-nav-lateral-submenu {
 	display: block !important;
 }
+
 .nav-lateral-menu .fa-chevron-down,
 .nav-lateral-menu .fa-chevron-up {
 	float: right;
@@ -354,11 +401,13 @@ table form {
 	margin-right: 7px;
 	transition: all 0.2s ease-in-out;
 }
+
 /* ScrollBar*/
 .mCSB_scrollTools_vertical {
 	top: 52px;
 	bottom: 12px;
 }
+
 /* Status Bar */
 .status-bar {
 	background-color: #fff;
@@ -368,6 +417,7 @@ table form {
 	padding-right: 15px;
 	font-size: smaller;
 }
+
 /*  Page content */
 .navbar-info {
 	height: 50px;
@@ -386,6 +436,7 @@ table form {
 	transition: all 0.2s ease-out;
 	user-select: none;
 }
+
 .navbar-info a:hover {
 	color: var(--color-three);
 	background-image: radial-gradient(
@@ -394,6 +445,7 @@ table form {
 		transparent 80%
 	);
 }
+
 .navbar-info a:active,
 .navbar-info a:focus {
 	outline: none;
@@ -404,6 +456,7 @@ table form {
 	text-align: center;
 	padding: 20px 25px;
 }
+
 .tile {
 	height: 200px;
 	width: 200px;
@@ -417,14 +470,17 @@ table form {
 	transition: all 0.2s ease-in-out;
 	background-color: #fff;
 }
+
 .tile:hover {
 	text-decoration: none;
 	border-color: var(--color-three);
 }
+
 .tile:focus,
 .tile:active {
 	outline: none;
 }
+
 .tile-tittle {
 	margin: 0;
 	width: 100%;
@@ -437,25 +493,30 @@ table form {
 	transition: all 0.2s ease-in-out;
 	font-family: "roboto_medium_regular";
 }
+
 .tile:hover .tile-tittle {
 	color: #fff;
 	border-color: var(--color-three);
 	background-color: var(--color-three);
 }
+
 .tile-icon {
 	width: 100%;
 	height: 160px;
 	box-sizing: border-box;
 	padding-top: 22px;
 }
+
 .tile-icon > i {
 	font-size: 80px;
 }
+
 .tile-icon > p {
 	font-family: "roboto_medium_regular";
 	height: 35px;
 	line-height: 35px;
 }
+
 .tile:hover .tile-icon > i,
 .tile:hover .tile-icon > p {
 	color: var(--color-three);
@@ -469,10 +530,12 @@ table form {
 		display: none;
 		background-image: none;
 	}
+
 	.nav-lateral.active {
 		display: block;
 		z-index: 9999;
 	}
+
 	.nav-lateral-bg {
 		width: 100%;
 		height: 100%;
@@ -481,6 +544,7 @@ table form {
 		display: block;
 		z-index: 2;
 	}
+
 	.nav-lateral-content {
 		position: absolute;
 		left: 0;
@@ -490,9 +554,11 @@ table form {
 		transition: all 0.3s ease-in-out;
 		background-color: var(--color-two);
 	}
+
 	.nav-lateral.active .nav-lateral-content {
 		transform: translateX(0);
 	}
+
 	.nav-lateral-avatar i {
 		height: 50px;
 		width: 50px;
@@ -507,9 +573,11 @@ table form {
 		display: block;
 		transition: all 0.2s ease-out;
 	}
+
 	.nav-lateral-avatar i:hover {
 		color: var(--color-three);
 	}
+
 	.page-content {
 		padding-left: 0;
 	}
@@ -523,8 +591,18 @@ table form {
 	.nav-lateral.active {
 		transform: translateX(-400px);
 	}
+
 	.page-content.active {
 		padding-left: 0;
+	}
+
+	/* CSS for customize elements html */
+	[data-view="imput-company-view"] {
+		width: 370px !important;
+	}
+
+	[data-form-view="width-form-company"] {
+		width: 435px !important;
 	}
 }
 

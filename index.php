@@ -19,16 +19,16 @@ if (!defined('ABSPATH')) {
 
 // Autoloader Reister
 spl_autoload_register(
-    function ($className) {
-        $path = __DIR__.'/'.str_replace('\\', '/', $className).'.php';
+    function ($class) {
+        $path = __DIR__.'/'.str_replace('\\', '/', $class).'.php';
         include_once $path;
     }
 );
 
 require_once "./App/Config/app.php";
 
-use App\Controller\ViewController;
 use App\Controller\EndpointController;
+use App\Controller\ViewController;
 
 if (isset($_GET['endpoint'])) {
     $endopointreq = new EndpointController();

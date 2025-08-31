@@ -40,47 +40,50 @@ const COMPANY = "Sistema de Prestamos";
 const MONEDA = "€";
 
 // Constantes de patrones de validación
-// for code
+// Para el código
 const RCOD = "[a-zA-Z0-9-]{1,45}";
 
-// for business name
+// Para el nombre de la Empresa
 const RBNAME = "[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9¿? ]{1,140}";
 
-// for item name
+// Para el NIF de la empresa
+const RBNIF = "[AB0-9]{9}";
+
+// Para el nombre del Item
 const RNAME = "[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9¿? ]{1,150}";
 
-// for item stock
+// Para el stock del Item
 const RSTOCK = "[0-9]{1,9}";
 
-// for estado
+// Para el estado
 const RESTADO = "[a-zA-Z]{1,15}";
 
-// for detalle
+// Para el detalle
 const RDETALLE = "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}";
 
-// for dni
-const RDNI = "[0-9]{8}[-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}";
-const RDNIHTML = "[0-9]{8}[\-]{1}[TRWAechoGMYFPDXBNJZSQVHLCKE]{1}";
+// Para el DNI
+const RDNI = "^[XYZ]?\d{5,8}[A-HJ-NP-TV-Z]$";
+const RDNIHTML = "^(?:\d{8}[A-HJ-NP-TV-Z]|[XYZ]\d{7}[A-HJ-NP-TV-Z])$";
 
-// for name and last name
+// Para el nombre y el apellido
 const RNLN = "[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,35}";
 
-// for phone
+// Para el teléfono
 const RPHONE = "[0-9()+]{9,20}";
 const RPHONEHTML = "[0-9\(\)+]{9,20}";
 
-// for address
+// Para la dirección
 const RADDR = "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}";
 const RADDRHTML = "[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\(\).,#\- ]{1,190}";
 
-// for email
+// Para la dirección de email
 const REMAIL = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
 const REMAILHTML = "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$";
 
-// for user
+// Para el nombre de usuario
 const RUSER = "[a-zA-Z0-9]{1,35}";
 
-// for password
+// Para la clave de usuario
 const RPASS = "^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$";
 
 date_default_timezone_set("Europe/Madrid");

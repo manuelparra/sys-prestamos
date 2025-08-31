@@ -42,11 +42,12 @@ class BusinessModel extends MainModel
     {
         // SQL Query for insert business information
         $sql = "INSERT INTO empresa (
-                empresa_nombre, empresa_email,
+                empresa_nif, empresa_nombre, empresa_email,
                 empresa_telefono, empresa_direccion)
-                VALUES (:nombre, :email, :telefono, :direccion)";
+                VALUES (:nif, :nombre, :email, :telefono, :direccion)";
         $query = MainModel::connection()->prepare($sql);
 
+        $query->bindParam(":nif", $data['nif']);
         $query->bindParam(":nombre", $data['nombre']);
         $query->bindParam(":email", $data['email']);
         $query->bindParam(":telefono", $data['telefono']);
@@ -67,6 +68,7 @@ class BusinessModel extends MainModel
     protected static function updateBusinessDataModel($data): object
     {
         $sql = "UPDATE empresa SET
+                empresa_nif = :nif,
                 empresa_nombre = :nombre,
                 empresa_email = :email,
                 empresa_telefono = :telefono,
@@ -74,6 +76,7 @@ class BusinessModel extends MainModel
                 WHERE empresa_id = :id";
         $query = MainModel::connection()->prepare($sql);
 
+        $query->bindParam(":nif", $data['nif']);
         $query->bindParam(":nombre", $data['nombre']);
         $query->bindParam(":email", $data['email']);
         $query->bindParam(":telefono", $data['telefono']);
@@ -93,7 +96,9 @@ class BusinessModel extends MainModel
     protected static function queryBusinessInformationModel(): object
     {
         // SQL Query for query business information
-        $sql = "SELECT empresa.*
+        $sql = "SELECT empresa_id, empresa_nif,
+                empresa_nombre, empresa_email,
+                empresa_telefono, empresa_direccion
                 FROM empresa";
         $query = MainModel::connection()->prepare($sql);
 

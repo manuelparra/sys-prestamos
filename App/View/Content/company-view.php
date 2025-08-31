@@ -30,7 +30,10 @@ if ($_SESSION['privilegio_spm'] != 1) {
         <i class="fas fa-building fa-fw"></i>
         &nbsp;INFORMACÓN DE LA EMPRESA
     </h3>
-    <p class="text-justify">
+    <p
+        class="text-justify"
+        data-form-view="width-form-company"
+    >
         Esta vista permite registrar/modificar la información de la empresa.
         Puede ingresar o actualizar los datos a continuación.
     </p>
@@ -52,6 +55,7 @@ if ($query->rowCount() == 0) {
             method="POST"
             id="new_registration_form"
             data-form="save"
+            data-form-view="width-form-company"
             autocomplete="off"
         >
             <fieldset>
@@ -61,13 +65,33 @@ if ($query->rowCount() == 0) {
                 </legend>
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label
+                                    for="empresa_nif"
+                                    class="bmd-label-floating"
+                                >
+                                    NIF de la empresa
+                                </label>
+                                <input
+                                    type="text"
+                                    pattern="<?php echo RBNIF; ?>"
+                                    class="form-control"
+                                    name="empresa_nif_reg"
+                                    id="empresa_nif"
+                                    maxlength="9"
+                                    data-view="imput-company-view"
+                                    required
+                                >
+                            </div>
+                        </div>
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_nombre"
                                     class="bmd-label-floating"
                                 >
-                                    Nombre de la empresa
+                                    Razón Social de la empresa
                                 </label>
                                 <input
                                     type="text"
@@ -76,11 +100,12 @@ if ($query->rowCount() == 0) {
                                     name="empresa_nombre_reg"
                                     id="empresa_nombre"
                                     maxlength="140"
+                                    data-view="imput-company-view"
                                     required
                                 >
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_email"
@@ -95,11 +120,12 @@ if ($query->rowCount() == 0) {
                                     name="empresa_email_reg"
                                     id="empresa_email"
                                     maxlength="70"
+                                    data-view="imput-company-view"
                                     required
                                 >
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_telefono"
@@ -114,6 +140,7 @@ if ($query->rowCount() == 0) {
                                     name="empresa_telefono_reg"
                                     id="empresa_telefono"
                                     maxlength="20"
+                                    data-view="imput-company-view"
                                     required
                                 >
                             </div>
@@ -133,6 +160,7 @@ if ($query->rowCount() == 0) {
                                     name="empresa_direccion_reg"
                                     id="empresa_direccion"
                                     maxlength="190"
+                                    data-view="imput-company-view"
                                     required
                                 >
                             </div>
@@ -169,11 +197,12 @@ if ($query->rowCount() == 0) {
             method="POST"
             id="update_registration_form"
             data-form="update"
+            data-form-view="width-form-company"
             autocomplete="off"
         >
             <input
                 type="hidden"
-                name="business_id_upd"
+                name="empresa_id_upd"
                 value="<?php echo $token; ?>"
             >
             <fieldset>
@@ -183,13 +212,34 @@ if ($query->rowCount() == 0) {
                 </legend>
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label
+                                    for="empresa_nif"
+                                    class="bmd-label-floating"
+                                >
+                                    NIF de la empresa
+                                </label>
+                                <input
+                                    type="text"
+                                    pattern="<?php echo RBNIF; ?>"
+                                    class="form-control"
+                                    name="empresa_nif_upd"
+                                    id="empresa_nif"
+                                    maxlength="9"
+                                    value="<?php echo $fields[1]; ?>"
+                                    data-view="imput-company-view"
+                                    required
+                                >
+                            </div>
+                        </div>
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_nombre"
                                     class="bmd-label-floating"
                                 >
-                                    Nombre de la empresa
+                                    Razón Social de la empresa
                                 </label>
                                 <input
                                     type="text"
@@ -198,12 +248,13 @@ if ($query->rowCount() == 0) {
                                     name="empresa_nombre_upd"
                                     id="empresa_nombre"
                                     maxlength="140"
-                                    value="<?php echo $fields[1]; ?>"
+                                    value="<?php echo $fields[2]; ?>"
+                                    data-view="imput-company-view"
                                     required
                                 >
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_email"
@@ -218,11 +269,12 @@ if ($query->rowCount() == 0) {
                                     name="empresa_email_upd"
                                     id="empresa_email"
                                     maxlength="70"
-                                    value="<?php echo $fields[2]; ?>"
+                                    data-view="imput-company-view"
+                                    value="<?php echo $fields[3]; ?>"
                                 >
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_telefono"
@@ -237,11 +289,12 @@ if ($query->rowCount() == 0) {
                                     name="empresa_telefono_upd"
                                     id="empresa_telefono"
                                     maxlength="20"
-                                    value="<?php echo $fields[3]; ?>"
+                                    data-view="imput-company-view"
+                                    value="<?php echo $fields[4]; ?>"
                                 >
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label
                                     for="empresa_direccion"
@@ -256,7 +309,8 @@ if ($query->rowCount() == 0) {
                                     name="empresa_direccion_upd"
                                     id="empresa_direccion"
                                     maxlength="190"
-                                    value="<?php echo $fields[4]; ?>"
+                                    data-view="imput-company-view"
+                                    value="<?php echo $fields[5]; ?>"
                                 >
                             </div>
                         </div>

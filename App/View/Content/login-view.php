@@ -14,15 +14,15 @@
 
 use App\Controller\LoginController;
 
-$user = ""; // user value text
-$pass = ""; // password value text
+$usuario = ""; // Variable usuario
+$clave = ""; // Variable contraseña
 
-if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
+if (isset($_POST['usuario']) && isset($_POST['clave'])) {
+    $usuario = $_POST['usuario']; 
+    $clave = $_POST['clave'];
+
     $insLoginController = new LoginController();
-    echo $insLoginController->loginController();
-
-    $user = $_POST['usuario_log'];
-    $pass = $_POST['clave_log'];
+    echo $insLoginController->loginController($usuario, $clave);
 }
 ?>
 
@@ -34,7 +34,11 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
         <p class="text-center">
             Inicia sesión con tu usuario y contraseña
         </p>
-        <form id="login-form" method="POST" autocomplete="off" >
+        <form
+            id="login-form"
+            method="POST"
+            autocomplete="off"
+        >
             <div class="form-group">
                 <label for="name" class="bmd-label-floating">
                     <i class="fas fa-user-secret"></i>
@@ -44,10 +48,10 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
                     type="text"
                     class="form-control"
                     id="name"
-                    name="usuario_log"
+                    name="usuario"
                     pattern="<?php echo RUSER; ?>"
                     maxlength="35"
-                    value="<?php echo $user; ?>"
+                    value="<?php echo $usuario; ?>"
                     autocomplete="off"
                     required
                 >
@@ -61,10 +65,10 @@ if (isset($_POST['usuario_log']) && isset($_POST['clave_log'])) {
                     type="password"
                     class="form-control"
                     id="password"
-                    name="clave_log"
+                    name="clave"
                     pattern="<?php echo RPASS; ?>"
                     maxlength="16"
-                    value="<?php echo $pass; ?>"
+                    value="<?php echo $clave; ?>"
                     autocomplete="off"
                     required
                 >

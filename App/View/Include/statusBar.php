@@ -15,7 +15,7 @@
 
 <footer class="fixed-bottom status-bar">
     <div class="full-box">
-        Usuario:
+        USUARIO:
         <?php
         echo $_SESSION['nombre_spm']
         . ' '

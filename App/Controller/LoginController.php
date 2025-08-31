@@ -36,13 +36,16 @@ class LoginController extends LoginModel
     /**
      * Function for user login
      *
-     * @return ?string
+     * @param $usuario contains string
+     * @param $clave   contains string
+     *
+     * @return string|null
      */
-    public function loginController(): string|null
+    public function loginController($usuario, $clave): string|null
     {
         // Clean data
-        $usuario = LoginModel::cleanString($_POST['usuario_log']);
-        $clave = LoginModel::cleanString($_POST['clave_log']);
+        $usuario = LoginModel::cleanString($usuario);
+        $clave = LoginModel::cleanString($clave);
 
         /* Check empy fields */
         if ($usuario == "" || $clave == "") {
@@ -141,7 +144,7 @@ class LoginController extends LoginModel
             <script>
                 Swal.fire({
                     title: "Ocurrió un error inesperado",
-                    text: "El usuario o la contraseña son incorrectos.",
+                    text: "El usuario y/o la contraseña son incorrectos.",
                     type: "error",
                     icon: "error",
                     confirmButtonText: "Aceptar"

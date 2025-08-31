@@ -38,12 +38,12 @@ class BusinessController extends BusinessModel
     /**
      * Function for add business information
      *
-     * @return object
+     * @return string
      */
-    public function addBusinessInformationController(): object
+    public function addBusinessInformationController(): string
     {
         // Check that there is no business data registered in database.
-        $sql = "SELECT empresa_nombre
+        $sql = "SELECT empresa_nif
                 FROM empresa";
         $query = BusinessModel::executeSimpleQuery($sql);
         if ($query->rowCount() > 0) {
@@ -56,13 +56,14 @@ class BusinessController extends BusinessModel
         }
 
         // Clean data
+        $nif = BusinessModel::cleanString($_POST['empresa_nif_reg']);
         $nombre = BusinessModel::cleanString($_POST['empresa_nombre_reg']);
         $email = BusinessModel::cleanString($_POST['empresa_email_reg']);
         $telefono = BusinessModel::cleanString($_POST['empresa_telefono_reg']);
         $direccion = BusinessModel::cleanString($_POST['empresa_direccion_reg']);
 
         // Check empty fields
-        if ($nombre == "" || $email == ""
+        if ($nif == "" || $nombre == "" || $email == ""
             || $telefono == "" || $direccion == ""
         ) {
             return BusinessModel::messageWithParameters(
@@ -73,18 +74,28 @@ class BusinessController extends BusinessModel
             );
         }
 
-        // Check data's integrity
-        // Check business name
-        if (BusinessModel::checkData(RNLN, $nombre)) {
+        // Chequeo la integridad de los datos
+        // Chequeo el NIF
+        if (BusinessModel::checkData(RBNIF, $nif)) {
             return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
-                "Formato de Nombre erróneo.",
-                "El Nombre no coincide con el formato solicitado."
+                "Formato de NIF erróneo.",
+                "El NIF no coincide con el formato requerido para este campo."
             );
         }
 
-        // Check email
+        // Chequeo la Razón Social de la Empresa / Nombre de Empresa
+        if (BusinessModel::checkData(RBNAME, $nombre)) {
+            return BusinessModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de Razón Social / Nombre erróneo.",
+                "La Razón Social / Nombre no coincide con el formato solicitado."
+            );
+        }
+
+        // Chequeo la derección de email
         if (BusinessModel::checkData(REMAIL, $email)) {
             return BusinessModel::messageWithParameters(
                 "simple",
@@ -94,7 +105,7 @@ class BusinessController extends BusinessModel
             );
         }
 
-        // Check phone
+        // Chequeo el numero de telefono
         if ($telefono != "" && BusinessModel::checkData(RPHONE, $telefono)) {
             return BusinessModel::messageWithParameters(
                 "simple",
@@ -104,7 +115,7 @@ class BusinessController extends BusinessModel
             );
         }
 
-        //Check address
+        // Chequeo la dirección de la empresa
         if ($direccion != "" && BusinessModel::checkData(RADDR, $direccion)) {
             return BusinessModel::messageWithParameters(
                 "simple",
@@ -114,14 +125,15 @@ class BusinessController extends BusinessModel
             );
         }
 
-        $dataBusinessReg = [
+        $data = [
+            "nif" => $nif,
             "nombre" => $nombre,
             "email" => $email,
             "telefono" => $telefono,
             "direccion" => $direccion
         ];
 
-        $query = BusinessModel::addBusinessInformationModel($dataBusinessReg);
+        $query = BusinessModel::addBusinessInformationModel($data);
 
         if ($query->rowCount() == 1) {
             return BusinessModel::messageWithParameters(
@@ -147,15 +159,16 @@ class BusinessController extends BusinessModel
      */
     public function updateBusinessController(): string
     {
-        // Clean data
-        $id = BusinessModel::cleanString($_POST['business_id_upd']);
+        // Limpio la data que recibo del formulario
+        $id = BusinessModel::cleanString($_POST['empresa_id_upd']);
+        $nif = BusinessModel::cleanString($_POST['empresa_nif_upd']);
         $nombre = BusinessModel::cleanString($_POST['empresa_nombre_upd']);
         $email = BusinessModel::cleanString($_POST['empresa_email_upd']);
         $telefono = BusinessModel::cleanString($_POST['empresa_telefono_upd']);
         $direccion = BusinessModel::cleanString($_POST['empresa_direccion_upd']);
 
-        // Check empty fields
-        if ($nombre == "" || $email == ""
+        // Chequeo que no haya campos vacíos
+        if ($nif == "" || $nombre == "" || $email == ""
             || $telefono == "" || $direccion == ""
         ) {
             return BusinessModel::messageWithParameters(
@@ -166,9 +179,19 @@ class BusinessController extends BusinessModel
             );
         }
 
-        // Check data's integrity
-        // Check business name
-        if (BusinessModel::checkData(RNLN, $nombre)) {
+        // Chequeo la integriadad de la data
+        // Cheoque el campo NIF
+        if (BusinessModel::checkData(RBNIF, $nif)) {
+            return BusinessModel::messageWithParameters(
+                "simple",
+                "error",
+                "Formato de NIF erróneo",
+                "El NIF no coincide con el formato requerido para este campo."
+            );
+        }
+
+        // Chequeo el campo Razón Social / Nombre de Empreasa
+        if (BusinessModel::checkData(RBNAME, $nombre)) {
             return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
@@ -177,7 +200,7 @@ class BusinessController extends BusinessModel
             );
         }
 
-        // Check email
+        // Chequeo el correo electrónico de la empresa
         if (BusinessModel::checkData(REMAIL, $email)) {
             return BusinessModel::messageWithParameters(
                 "simple",
@@ -187,7 +210,7 @@ class BusinessController extends BusinessModel
             );
         }
 
-        // Check phone
+        // Cheoqueo el numero de teleofono de la empreasa
         if ($telefono != "" && BusinessModel::checkData(RPHONE, $telefono)) {
             return BusinessModel::messageWithParameters(
                 "simple",
@@ -197,7 +220,7 @@ class BusinessController extends BusinessModel
             );
         }
 
-        //Check address
+        // Cheoqueo la dirección de la empreasa
         if ($direccion != "" && BusinessModel::checkData(RADDR, $direccion)) {
             return BusinessModel::messageWithParameters(
                 "simple",
@@ -209,6 +232,7 @@ class BusinessController extends BusinessModel
 
         $data = [
             "id" => BusinessModel::decryption($id),
+            "nif" => $nif,
             "nombre" => $nombre,
             "email" => $email,
             "telefono" => $telefono,
@@ -217,20 +241,19 @@ class BusinessController extends BusinessModel
 
         // Sending data to update item model
         if (BusinessModel::updateBusinessDataModel($data)) {
-            $result = (BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "reload",
                 "success",
                 "Datos actualizados",
                 "Los datos de la empresa han sido actualizados."
-            ));
-            return $result;
+            );
         } else {
-            return (BusinessModel::messageWithParameters(
+            return BusinessModel::messageWithParameters(
                 "simple",
                 "error",
                 "Ocurrío un error inesperado.",
                 "No hemos podido actualizar los datos de la empresa."
-            ));
+            );
         }
     }
 

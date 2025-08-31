@@ -52,6 +52,12 @@
     href="<?php echo SERVER_URL; ?>App/View/css/jquery.mCustomScrollbar.css"
 >
 
+<!-- Icono del sitio web -->
+<link
+    rel="icon"
+    href="<?php echo SERVER_URL; ?>App/View/assets/icons/favicon.ico"
+>
+
 <!-- General Styles -->
 <link
     rel="stylesheet"
