@@ -32,19 +32,19 @@ use App\Controller\UserController;
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a href="<?php echo SERVER_URL; ?>user-new/">
+            <a href="<?php echo SERVER_URL; ?>/user-new/">
                 <i class="fas fa-plus fa-fw"></i>
                 &nbsp;NUEVO USUARIO
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>user-list/">
+            <a href="<?php echo SERVER_URL; ?>/user-list/">
                 <i class="fas fa-clipboard-list fa-fw"></i>
                 &nbsp;LISTA DE USUARIOS
             </a>
         </li>
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>user-search/">
+            <a class="active" href="<?php echo SERVER_URL; ?>/user-search/">
                 <i class="fas fa-search fa-fw"></i>
                 &nbsp;BUSCAR USUARIO
             </a>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['busqueda_usuario'])
     <div class="container-fluid">
         <form
             class="form-neon ajax-form"
-            action="<?php echo SERVER_URL; ?>endpoint/search-engine-ajax/"
+            action="<?php echo SERVER_URL; ?>/endpoint/search-engine-ajax/"
             method="POST"
             id="new_search_form"
             data-form="default"
@@ -77,7 +77,7 @@ if (!isset($_SESSION['busqueda_usuario'])
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label
-                                for="inputSearch" 
+                                for="inputSearch"
                                 class="bmd-label-floating"
                             >
                                 ¿Qué usuario estas buscando?
@@ -115,7 +115,7 @@ if (!isset($_SESSION['busqueda_usuario'])
     <div class="container-fluid">
         <form
             class="form-neon ajax-form"
-            action="<?php echo SERVER_URL; ?>endpoint/search-engine-ajax/" 
+            action="<?php echo SERVER_URL; ?>/endpoint/search-engine-ajax/"
             method="POST"
             data-form="search"
         >
@@ -133,7 +133,7 @@ if (!isset($_SESSION['busqueda_usuario'])
                 <div class="row justify-content-md-center">
                     <div class="col-12 col-md-6">
                         <p
-                            class="text-center" 
+                            class="text-center"
                             style="font-size: 20px;"
                         >
                             Resultados de la busqueda

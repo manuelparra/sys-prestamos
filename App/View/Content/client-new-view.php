@@ -42,19 +42,19 @@
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>client-new/">
+            <a class="active" href="<?php echo SERVER_URL; ?>/client-new/">
                 <i class="fas fa-plus fa-fw"></i>
                 &nbsp;AGREGAR CLIENTE
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>client-list/">
+            <a href="<?php echo SERVER_URL; ?>/client-list/">
                 <i class="fas fa-clipboard-list fa-fw"></i>
                 &nbsp;LISTA DE CLIENTES
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>client-search/">
+            <a href="<?php echo SERVER_URL; ?>/client-search/">
                 <i class="fas fa-search fa-fw"></i>
                 &nbsp;BUSCAR CLIENTE
             </a>
@@ -66,7 +66,7 @@
 <div class="container-fluid">
     <form
         class="form-neon ajax-form"
-        action="<?php echo SERVER_URL; ?>endpoint/client-ajax/"
+        action="<?php echo SERVER_URL; ?>/endpoint/client-ajax/"
         method="POST"
         id="new_registration_form"
         data-form="save"

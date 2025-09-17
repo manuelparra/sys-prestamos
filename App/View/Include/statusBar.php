@@ -17,9 +17,9 @@
     <div class="full-box">
         USUARIO:
         <?php
-        echo $_SESSION['nombre_spm']
+        echo strtoupper($_SESSION['nombre_spm'])
         . ' '
-        . $_SESSION['apellido_spm'];
+        . strtoupper($_SESSION['apellido_spm']);
         ?>
     </div>
 </footer>

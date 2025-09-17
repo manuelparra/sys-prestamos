@@ -38,7 +38,7 @@ let btn_exit_system = document.querySelector(".btn-exit-system");
             cancelButtonText: 'No, cancelar'
         }).then((result) => {
             if (result.value) {
-                let url = '<?php echo SERVER_URL . 'endpoint/login-ajax/'; ?>';
+                let url = '<?php echo SERVER_URL . '/endpoint/login-ajax/'; ?>';
                 let token = '<?php echo $tokenSpm ?>';
                 let usuario = '<?php echo $userSpm; ?>';
                 let data = new FormData();

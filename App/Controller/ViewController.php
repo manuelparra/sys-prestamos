@@ -16,7 +16,7 @@ namespace App\Controller;
 
 use App\Model\ViewModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -40,7 +40,7 @@ class ViewController extends ViewModel
      */
     public function getTemplateController(): string
     {
-        return include_once "./App/View/layout.php";
+        return include_once __ROOT__ . "/App/View/layout.php";
     }
 
     /**

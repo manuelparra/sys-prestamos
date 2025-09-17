@@ -29,19 +29,19 @@
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>item-new/">
+            <a class="active" href="<?php echo SERVER_URL; ?>/item-new/">
                 <i class="fas fa-plus fa-fw"></i>
                 &nbsp;AGREGAR ITEM
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>item-list/">
+            <a href="<?php echo SERVER_URL; ?>/item-list/">
                 <i class="fas fa-clipboard-list fa-fw"></i>
                 &nbsp;LISTA DE ITEMS
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>item-search/">
+            <a href="<?php echo SERVER_URL; ?>/item-search/">
                 <i class="fas fa-search fa-fw"></i>
                 &nbsp;BUSCAR ITEM
             </a>
@@ -53,7 +53,7 @@
 <div class="container-fluid">
     <form
         class="form-neon ajax-form"
-        action="<?php echo SERVER_URL; ?>endpoint/item-ajax/"
+        action="<?php echo SERVER_URL; ?>/endpoint/item-ajax/"
         method="POST"
         id="new_registration_form"
         data-form="save"

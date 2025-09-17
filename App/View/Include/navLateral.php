@@ -19,7 +19,7 @@
         <nav class="full-box nav-lateral-menu">
             <ul>
                 <li>
-                    <a href="<?php echo SERVER_URL; ?>home/">
+                    <a href="<?php echo SERVER_URL; ?>/home/">
                         <i class="fab fa-dashcube fa-fw"></i>
                         &nbsp;Dashboard
                     </a>
@@ -33,19 +33,19 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>client-new/">
+                            <a href="<?php echo SERVER_URL; ?>/client-new/">
                                 <i class="fas fa-plus fa-fw"></i>
                                 &nbsp;Agregar Cliente
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>client-list/">
+                            <a href="<?php echo SERVER_URL; ?>/client-list/">
                                 <i class="fas fa-clipboard-list fa-fw"></i>
                                 &nbsp;Lista de clientes
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>client-search/">
+                            <a href="<?php echo SERVER_URL; ?>/client-search/">
                                 <i class="fas fa-search fa-fw"></i>
                                 &nbsp;Buscar cliente
                             </a>
@@ -61,19 +61,19 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>item-new/">
+                            <a href="<?php echo SERVER_URL; ?>/item-new/">
                                 <i class="fas fa-plus fa-fw"></i>
                                 &nbsp;Agregar item
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>item-list/">
+                            <a href="<?php echo SERVER_URL; ?>/item-list/">
                                 <i class="fas fa-clipboard-list fa-fw"></i>
                                 &nbsp;Lista de items
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>item-search/">
+                            <a href="<?php echo SERVER_URL; ?>/item-search/">
                                 <i class="fas fa-search fa-fw"></i>
                                 &nbsp;Buscar item
                             </a>
@@ -89,31 +89,31 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>loan-new/">
+                            <a href="<?php echo SERVER_URL; ?>/loan-new/">
                                 <i class="fas fa-plus fa-fw"></i>
                                 &nbsp;Nuevo préstamo
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>loan-reservation/">
+                            <a href="<?php echo SERVER_URL; ?>/loan-reservation/">
                                 <i class="far fa-calendar-alt fa-fw"></i>
                                 &nbsp;Reservaciones
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>loan-pending/">
+                            <a href="<?php echo SERVER_URL; ?>/loan-pending/">
                                 <i class="fas fa-hand-holding-usd fa-fw"></i>
                                 &nbsp;Préstamos
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>loan-list/">
+                            <a href="<?php echo SERVER_URL; ?>/loan-list/">
                                 <i class="fas fa-clipboard-list fa-fw"></i>
                                 &nbsp;Finalizados
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo SERVER_URL; ?>loan-search/">
+                            <a href="<?php echo SERVER_URL; ?>/loan-search/">
                                 <i class="fas fa-search-dollar fa-fw"></i>
                                 &nbsp;Buscar por fecha
                             </a>
@@ -132,19 +132,19 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="<?php echo SERVER_URL; ?>user-new/">
+                                <a href="<?php echo SERVER_URL; ?>/user-new/">
                                     <i class="fas fa-plus fa-fw"></i>
                                     &nbsp;Nuevo usuario
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo SERVER_URL; ?>user-list/">
+                                <a href="<?php echo SERVER_URL; ?>/user-list/">
                                     <i class="fas fa-clipboard-list fa-fw"></i>
                                     &nbsp;Lista de usuarios
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo SERVER_URL; ?>user-search/">
+                                <a href="<?php echo SERVER_URL; ?>/user-search/">
                                     <i class="fas fa-search fa-fw"></i>
                                     &nbsp;Buscar usuario
                                 </a>
@@ -152,7 +152,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo SERVER_URL; ?>company/">
+                        <a href="<?php echo SERVER_URL; ?>/company/">
                             <i class="fas fa-store-alt fa-fw"></i>
                             &nbsp;Empresa
                         </a>

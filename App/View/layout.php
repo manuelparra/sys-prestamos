@@ -14,7 +14,7 @@
 
 use App\Controller\{ViewController, LoginController};
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -37,7 +37,7 @@ if (!defined('ABSPATH')) {
         =            Include CSS files           =
         ==============================================-->
 
-        <?php require "./App/View/Include/links.php"; ?>
+        <?php require_once __ROOT__ . "/App/View/Include/links.php"; ?>
     </head>
     <body>
         <?php
@@ -47,7 +47,7 @@ if (!defined('ABSPATH')) {
         $view = $IV->getViewController();
 
         if ($view == "login" || $view == "404") {
-            include_once "./App/View/Content/" . $view . "-view.php";
+            include_once __ROOT__ . "/App/View/Content/" . $view . "-view.php";
         } else {
             session_start(['name'=>'SPM']);
 
@@ -66,24 +66,24 @@ if (!defined('ABSPATH')) {
             <!-- Main container -->
             <main class="full-box main-container">
                 <!-- Nav lateral -->
-                <?php include  "./App/View/Include/navLateral.php"; ?>
+                <?php include_once __ROOT__ . "/App/View/Include/navLateral.php"; ?>
                 <!-- Page content -->
                 <section class="full-box page-content">
                     <!-- Nav Bar and the View -->
                     <?php
-                        include "./App/View/Include/navBar.php";
-                        include $view;
+                        include_once __ROOT__ . "/App/View/Include/navBar.php";
+                        include_once __ROOT__ . $view;
                     ?>
                 </section>
-                <?php include  "./App/View/Include/statusBar.php"; ?>
+                <?php include_once __ROOT__ . "/App/View/Include/statusBar.php"; ?>
             </main>
             <?php
-            include "./App/View/Include/logout.php";
+            include __ROOT__ . "/App/View/Include/logout.php";
         }
         ?>
         <!--=============================================
         =            Include JavaScript files           =
         ==============================================-->
-        <?php require "./App/View/Include/scripts.php"; ?>
+        <?php require __ROOT__ . "/App/View/Include/scripts.php"; ?>
     </body>
 </html>

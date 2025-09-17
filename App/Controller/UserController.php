@@ -16,7 +16,7 @@ namespace App\Controller;
 
 use App\Model\UserModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -320,7 +320,7 @@ class UserController extends UserModel
         $id = UserModel::cleanString($id);
         $url = UserModel::cleanString($url);
 
-        $url = SERVER_URL . $url . "/";
+        $url = SERVER_URL . "/" .$url . "/";
 
         $search = UserModel::cleanString($search);
 
@@ -397,7 +397,7 @@ class UserController extends UserModel
                     <td>' . $row['usuario_usuario'] . '</td>
                     <td>' . $row['usuario_email'] . '</td>
                     <td>
-                        <a href="' . SERVER_URL . 'user-update/' .
+                        <a href="' . SERVER_URL . '/user-update/' .
                             UserModel::encryption($row['usuario_id'])  .
                             '/" class="btn btn-success"
                         >
@@ -406,7 +406,7 @@ class UserController extends UserModel
                     </td>
                     <td>
                         <form class="ajax-form"
-                            action="' . SERVER_URL . 'endpoint/user-ajax/"
+                            action="' . SERVER_URL . '/endpoint/user-ajax/"
                             method="POST"
                             data-form="delete"
                             autocomplete="off"

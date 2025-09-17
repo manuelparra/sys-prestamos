@@ -16,7 +16,7 @@ namespace App\Controller;
 
 use App\Model\LoginModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -138,7 +138,7 @@ class LoginController extends LoginModel
             $_SESSION['perfil_spm'] = $row['perfil_nombre'];
             $_SESSION['token_spm'] = md5(uniqid(mt_rand(), true));
 
-            return header("Location: " . SERVER_URL . "home/");
+            return header("Location: " . SERVER_URL . "/home/");
         } else {
             echo '
             <script>
@@ -168,12 +168,12 @@ class LoginController extends LoginModel
 
         if (headers_sent()) { // If headers are being sent,
             $str = "<script>
-                        window.location.href='" . SERVER_URL . "login/';
+                        window.location.href='" . SERVER_URL . "/login/';
                     </script>";
 
             return $str;
         } else {
-            return header("Location: " . SERVER_URL . "login/");
+            return header("Location: " . SERVER_URL . "/login/");
         }
     }
 
@@ -199,7 +199,7 @@ class LoginController extends LoginModel
                 null,
                 null,
                 null,
-                SERVER_URL . "login/"
+                SERVER_URL . "/login/"
             );
         } else {
             return LoginModel::messageWithParameters(

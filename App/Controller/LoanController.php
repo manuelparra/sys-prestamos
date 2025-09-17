@@ -16,7 +16,7 @@ namespace App\Controller;
 
 use App\Model\LoanModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -57,7 +57,7 @@ class LoanController extends LoanModel
         $privilege = LoanModel::cleanString($privilege);
 
         $url = LoanModel::cleanString($url);
-        $url = SERVER_URL . $url . "/";
+        $url = SERVER_URL . "/" . $url . "/";
 
         $search = LoanModel::cleanString($search);
 
@@ -158,7 +158,7 @@ class LoanController extends LoanModel
                     $table .= '
                             <td>
                                 <a
-                                    href="' . SERVER_URL . 'lean-update/"' .
+                                    href="' . SERVER_URL . '/lean-update/"' .
                                     LoanModel::encryption($row['prestamo_id']) .
                                     '/"
                                     class="btn btn-success"
@@ -173,7 +173,7 @@ class LoanController extends LoanModel
                             <td>
                                 <form
                                     class="ajax-form"
-                                    action="' . SERVER_URL . 'endpoint/item-ajax/"
+                                    action="' . SERVER_URL . '/endpoint/item-ajax/"
                                     method="POST"
                                     data-form="delete"
                                     autocomplete="off"

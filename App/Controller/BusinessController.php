@@ -18,7 +18,7 @@ namespace App\Controller;
 
 use App\Model\BusinessModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }

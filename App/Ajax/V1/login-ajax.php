@@ -14,7 +14,7 @@
 
 use App\Controller\LoginController;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -28,6 +28,6 @@ if (isset($_POST['token']) && isset($_POST['usuario'])) {
     session_start(['name' => 'SPM']);
     session_unset();
     session_destroy();
-    header("Location: " . SERVER_URL . "login/");
+    header("Location: " . SERVER_URL . "/login/");
     exit;
 }

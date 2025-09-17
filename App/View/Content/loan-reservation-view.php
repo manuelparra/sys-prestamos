@@ -32,31 +32,31 @@ use App\Controller\LoanController;
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
         <li>
-            <a href="<?php echo SERVER_URL; ?>loan-new/">
+            <a href="<?php echo SERVER_URL; ?>/loan-new/">
                 <i class="fas fa-plus fa-fw"></i>
                 &nbsp;NUEVO PRÉSTAMO
             </a>
         </li>
         <li>
-            <a class="active" href="<?php echo SERVER_URL; ?>loan-reservation/">
+            <a class="active" href="<?php echo SERVER_URL; ?>/loan-reservation/">
                 <i class="far fa-calendar-alt"></i>
                 &nbsp;RESERVACIONES
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>loan-pending/">
+            <a href="<?php echo SERVER_URL; ?>/loan-pending/">
                 <i class="fas fa-hand-holding-usd fa-fw"></i>
                 &nbsp;PRÉSTAMOS
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>loan-list/">
+            <a href="<?php echo SERVER_URL; ?>/loan-list/">
                 <i class="fas fa-clipboard-list fa-fw"></i>
                 &nbsp;FINALIZADOS
             </a>
         </li>
         <li>
-            <a href="<?php echo SERVER_URL; ?>loan-search/">
+            <a href="<?php echo SERVER_URL; ?>/loan-search/">
                 <i class="fas fa-search-dollar fa-fw"></i>
                 &nbsp;BUSCAR POR FECHA
             </a>

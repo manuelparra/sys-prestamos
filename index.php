@@ -2,7 +2,7 @@
 /**
  * Index File
  * Contents of the Index File. All functionality pertaining to App Config.
- * PHP version 8.2.0
+ * PHP version 8.3.14
  *
  * @category Config
  * @package  Config
@@ -12,9 +12,9 @@
  * @link     manuelparra.dev
  */
 
-/*--- ABS Path of the proyect. ---*/
-if (!defined('ABSPATH')) {
-    define('ABSPATH', dirname(__FILE__) . '/');
+/*--- ROOT Path of the proyect. ---*/
+if (!defined('__ROOT__')) {
+    define('__ROOT__', dirname(__FILE__));
 }
 
 // Autoloader Reister
@@ -25,7 +25,7 @@ spl_autoload_register(
     }
 );
 
-require_once "./App/Config/app.php";
+require_once __ROOT__ . "/App/Config/app.php";
 
 use App\Controller\EndpointController;
 use App\Controller\ViewController;

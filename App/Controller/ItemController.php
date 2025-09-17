@@ -17,7 +17,7 @@ namespace App\Controller;
 
 use App\Model\ItemModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -463,7 +463,7 @@ class ItemController extends ItemModel
         $privilege = ItemModel::cleanString($privilege);
 
         $url = ItemModel::cleanString($url);
-        $url = SERVER_URL . $url . "/";
+        $url = SERVER_URL . "/" . $url . "/";
 
         $search = ItemModel::cleanString($search);
 
@@ -551,7 +551,7 @@ class ItemController extends ItemModel
                     $table .= '
                         <td>
                             <a
-                                href="' . SERVER_URL . 'item-update/' .
+                                href="' . SERVER_URL . '/item-update/' .
                         ItemModel::encryption($row['item_id'])  .
                         '/"
                                 class="btn btn-success"
@@ -566,7 +566,7 @@ class ItemController extends ItemModel
                         <td>
                             <form
                                 class="ajax-form"
-                                action="' . SERVER_URL . 'endpoint/item-ajax/"
+                                action="' . SERVER_URL . '/endpoint/item-ajax/"
                                 method="POST"
                                 data-form="delete"
                                 autocomplete="off"

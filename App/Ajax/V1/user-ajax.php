@@ -14,7 +14,7 @@
 
 use App\Controller\UserController;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed derectly
 }
@@ -69,6 +69,6 @@ if (isset($_POST['usuario_dni_reg'])
     session_start(['name' => 'SPM']);
     session_unset();
     session_destroy();
-    header("Location: " . SERVER_URL . "login/");
+    header("Location: " . SERVER_URL . "/login/");
     exit;
 }

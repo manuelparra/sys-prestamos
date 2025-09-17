@@ -12,7 +12,7 @@
  * @link     manuelparra.dev
  */
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -121,13 +121,13 @@ if (isset($_POST['busqueda_inicial'])
     echo json_encode(
         [
             "alert" => "redirect",
-            "url" => SERVER_URL . $url . "/"
+            "url" => SERVER_URL . "/" . $url . "/"
         ]
     );
     exit;
 } else {
     session_unset();
     session_destroy();
-    header("Location: " . SERVER_URL . "login/");
+    header("Location: " . SERVER_URL . "/login/");
     exit;
 }

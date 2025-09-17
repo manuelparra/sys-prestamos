@@ -16,7 +16,7 @@ namespace App\Controller;
 
 use App\Model\ClientModel;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -201,7 +201,7 @@ class ClientController extends ClientModel
         $privilege = ClientModel::cleanString($privilege);
 
         $url = ClientModel::cleanString($url);
-        $url = SERVER_URL . $url . "/";
+        $url = SERVER_URL . "/" . $url . "/";
 
         $search = ClientModel::cleanString($search);
 
@@ -297,7 +297,7 @@ class ClientController extends ClientModel
                     $table .= '
                         <td>
                             <a
-                                href="' . SERVER_URL . 'client-update/' . $id . '/"
+                                href="' . SERVER_URL . '/client-update/' . $id . '/"
                                 class="btn btn-success"
                             >
                                 <i class="fas fa-sync-alt"></i>
@@ -310,7 +310,7 @@ class ClientController extends ClientModel
                         <td>
                             <form
                                 class="ajax-form"
-                                action="' . SERVER_URL . 'endpoint/client-ajax/"
+                                action="' . SERVER_URL . '/endpoint/client-ajax/"
                                 method="POST"
                                 data-form="delete"
                                 autocomplete="off"

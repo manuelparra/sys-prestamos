@@ -14,7 +14,7 @@
 
 namespace App\Model;
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     echo "Acceso no autorizado.";
     exit; // Exit if accessed directly
 }
@@ -49,8 +49,8 @@ class ViewModel
         $content = "404";
 
         if (in_array($view, $whiteListView)) {
-            if (is_file("./App/View/Content/" . $view . "-view.php")) {
-                $content = "./App/View/Content/" . $view . "-view.php";
+            if (is_file(__ROOT__ . "/App/View/Content/" . $view . "-view.php")) {
+                $content = "/App/View/Content/" . $view . "-view.php";
             }
         } elseif ($view == "login" || $view == "index") {
             $content = "login";

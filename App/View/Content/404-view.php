@@ -12,7 +12,7 @@
  * @link     manuelparra.dev
  */
 
-if (!defined('ABSPATH')) {
+if (!defined('__ROOT__')) {
     header("Location: /login/");
     exit; // exit if accessed directly
 }
