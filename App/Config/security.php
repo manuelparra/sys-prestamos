@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Config
  * All functionality pertaining to App Security.
@@ -64,4 +65,3 @@ const RUSER = "[a-zA-Z0-9]{1,35}";
 
 // Para la clave de usuario
 const RPASS = "^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡\/#$%&])\S{8,16}$";
-

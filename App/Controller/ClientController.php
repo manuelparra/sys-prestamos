@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Client Controller
  * All functionality pertaining to Client Controller.
@@ -15,11 +16,6 @@
 namespace App\Controller;
 
 use App\Model\ClientModel;
-
-if (!defined('__ROOT__')) {
-    echo "Acceso no autorizado.";
-    exit; // Exit if accessed directly
-}
 
 /**
  * Class Client Controller
@@ -48,7 +44,8 @@ class ClientController extends ClientModel
         $direccion = ClientModel::cleanString($_POST['cliente_direccion_reg']);
 
         // Check empty fields
-        if ($dni == "" || $nombre == "" || $apellido == ""
+        if (
+            $dni == "" || $nombre == "" || $apellido == ""
             || $telefono == "" || $email == "" || $direccion == ""
         ) {
             return ClientModel::messageWithParameters(
@@ -542,7 +539,8 @@ class ClientController extends ClientModel
         $direccion = ClientModel::cleanString($_POST['cliente_direccion_upd']);
 
         // check empty fields
-        if ($dni == "" || $nombre == "" || $apellido == ""
+        if (
+            $dni == "" || $nombre == "" || $apellido == ""
             || $telefono == "" || $email == "" || $direccion == ""
         ) {
             return ClientModel::messageWithParameters(

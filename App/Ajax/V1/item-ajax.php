@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ajax Item Script
  * All functionality pertaining to the Ajax Item Script
@@ -19,9 +20,10 @@ if (!defined('__ROOT__')) {
     exit; // exit if accessed directly
 }
 
-if (isset($_POST['item_codigo_reg'])
-    || isset($_POST['item_id_upd'])
-    || isset($_POST['item_id_del'])
+if (
+    isset($_POST['item_codigo_reg']) ||
+    isset($_POST['item_id_upd']) ||
+    isset($_POST['item_id_del'])
 ) {
     // instance to item controller
     $insItemController = new ItemController();
@@ -39,8 +41,9 @@ if (isset($_POST['item_codigo_reg'])
     }
 
     // add item
-    if (isset($_POST['item_codigo_reg'])
-        && isset($_POST['item_nombre_reg'])
+    if (
+        isset($_POST['item_codigo_reg']) &&
+        isset($_POST['item_nombre_reg'])
     ) {
         echo $insItemController->addItemController();
         exit;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ajas User Script
  * All functionality pertaining to the Ajax User Script
@@ -19,9 +20,10 @@ if (!defined('__ROOT__')) {
     exit; // Exit if accessed derectly
 }
 
-if (isset($_POST['usuario_dni_reg'])
-    || isset($_POST['usuario_id_del'])
-    || isset($_POST['usuario_id_upd'])
+if (
+    isset($_POST['usuario_dni_reg']) ||
+    isset($_POST['usuario_id_del']) ||
+    isset($_POST['usuario_id_upd'])
 ) {
     // instance to user controller
     $insUserController = new UserController();
@@ -39,20 +41,21 @@ if (isset($_POST['usuario_dni_reg'])
     }
 
     // add user
-    if ((isset($_POST['usuario_dni_reg'])
-        && !empty($_POST['usuario_dni_reg']))
-        && (isset($_POST['usuario_nombre_reg'])
-        && !empty($_POST['usuario_nombre_reg']))
-        && (isset($_POST['usuario_usuario_reg'])
-        && !empty($_POST['usuario_usuario_reg']))
-        && (isset($_POST['usuario_email_reg'])
-        && !empty($_POST['usuario_email_reg']))
-        && (isset($_POST['usuario_clave_1_reg'])
-        && !empty($_POST['usuario_clave_1_reg']))
-        && (isset($_POST['usuario_clave_1_reg'])
-        && !empty($_POST['usuario_clave_1_reg']))
-        && (isset($_POST['usuario_privilegio_reg'])
-        && !empty($_POST['usuario_privilegio_reg']))
+    if (
+        (isset($_POST['usuario_dni_reg']) &&
+        !empty($_POST['usuario_dni_reg'])) &&
+        (isset($_POST['usuario_nombre_reg']) &&
+        !empty($_POST['usuario_nombre_reg'])) &&
+        (isset($_POST['usuario_usuario_reg']) &&
+        !empty($_POST['usuario_usuario_reg'])) &&
+        (isset($_POST['usuario_email_reg']) &&
+        !empty($_POST['usuario_email_reg'])) &&
+        (isset($_POST['usuario_clave_1_reg']) &&
+        !empty($_POST['usuario_clave_0_reg'])) &&
+        (isset($_POST['usuario_clave_1_reg']) &&
+        !empty($_POST['usuario_clave_0_reg'])) &&
+        (isset($_POST['usuario_privilegio_reg']) &&
+        !empty($_POST['usuario_privilegio_reg']))
     ) {
         echo $insUserController->addUserController();
         exit;

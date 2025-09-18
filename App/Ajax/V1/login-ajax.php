@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ajas Login Script
  * All functionality pertaining to the Ajax Login Script

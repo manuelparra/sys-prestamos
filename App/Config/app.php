@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Config
  * All functionality pertaining to App Config.
@@ -20,7 +21,6 @@ if (!defined('__ROOT__')) {
 // Laod the security config
 
 require_once __ROOT__ . '/App/Config/security.php';
-
 
 // Local Enviroment (Linux), comment this lines if you put this files in a
 // production environment

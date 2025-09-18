@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ajax Client
  * All functionality pertaining to Ajax Cilent
@@ -19,9 +20,10 @@ if (!defined('__ROOT__')) {
     exit; // exit if accessed directly
 }
 
-if (isset($_POST['cliente_dni_reg'])
-    || isset($_POST['cliente_id_del'])
-    || isset($_POST['cliente_id_upd'])
+if (
+    isset($_POST['cliente_dni_reg']) ||
+    isset($_POST['cliente_id_del']) ||
+    isset($_POST['cliente_id_upd'])
 ) {
     // instance to client controller
     $insClientController = new ClientController();
@@ -39,8 +41,9 @@ if (isset($_POST['cliente_dni_reg'])
     }
 
     // add client
-    if (isset($_POST['cliente_dni_reg'])
-        && isset($_POST['cliente_nombre_reg'])
+    if (
+        isset($_POST['cliente_dni_reg']) &&
+        isset($_POST['cliente_nombre_reg'])
     ) {
         echo $insClientController->addClientController();
         exit;

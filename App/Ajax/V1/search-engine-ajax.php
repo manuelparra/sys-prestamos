@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ajas Search Script
  * All functionality pertaining to the Ajax Search Script
@@ -21,10 +22,11 @@ session_start(['name' => 'SPM']);
 
 require_once "./App/Config/app.php";
 
-if (isset($_POST['busqueda_inicial'])
-    || isset($_POST['eliminar_busqueda'])
-    || isset($_POST['busqueda_fecha_inicial'])
-    || isset($_POST['busqueda_fecha_final'])
+if (
+    isset($_POST['busqueda_inicial']) ||
+    isset($_POST['eliminar_busqueda']) ||
+    isset($_POST['busqueda_fecha_inicial']) ||
+    isset($_POST['busqueda_fecha_final'])
 ) {
     $url_reload = [
         "usuario" => "user-search",

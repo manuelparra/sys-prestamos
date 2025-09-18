@@ -17,11 +17,6 @@ namespace App\Controller;
 
 use App\Model\ItemModel;
 
-if (!defined('__ROOT__')) {
-    echo "Acceso no autorizado.";
-    exit; // Exit if accessed directly
-}
-
 /**
  * Class Item Controller
  *
@@ -48,8 +43,9 @@ class ItemController extends ItemModel
         $detalle = ItemModel::cleanString($_POST['item_detalle_reg']);
 
         // check empty fields
-        if ($codigo == "" || $nombre == "" || $stock == ""
-            || $estado == "" || $detalle == ""
+        if (
+            $codigo == "" || $nombre == "" || $stock == "" ||
+            $estado == "" || $detalle == ""
         ) {
             return ItemModel::messageWithParameters(
                 "simple",
@@ -206,9 +202,9 @@ class ItemController extends ItemModel
         $detalle = ItemModel::cleanString($_POST['item_detalle_upd']);
 
         // check empty fields
-        if ($codigo == "" || $nombre == ""
-            || $stock == "" || $estado == ""
-            || $detalle == ""
+        if (
+            $codigo == "" || $nombre == "" ||
+            $stock == "" || $estado == "" || $detalle == ""
         ) {
             return ItemModel::messageWithParameters(
                 "simple",

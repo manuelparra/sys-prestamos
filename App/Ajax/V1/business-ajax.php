@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ajax Business Script
  * All functionality pertaining to Endpoint Model.
@@ -20,7 +21,8 @@ if (!defined('__ROOT__')) {
 }
 
 
-if (isset($_POST['empresa_nif_reg'])
+if (
+    isset($_POST['empresa_nif_reg'])
     || isset($_POST['empresa_id_upd'])
 ) {
     // Instance to Business Controller

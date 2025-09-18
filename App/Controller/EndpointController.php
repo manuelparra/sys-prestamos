@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Endpoint Controller
  * All functionality pertaining to Endpoint Controller.
@@ -15,11 +16,6 @@
 namespace App\Controller;
 
 use App\Model\EndpointModel;
-
-if (!defined('__ROOT__')) {
-    echo "Acceso no autorizado.";
-    exit; // Exit if accessed directly
-}
 
 /**
  * Class Endpoint Controller
